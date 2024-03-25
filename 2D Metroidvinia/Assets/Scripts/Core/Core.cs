@@ -1,18 +1,24 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Core : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Movement Movement { get; private set; }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        Movement = GetComponentInChildren<Movement>();
+
+        if (!Movement)
+        {
+            Debug.LogError("There is no Movement component on the parent object of " + this + " component.");
+        }
+    }
+    
+    public void LogicUpdate()
+    {
+        Movement.LogicUpdate();
     }
 }
