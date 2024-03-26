@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerInAirState : PlayerState
 {
-    private bool _isGrounded, _jumpInput, _coyoteTime, _isJumping, _jumpInputStop;
+    private bool _isGrounded, _jumpInput, _coyoteTime, _isJumping, _jumpInputStop, _isTouchingWall, _grabInput;
     private int _xInput;
     public PlayerInAirState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
     {
@@ -26,6 +26,7 @@ public class PlayerInAirState : PlayerState
         _xInput = Player.InputHandler.NormalizedInputX;
         _jumpInput = Player.InputHandler.JumpInput;
         _jumpInputStop = Player.InputHandler.JumpInputStop;
+        _grabInput = Player.InputHandler.GrabInput;
 
         CheckJumpMultiplier();
 
@@ -36,6 +37,14 @@ public class PlayerInAirState : PlayerState
         else if (_jumpInput && Player.JumpState.CanJump())
         {
             StateMachine.ChangeState(Player.JumpState);
+        } 
+        else if (_isTouchingWall && _grabInput && !_isGrounded)
+        {
+            StateMachine.ChangeState(Player.WallGrabState);
+        }
+        else if (_isTouchingWall && _xInput == Core.Movement.FacingDirection && Core.Movement.CurrentVelocity.y <= 0f)
+        {
+            StateMachine.ChangeState(Player.WallSlideState);
         }
         else
         {
@@ -57,6 +66,7 @@ public class PlayerInAirState : PlayerState
         base.DoChecks();
         
         _isGrounded = Player.Core.CollisionSenses.Ground;
+        _isTouchingWall = Player.Core.CollisionSenses.Wall;
     }
 
     public void StartCoyoteTime() => _coyoteTime = true;

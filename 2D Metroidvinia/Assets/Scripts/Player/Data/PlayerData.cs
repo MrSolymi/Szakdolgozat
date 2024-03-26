@@ -13,4 +13,7 @@ public class PlayerData : ScriptableObject
     
     [Header("In Air State")]
     public float coyoteTime = 0.1f;
+    
+    [Header("Wall Slide State")]
+    public float wallSlideVelocity = 3.0f;
 }

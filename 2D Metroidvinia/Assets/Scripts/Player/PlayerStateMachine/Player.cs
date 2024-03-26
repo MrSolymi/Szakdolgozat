@@ -10,6 +10,8 @@ public class Player : MonoBehaviour
     public PlayerJumpState JumpState { get; private set; }
     public PlayerInAirState InAirState { get; private set; }
     public PlayerLandState LandState { get; private set; }
+    public PlayerWallSlideState WallSlideState { get; private set; }
+    public PlayerWallGrabState WallGrabState { get; private set; }
     public Animator Animator { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D RB { get; private set; }
@@ -30,6 +32,8 @@ public class Player : MonoBehaviour
         JumpState = new PlayerJumpState(this, playerData, "inAir");
         InAirState = new PlayerInAirState(this, playerData, "inAir");
         LandState = new PlayerLandState(this, playerData, "land");
+        WallSlideState = new PlayerWallSlideState(this, playerData, "wallSlide");
+        WallGrabState = new PlayerWallGrabState(this, playerData, "wallGrab");
     }
 
     private void Start()
