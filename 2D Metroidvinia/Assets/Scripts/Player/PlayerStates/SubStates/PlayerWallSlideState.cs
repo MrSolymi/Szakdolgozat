@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerWallSlideState : TouchingWallState
+public class PlayerWallSlideState : PlayerTouchingWallState
 {
     public PlayerWallSlideState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
     {
@@ -19,6 +19,17 @@ public class PlayerWallSlideState : TouchingWallState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        
+        Core.Movement.SetVelocityY(-PlayerData.wallSlideVelocity);
+
+        if (GrabInput)
+        {
+            StateMachine.ChangeState(Player.WallGrabState);
+        }
+        else if (!IsTouchingWall || XInput != Core.Movement.FacingDirection)
+        {
+            StateMachine.ChangeState(Player.InAirState);
+        }
     }
 
     public override void PhysicsUpdate()
