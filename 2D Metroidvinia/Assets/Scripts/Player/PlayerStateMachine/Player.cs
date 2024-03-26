@@ -15,11 +15,8 @@ public class Player : MonoBehaviour
     public Animator Animator { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D RB { get; private set; }
-    //public int FacingDirection { get; private set; }
     
     [SerializeField] private PlayerData playerData;
-    
-    //private Vector2 workspace;
     
     private void Awake()
     {

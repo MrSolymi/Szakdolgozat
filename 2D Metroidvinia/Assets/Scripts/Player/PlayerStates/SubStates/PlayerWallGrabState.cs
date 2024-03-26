@@ -26,17 +26,12 @@ public class PlayerWallGrabState : PlayerTouchingWallState
         
         HoldPosition();
 
-        if (!GrabInput && IsTouchingWall && IsGrounded)
+        if (!IsExitingState)
         {
-            StateMachine.ChangeState(Player.IdleState);
-        }
-        else if (!GrabInput && IsTouchingWall)
-        {
-            StateMachine.ChangeState(Player.WallSlideState);
-        }
-        else if (!GrabInput && !IsTouchingWall)
-        {
-            StateMachine.ChangeState(Player.InAirState);
+            if (!GrabInput)
+            {
+                StateMachine.ChangeState(Player.WallSlideState);
+            }
         }
     }
 
