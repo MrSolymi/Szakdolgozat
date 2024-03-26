@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerInAirState : PlayerState
 {
-    private bool _isGrounded;
+    private bool _isGrounded, _jumpInput, _coyoteTime, _isJumping, _jumpInputStop;
     private int _xInput;
     public PlayerInAirState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
     {
@@ -22,11 +22,20 @@ public class PlayerInAirState : PlayerState
     {
         base.LogicUpdate();
         
+        CheckCoyoteTime();
         _xInput = Player.InputHandler.NormalizedInputX;
+        _jumpInput = Player.InputHandler.JumpInput;
+        _jumpInputStop = Player.InputHandler.JumpInputStop;
+
+        CheckJumpMultiplier();
 
         if (_isGrounded && Core.Movement.CurrentVelocity.y < 0.01f)
         {
             StateMachine.ChangeState(Player.LandState);
+        }
+        else if (_jumpInput && Player.JumpState.CanJump())
+        {
+            StateMachine.ChangeState(Player.JumpState);
         }
         else
         {
@@ -49,4 +58,34 @@ public class PlayerInAirState : PlayerState
         
         _isGrounded = Player.Core.CollisionSenses.Ground;
     }
+
+    public void StartCoyoteTime() => _coyoteTime = true;
+    
+    public void SetIsJumping() => _isJumping = true;
+    
+    private void CheckCoyoteTime()
+    {
+        if (_coyoteTime && Time.time >= StartTime + PlayerData.coyoteTime)
+        {
+            _coyoteTime = false;
+            Player.JumpState.DecreaseJumps();
+        }
+    }
+    
+    private void CheckJumpMultiplier()
+    {
+        if (_isJumping)
+        {
+            if (_jumpInputStop)
+            {
+                Core.Movement.SetVelocityY(Core.Movement.CurrentVelocity.y * PlayerData.jumpHeightMultiplier);
+                _isJumping = false;
+            }
+            else if (Core.Movement.CurrentVelocity.y <= 0f)
+            {
+                _isJumping = false;
+            }
+        }
+    }
+    
 }
