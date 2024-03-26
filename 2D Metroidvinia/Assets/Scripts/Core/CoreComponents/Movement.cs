@@ -30,7 +30,14 @@ public class Movement : CoreComponent
         CurrentVelocity = _workspace;
     }
     
-    public void Flip()
+    public void SetVelocityY(float velocity)
+    {
+        _workspace.Set(CurrentVelocity.x, velocity);
+        RB.velocity = _workspace;
+        CurrentVelocity = _workspace;
+    }
+    
+    private void Flip()
     {
         FacingDirection *= -1;
         RB.transform.Rotate(0.0f, 180.0f, 0.0f);

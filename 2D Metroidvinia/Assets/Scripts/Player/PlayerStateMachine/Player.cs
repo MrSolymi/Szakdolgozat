@@ -7,6 +7,9 @@ public class Player : MonoBehaviour
     public PlayerStateMachine StateMachine { get; private set; }
     public PlayerIdleState IdleState { get; private set; }
     public PlayerMoveState MoveState { get; private set; }
+    public PlayerJumpState JumpState { get; private set; }
+    public PlayerInAirState InAirState { get; private set; }
+    public PlayerLandState LandState { get; private set; }
     public Animator Animator { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
     public Rigidbody2D RB { get; private set; }
@@ -24,6 +27,9 @@ public class Player : MonoBehaviour
 
         IdleState = new PlayerIdleState(this, playerData, "idle");
         MoveState = new PlayerMoveState(this, playerData, "move");
+        JumpState = new PlayerJumpState(this, playerData, "inAir");
+        InAirState = new PlayerInAirState(this, playerData, "inAir");
+        LandState = new PlayerLandState(this, playerData, "land");
     }
 
     private void Start()
@@ -47,4 +53,7 @@ public class Player : MonoBehaviour
     {
         StateMachine.CurrentState.PhysicsUpdate();
     }
+    
+    private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
+    private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
 }
