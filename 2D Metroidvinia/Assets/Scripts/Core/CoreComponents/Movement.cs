@@ -36,6 +36,14 @@ public class Movement : CoreComponent
         RB.velocity = _workspace;
         CurrentVelocity = _workspace;
     }
+
+    public void SetVelocity(float velocity, Vector2 angle, int direction)
+    {
+        angle.Normalize();
+        _workspace.Set(angle.x * velocity * direction, angle.y * velocity);
+        RB.velocity = _workspace;
+        CurrentVelocity = _workspace;
+    }
     
     private void Flip()
     {

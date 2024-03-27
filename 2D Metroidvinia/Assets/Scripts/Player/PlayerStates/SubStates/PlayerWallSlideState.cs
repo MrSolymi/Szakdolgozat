@@ -19,13 +19,22 @@ public class PlayerWallSlideState : PlayerTouchingWallState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
-        
-        Core.Movement.SetVelocityY(-PlayerData.wallSlideVelocity);
 
-        if (GrabInput && !IsExitingState)
+        if (!IsExitingState)
         {
-            StateMachine.ChangeState(Player.WallGrabState);
+            Core.Movement.SetVelocityY(-PlayerData.wallSlideVelocity);
+                    
+            if (GrabInput)
+            {
+                StateMachine.ChangeState(Player.WallGrabState);
+            } 
         }
+        
+        // else if (JumpInput)
+        // {
+        //     Player.WallJumpState.DetermineWallJumpDirection(IsTouchingWall);
+        //     StateMachine.ChangeState(Player.WallJumpState);
+        // }
     }
 
     public override void PhysicsUpdate()

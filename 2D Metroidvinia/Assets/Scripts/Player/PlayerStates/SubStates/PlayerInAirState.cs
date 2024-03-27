@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class PlayerInAirState : PlayerState
 {
-    private bool _isGrounded, _jumpInput, _coyoteTime, _isJumping, _jumpInputStop, _isTouchingWall, _grabInput;
+    private bool _isGrounded, _jumpInput, _coyoteTime, _isJumping, _jumpInputStop, _isTouchingWall, _grabInput,
+        _isTouchingWallBackwards;
     private int _xInput;
     public PlayerInAirState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
     {
@@ -34,9 +35,14 @@ public class PlayerInAirState : PlayerState
         {
             StateMachine.ChangeState(Player.LandState);
         }
+        else if (_jumpInput && (_isTouchingWall || _isTouchingWallBackwards))
+        {
+            //_isTouchingWall = Player.Core.CollisionSenses.Wall;
+            Player.WallJumpState.DetermineWallJumpDirection(_isTouchingWall);
+            StateMachine.ChangeState(Player.WallJumpState);
+        }
         else if (_jumpInput && Player.JumpState.CanJump())
         {
-            Player.InputHandler.UseJumpInput();
             StateMachine.ChangeState(Player.JumpState);
         } 
         else if (_isTouchingWall && _grabInput && !_isGrounded)
@@ -68,6 +74,7 @@ public class PlayerInAirState : PlayerState
         
         _isGrounded = Player.Core.CollisionSenses.Ground;
         _isTouchingWall = Player.Core.CollisionSenses.Wall;
+        _isTouchingWallBackwards = Player.Core.CollisionSenses.WallBackwards;
     }
 
     public void StartCoyoteTime() => _coyoteTime = true;

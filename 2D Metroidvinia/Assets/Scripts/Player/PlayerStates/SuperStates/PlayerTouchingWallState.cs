@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerTouchingWallState : PlayerState
 {
-    protected bool IsGrounded, IsTouchingWall, GrabInput;
+    protected bool IsGrounded, IsTouchingWall, GrabInput, JumpInput;
     protected int XInput;
     public PlayerTouchingWallState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
     {
@@ -24,8 +24,14 @@ public class PlayerTouchingWallState : PlayerState
         
         XInput = Player.InputHandler.NormalizedInputX;
         GrabInput = Player.InputHandler.GrabInput;
+        JumpInput = Player.InputHandler.JumpInput;
 
-        if (IsGrounded && !GrabInput)
+        if (JumpInput)
+        {
+            Player.WallJumpState.DetermineWallJumpDirection(IsTouchingWall);
+            StateMachine.ChangeState(Player.WallJumpState);
+        }
+        else if (IsGrounded && !GrabInput)
         {
             StateMachine.ChangeState(Player.IdleState);
         }

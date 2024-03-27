@@ -27,6 +27,7 @@ public class CollisionSenses : CoreComponent
     public bool Ground => Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     
     public bool Wall => Physics2D.Raycast(wallCheck.position, Vector2.right * _core.Movement.FacingDirection ,wallCheckDistance, whatIsGround);
+    public bool WallBackwards => Physics2D.Raycast(wallCheck.position, Vector2.right * -_core.Movement.FacingDirection ,wallCheckDistance, whatIsGround);
 
     
 }
