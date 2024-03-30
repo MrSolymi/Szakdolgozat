@@ -113,11 +113,33 @@
                 },
                 {
                     "name": "",
+                    "id": "ef67a5bd-677b-4825-ade9-c27619758c0d",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "4b600de9-ba6e-48c1-aa7d-6bd2a40de948",
                     "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard",
+                    "action": "WallGrab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6620e498-30d5-4fb2-b7ec-3b82da3dfcdf",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
                     "action": "WallGrab",
                     "isComposite": false,
                     "isPartOfComposite": false
