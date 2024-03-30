@@ -18,6 +18,7 @@ public class PlayerWallJumpState : PlayerAbilityState
         Core.Movement.SetVelocity(PlayerData.wallJumpVelocity, PlayerData.wallJumpAngle, _wallJumpDirection);
         Core.Movement.CheckIfShouldFlip(_wallJumpDirection);
         Player.JumpState.DecreaseJumps();
+        
     }
 
     public override void Exit()
