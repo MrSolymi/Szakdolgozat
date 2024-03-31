@@ -18,8 +18,6 @@ MonoBehaviour:
   jumpHeightMultiplier: 0.4
   wallJumpVelocity: 18
   wallJumpTime: 0.3
-  wallJumpAngle: {x: 1, y: 2.7}
-  coyoteTime: 0.1
   wallJumpAngle: {x: 1, y: 2.6}
   ledgeClimbStartOffset: {x: 0.38, y: 1}
   ledgeClimbStopOffset: {x: 0.4, y: 0.8}
