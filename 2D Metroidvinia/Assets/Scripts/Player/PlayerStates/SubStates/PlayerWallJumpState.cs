@@ -10,7 +10,7 @@ public class PlayerWallJumpState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
-       
+        
         IsAbilityDone = false;
 
         Player.InputHandler.UseJumpInput();
@@ -33,7 +33,7 @@ public class PlayerWallJumpState : PlayerAbilityState
         Player.Animator.SetFloat("yVelocity", Core.Movement.CurrentVelocity.y);
         Player.Animator.SetFloat("xVelocity", Mathf.Abs(Core.Movement.CurrentVelocity.x));
 
-        if (Time.time >= StartTime + PlayerData.wallJumpTime)
+        if (Time.time >= StartTime + PlayerData.wallJumpTime || Core.CollisionSenses.Wall)
         {
             IsAbilityDone = true;
         }

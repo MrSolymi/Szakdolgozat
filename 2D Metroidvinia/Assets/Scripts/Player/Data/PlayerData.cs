@@ -15,6 +15,10 @@ public class PlayerData : ScriptableObject
     public float wallJumpVelocity = 15f;
     public float wallJumpTime = 0.35f;
     public Vector2 wallJumpAngle = new Vector2(1, 2);
+
+    [Header("Ledge Climb State")] 
+    public Vector2 ledgeClimbStartOffset;
+    public Vector2 ledgeClimbStopOffset;
     
     [Header("In Air State")]
     public float coyoteTime = 0.1f;

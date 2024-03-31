@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,9 @@ public class CollisionSenses : CoreComponent
     
     public Transform WallCheck { get => wallCheck; set => wallCheck = value; }
     [SerializeField] private Transform wallCheck;
+    
+    public Transform LedgeCheck { get => ledgeCheck; set => ledgeCheck = value; }
+    [SerializeField] private Transform ledgeCheck;
     
     public float GroundCheckRadius { get => groundCheckRadius; set => groundCheckRadius = value; }
     [SerializeField] private float groundCheckRadius;
@@ -27,7 +31,8 @@ public class CollisionSenses : CoreComponent
     public bool Ground => Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
     
     public bool Wall => Physics2D.Raycast(wallCheck.position, Vector2.right * _core.Movement.FacingDirection ,wallCheckDistance, whatIsGround);
+    
     public bool WallBackwards => Physics2D.Raycast(wallCheck.position, Vector2.right * -_core.Movement.FacingDirection ,wallCheckDistance, whatIsGround);
 
-    
+   public bool Ledge => Physics2D.Raycast(ledgeCheck.position, Vector2.right * _core.Movement.FacingDirection, wallCheckDistance, whatIsGround);
 }

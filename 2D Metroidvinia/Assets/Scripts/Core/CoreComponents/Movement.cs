@@ -45,6 +45,12 @@ public class Movement : CoreComponent
         CurrentVelocity = _workspace;
     }
     
+    public void SetVelocityZero()
+    {
+        RB.velocity = Vector2.zero;
+        CurrentVelocity = Vector2.zero;
+    }
+    
     private void Flip()
     {
         FacingDirection *= -1;
