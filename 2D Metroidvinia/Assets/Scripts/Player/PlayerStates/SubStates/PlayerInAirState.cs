@@ -2,8 +2,11 @@ using UnityEngine;
 
 public class PlayerInAirState : PlayerState
 {
-    private bool _isGrounded, _jumpInput, _coyoteTime, _wallJumpCoyoteTime, _isJumping, _jumpInputStop, _isTouchingWall, _grabInput,
-        _isTouchingWallBackwards, _oldIsTouchingWall, _oldIsTouchingWallBackwards;
+    private bool _isGrounded, _isJumping, _isTouchingWall, _isTouchingWallBackwards, 
+        _oldIsTouchingWall, _oldIsTouchingWallBackwards, _isTouchingLedge;
+    private bool _jumpInput, _jumpInputStop, _grabInput;
+    private bool _coyoteTime, _wallJumpCoyoteTime;
+    
     private int _xInput;
     private float _startWallJumpCoyoteTime;
     public PlayerInAirState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
@@ -42,14 +45,19 @@ public class PlayerInAirState : PlayerState
         if (_isGrounded && Core.Movement.CurrentVelocity.y < 0.01f)
         {
             StateMachine.ChangeState(Player.LandState);
-        }
-        else if (_jumpInput && (_isTouchingWall || _isTouchingWallBackwards || _wallJumpCoyoteTime))
+        } 
+        else if (_isTouchingWall &&!_isTouchingLedge && !_isGrounded)
         {
-            StopWallJumpCoyoteTime();
-            _isTouchingWall = Player.Core.CollisionSenses.Wall;
-            Player.WallJumpState.DetermineWallJumpDirection(_isTouchingWall);
-            StateMachine.ChangeState(Player.WallJumpState);
+            StateMachine.ChangeState(Player.LedgeClimbState);
         }
+        //else if (_jumpInput && (_isTouchingWall || _isTouchingWallBackwards || _wallJumpCoyoteTime))
+        // else if (_jumpInput && _wallJumpCoyoteTime)
+        // {
+        //     StopWallJumpCoyoteTime();
+        //     _isTouchingWall = Player.Core.CollisionSenses.Wall;
+        //     Player.WallJumpState.DetermineWallJumpDirection(_isTouchingWall);
+        //     StateMachine.ChangeState(Player.WallJumpState);
+        // }
         else if (_jumpInput && Player.JumpState.CanJump())
         {
             StateMachine.ChangeState(Player.JumpState);
@@ -87,6 +95,12 @@ public class PlayerInAirState : PlayerState
         _isGrounded = Player.Core.CollisionSenses.Ground;
         _isTouchingWall = Player.Core.CollisionSenses.Wall;
         _isTouchingWallBackwards = Player.Core.CollisionSenses.WallBackwards;
+        _isTouchingLedge = Player.Core.CollisionSenses.Ledge;
+
+        if (_isTouchingWall && !_isTouchingLedge)
+        {
+            Player.LedgeClimbState.SetDetectedPosition(Player.transform.position);
+        }
 
         if (!_wallJumpCoyoteTime && !_isTouchingWall && !_isTouchingWallBackwards && (_oldIsTouchingWall || _oldIsTouchingWallBackwards))
         {

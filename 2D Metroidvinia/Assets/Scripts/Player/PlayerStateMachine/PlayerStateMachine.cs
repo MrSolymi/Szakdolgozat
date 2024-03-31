@@ -10,9 +10,11 @@ public class PlayerStateMachine
         CurrentState.Enter();
     }
     
+    // ReSharper disable Unity.PerformanceAnalysis
     public void ChangeState(PlayerState newState)
     {
         CurrentState.Exit();
+        Debug.Log(newState.GetType());
         CurrentState = newState;
         CurrentState.Enter();
     }

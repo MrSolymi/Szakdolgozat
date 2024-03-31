@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &104941185
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 104941186}
+  m_Layer: 0
+  m_Name: LedgeCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &104941186
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104941185}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1635082412}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &149330882
 GameObject:
   m_ObjectHideFlags: 0
@@ -137,7 +168,7 @@ GameObject:
   - component: {fileID: 149330886}
   - component: {fileID: 149330885}
   - component: {fileID: 149330884}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -236,26 +267,26 @@ CompositeCollider2D:
         Y: -140000000
   m_CompositePaths:
     m_Paths:
-    - - {x: 17.999971, y: -14}
-      - {x: 17.999971, y: 12}
-      - {x: 16, y: 11.99997}
-      - {x: 15.999971, y: 5}
-      - {x: 9, y: 4.999971}
-      - {x: 8.99997, y: -4}
-      - {x: -2, y: -3.9999704}
-      - {x: -2.0000293, y: -2}
-      - {x: -11, y: -2.0000293}
-      - {x: -11.00003, y: -12}
-      - {x: -14, y: -11.99997}
-      - {x: -13.999971, y: 0}
-      - {x: -10, y: 0.000029300001}
-      - {x: -10.00003, y: 3}
-      - {x: -16, y: 3.0000293}
-      - {x: -16.000029, y: 12}
-      - {x: -18, y: 11.99997}
-      - {x: -17.999971, y: -14}
+    - - {x: 18, y: 12}
+      - {x: 16, y: 12}
+      - {x: 16, y: 5}
+      - {x: 9, y: 5}
+      - {x: 9, y: -4}
+      - {x: -2, y: -4}
+      - {x: -2, y: -2}
+      - {x: -11, y: -2}
+      - {x: -11, y: -12}
+      - {x: -14, y: -12}
+      - {x: -14, y: 0}
+      - {x: -10, y: 0}
+      - {x: -10, y: 3}
+      - {x: -16, y: 3}
+      - {x: -16, y: 12}
+      - {x: -18, y: 12}
+      - {x: -18, y: -14}
+      - {x: 18, y: -14}
   m_VertexDistance: 0.0005
-  m_OffsetDistance: 0.00005
+  m_OffsetDistance: 5e-10
   m_UseDelaunayMesh: 0
   m_CompositeGameObject: {fileID: 149330882}
 --- !u!50 &149330885
@@ -5651,9 +5682,9 @@ GameObject:
   - component: {fileID: 431454861}
   - component: {fileID: 431454860}
   - component: {fileID: 431454859}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6289,6 +6320,7 @@ Transform:
   m_Children:
   - {fileID: 1734963559}
   - {fileID: 221578952}
+  - {fileID: 104941186}
   m_Father: {fileID: 1256159115}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1635082413
@@ -6305,11 +6337,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groundCheck: {fileID: 1734963559}
   wallCheck: {fileID: 221578952}
+  ledgeCheck: {fileID: 104941186}
   groundCheckRadius: 0.2
   wallCheckDistance: 0.5
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
 --- !u!1 &1734963558
 GameObject:
   m_ObjectHideFlags: 0
