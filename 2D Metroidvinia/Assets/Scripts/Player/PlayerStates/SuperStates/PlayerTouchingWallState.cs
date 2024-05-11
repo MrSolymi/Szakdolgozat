@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerTouchingWallState : PlayerState
 {
-    protected bool IsGrounded, IsTouchingWall, GrabInput, JumpInput;
+    protected bool IsGrounded, IsTouchingWall, GrabInput, JumpInput, DashInput;
     protected int XInput;
     public PlayerTouchingWallState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
     {
@@ -11,6 +11,8 @@ public class PlayerTouchingWallState : PlayerState
     public override void Enter()
     {
         base.Enter();
+        
+        Player.DashState.ResetDash();
     }
 
     public override void Exit()
@@ -25,6 +27,7 @@ public class PlayerTouchingWallState : PlayerState
         XInput = Player.InputHandler.NormalizedInputX;
         GrabInput = Player.InputHandler.GrabInput;
         JumpInput = Player.InputHandler.JumpInput;
+        DashInput = Player.InputHandler.DashInput;
 
         if (JumpInput)
         {

@@ -27,7 +27,10 @@ public class PlayerWallSlideState : PlayerTouchingWallState
             if (GrabInput)
             {
                 StateMachine.ChangeState(Player.WallGrabState);
-            } 
+            } else if (DashInput)
+            {
+                StateMachine.ChangeState(Player.DashState);
+            }
         }
         
         // else if (JumpInput)

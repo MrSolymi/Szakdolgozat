@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a1ca1d92aa4b66aa6d2ed100f9852b, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
+  gravity: 5
   movementVelocity: 10
   jumpVelocity: 15
   amountOfJumps: 1
@@ -23,3 +24,7 @@ MonoBehaviour:
   ledgeClimbStopOffset: {x: 0.4, y: 0.8}
   coyoteTime: 0.15
   wallSlideVelocity: 3
+  dashCoolDown: 0.5
+  dashTime: 0.25
+  dashVelocity: 20
+  distanceBetweenAfterImages: 0.5
