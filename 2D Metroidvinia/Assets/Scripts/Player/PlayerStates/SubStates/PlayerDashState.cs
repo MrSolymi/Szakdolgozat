@@ -7,7 +7,6 @@ public class PlayerDashState : PlayerAbilityState
     private float _lastDashTime;
     
     private int _dashDirection;
-    private bool _wallDash;
     public PlayerDashState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
     {
     }
@@ -15,11 +14,16 @@ public class PlayerDashState : PlayerAbilityState
     public override void Enter()
     {
         base.Enter();
-
-        _wallDash = Core.CollisionSenses.Wall;
+        
+        if (Core.CollisionSenses.Wall)
+        {
+            Core.Movement.WallDashFlip();
+        }
         
         CanDash = false;
         Player.InputHandler.UseDashInput();
+        
+        Debug.LogError("helo");
         
         //_dashDirection = new Vector2(Core.Movement.FacingDirection, 0);
         //Debug.Log(Player.RB.gravityScale);
@@ -46,21 +50,20 @@ public class PlayerDashState : PlayerAbilityState
         
         if (!IsExitingState)
         {
-            if (Core.CollisionSenses.Wall && _wallDash && !Core.CollisionSenses.Ground)
-            {
-                Core.Movement.WallDashFlip();
-                Core.Movement.SetDashVelocity(PlayerData.dashVelocity, _dashDirection);
-            }
-            
-            //Player.RB.drag = PlayerData.dashDrag;
+            // if (_wallDash)
+            // {
+            //     Core.Movement.WallDashFlip();
+            //     Core.Movement.SetDashVelocity(PlayerData.dashVelocity, _dashDirection);
+            // }
+            // else
+            // {
+            //     Core.Movement.SetDashVelocity(PlayerData.dashVelocity, _dashDirection);
+            // }
             
             Core.Movement.SetDashVelocity(PlayerData.dashVelocity, _dashDirection);
-            if (Core.CollisionSenses.Wall)
-            {
-                IsAbilityDone = true;
-                _lastDashTime = Time.time;
-            }
-            if (Time.time >= StartTime + PlayerData.dashTime)
+            //Player.RB.drag = PlayerData.dashDrag;
+            
+            if (Time.time >= StartTime + PlayerData.dashTime || Core.CollisionSenses.Wall)
             {
                 //Player.RB.drag = 0;
                 IsAbilityDone = true;

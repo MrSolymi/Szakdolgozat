@@ -71,7 +71,7 @@ public class PlayerInAirState : PlayerState
         {
             StateMachine.ChangeState(Player.WallSlideState);
         }
-        else if (_dashInput && Player.DashState.CheckIfCanDash())
+        else if (_dashInput && Player.DashState.CheckIfCanDash() && !Core.CollisionSenses.Wall)
         {
             StateMachine.ChangeState(Player.DashState);
         }
