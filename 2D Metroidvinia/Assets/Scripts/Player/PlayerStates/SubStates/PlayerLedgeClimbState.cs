@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerLedgeClimbState : PlayerState
 {
     private Vector2 _detectedPosition, _cornerPosition, _startPosition, _stopPosition, _workspace;
-    private bool _isHanging, _isClimbing;
+    private bool _isHanging, _isClimbing, _jumpInput;
     private int _xInput, _yInput;
     
     public PlayerLedgeClimbState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
@@ -54,6 +54,7 @@ public class PlayerLedgeClimbState : PlayerState
         
             _xInput = Player.InputHandler.NormalizedInputX;
             _yInput = Player.InputHandler.NormalizedInputY;
+            _jumpInput = Player.InputHandler.JumpInput;
 
             if (_xInput == Core.Movement.FacingDirection && _isHanging && !_isClimbing)
             {
@@ -62,6 +63,11 @@ public class PlayerLedgeClimbState : PlayerState
             } else if (_yInput == -1 && _isHanging && !_isClimbing)
             {
                 StateMachine.ChangeState(Player.InAirState);
+            }
+            else if (_jumpInput && _isHanging && !_isClimbing)
+            {
+                Player.WallJumpState.DetermineWallJumpDirection(true);
+                StateMachine.ChangeState(Player.WallJumpState);
             }
         }
     }
