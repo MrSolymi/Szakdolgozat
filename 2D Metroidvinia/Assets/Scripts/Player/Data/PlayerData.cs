@@ -3,6 +3,9 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "newPlayerData", menuName = "Data/Player Data/Base Data")]
 public class PlayerData : ScriptableObject
 {
+    [Header("Player Stats")]
+    public float gravity = 5;
+    
     [Header("Move State")]
     public float movementVelocity = 10f;
     
@@ -25,4 +28,11 @@ public class PlayerData : ScriptableObject
     
     [Header("Wall Slide State")]
     public float wallSlideVelocity = 3.0f;
+    
+    [Header("Dash State")]
+    public float dashCoolDown = 0.5f;
+    public float dashTime = 0.15f;
+    public float dashVelocity = 30f;
+    //public float dashDrag = 10f;
+    public float distanceBetweenAfterImages = 0.5f;
 }

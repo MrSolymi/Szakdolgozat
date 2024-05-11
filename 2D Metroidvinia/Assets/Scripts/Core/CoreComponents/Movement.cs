@@ -44,6 +44,12 @@ public class Movement : CoreComponent
         RB.velocity = _workspace;
         CurrentVelocity = _workspace;
     }
+    public void SetDashVelocity(float velocity, int direction)
+    {
+        _workspace.Set(velocity * direction , 0);
+        RB.velocity = _workspace;
+        CurrentVelocity = _workspace;
+    }
     
     public void SetVelocityZero()
     {
@@ -64,5 +70,11 @@ public class Movement : CoreComponent
             //Debug.Log("CheckIfShouldFlip");
             Flip();
         }
+    }
+
+    public void WallDashFlip()
+    {
+        FacingDirection *= -1;
+        RB.transform.Rotate(0.0f, 180.0f, 0.0f);
     }
 }

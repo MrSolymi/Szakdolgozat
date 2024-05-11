@@ -32,6 +32,10 @@ public class PlayerWallGrabState : PlayerTouchingWallState
             {
                 StateMachine.ChangeState(Player.WallSlideState);
             }
+            else if (DashInput)
+            {
+                StateMachine.ChangeState(Player.DashState);
+            }
             // if (GrabInput && JumpInput)
             // {   
             //     Player.WallJumpState.DetermineWallJumpDirection(IsTouchingWall);
