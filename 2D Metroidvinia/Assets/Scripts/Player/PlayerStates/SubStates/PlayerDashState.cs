@@ -7,6 +7,8 @@ public class PlayerDashState : PlayerAbilityState
     private float _lastDashTime;
     
     private int _dashDirection;
+    
+    private Vector2 _lastAfterImagePosition;
     public PlayerDashState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
     {
     }
@@ -23,7 +25,7 @@ public class PlayerDashState : PlayerAbilityState
         CanDash = false;
         Player.InputHandler.UseDashInput();
         
-        Debug.LogError("helo");
+        //Debug.LogError("helo");
         
         //_dashDirection = new Vector2(Core.Movement.FacingDirection, 0);
         //Debug.Log(Player.RB.gravityScale);
@@ -50,6 +52,9 @@ public class PlayerDashState : PlayerAbilityState
         
         if (!IsExitingState)
         {
+            Player.Animator.SetFloat("yVelocity", Core.Movement.CurrentVelocity.y);
+            Player.Animator.SetFloat("xVelocity", Mathf.Abs(Core.Movement.CurrentVelocity.x));
+            
             // if (_wallDash)
             // {
             //     Core.Movement.WallDashFlip();
@@ -60,7 +65,11 @@ public class PlayerDashState : PlayerAbilityState
             //     Core.Movement.SetDashVelocity(PlayerData.dashVelocity, _dashDirection);
             // }
             
+            PlaceAfterImage();
+            
             Core.Movement.SetDashVelocity(PlayerData.dashVelocity, _dashDirection);
+            CheckIfShouldPlaceAfterImage();
+            
             //Player.RB.drag = PlayerData.dashDrag;
             
             if (Time.time >= StartTime + PlayerData.dashTime || Core.CollisionSenses.Wall)
@@ -78,4 +87,18 @@ public class PlayerDashState : PlayerAbilityState
     }
     
     public void ResetDash() => CanDash = true;
+    
+    private void PlaceAfterImage()
+    {
+        PlayerAfterImagePool.Instance.GetFromPool();
+        _lastAfterImagePosition = Player.transform.position;
+    }
+    
+    private void CheckIfShouldPlaceAfterImage()
+    {
+        if (Vector2.Distance(Player.transform.position, _lastAfterImagePosition) >= PlayerData.distanceBetweenAfterImages)
+        {
+            PlaceAfterImage();
+        }
+    }
 }
