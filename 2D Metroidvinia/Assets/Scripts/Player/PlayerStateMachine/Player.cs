@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     public PlayerDashState DashState { get; private set; }
     public Animator Animator { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
-    public Rigidbody2D RB { get; private set; }
+    //public Rigidbody2D RB { get; private set; }
     
     [SerializeField] private PlayerData playerData;
     
@@ -44,7 +44,7 @@ public class Player : MonoBehaviour
     {
         Animator = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
-        RB = GetComponent<Rigidbody2D>();
+        //RB = GetComponent<Rigidbody2D>();
         
         //FacingDirection = 1;
         

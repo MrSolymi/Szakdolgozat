@@ -6,13 +6,18 @@ public class Enemy1 : Entity
     public Enemy1MoveState moveState { get; private set; }
     
     
+    public override void Awake()
+    {
+        base.Awake();
+        
+        moveState = new Enemy1MoveState(this, entityData, "move", this);
+        idleState = new Enemy1IdleState(this, entityData, "idle", this);
+    }
+
     public override void Start()
     {
         base.Start();
         
-        moveState = new Enemy1MoveState(this, entityData, "move", this);
-        idleState = new Enemy1IdleState(this, entityData, "idle", this);
-        
-        StateMachine.Initialize(moveState);
+        StateMachine.Initialize(idleState);
     }
 }

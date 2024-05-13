@@ -15,6 +15,9 @@ public class Movement : CoreComponent
         base.Awake();
         
         RB = GetComponentInParent<Rigidbody2D>();
+        
+
+        
         FacingDirection = 1;
     }
     
@@ -26,6 +29,11 @@ public class Movement : CoreComponent
     public void SetVelocityX(float velocity)
     {
         _workspace.Set(velocity, CurrentVelocity.y);
+        // if (RB == null)
+        // {
+        //     Debug.LogError("No Rigidbody2D on " + transform.parent.name);
+        //     return;
+        // }
         RB.velocity = _workspace;
         CurrentVelocity = _workspace;
     }
@@ -57,7 +65,7 @@ public class Movement : CoreComponent
         CurrentVelocity = Vector2.zero;
     }
     
-    private void Flip()
+    public void Flip()
     {
         FacingDirection *= -1;
         RB.transform.Rotate(0.0f, 180.0f, 0.0f);
@@ -70,10 +78,5 @@ public class Movement : CoreComponent
             //Debug.Log("CheckIfShouldFlip");
             Flip();
         }
-    }
-
-    public void WallDashFlip()
-    {
-        Flip();
     }
 }

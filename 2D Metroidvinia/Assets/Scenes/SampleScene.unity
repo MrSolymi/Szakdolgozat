@@ -7827,12 +7827,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 431454856}
+  - component: {fileID: 431454860}
+  - component: {fileID: 431454863}
   - component: {fileID: 431454858}
   - component: {fileID: 431454857}
-  - component: {fileID: 431454863}
   - component: {fileID: 431454862}
   - component: {fileID: 431454861}
-  - component: {fileID: 431454860}
   - component: {fileID: 431454859}
   m_Layer: 8
   m_Name: Player
@@ -8138,7 +8138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &514012784
 Transform:
   m_ObjectHideFlags: 0
@@ -8335,11 +8335,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 711859707}
+  - component: {fileID: 711859704}
+  - component: {fileID: 711859708}
   - component: {fileID: 711859706}
   - component: {fileID: 711859705}
-  - component: {fileID: 711859704}
   - component: {fileID: 711859703}
-  - component: {fileID: 711859708}
   m_Layer: 9
   m_Name: Enemy1
   m_TagString: Enemy

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EntityState
 {
-    //protected Core Core;
+    protected Core Core;
     
     protected Entity Entity;
     protected EntityStateMachine StateMachine;
@@ -18,15 +18,16 @@ public class EntityState
         Entity = entity;
         StateMachine = entity.StateMachine;
         _animBoolName = animBoolName;
-        //Core = entity.Core;
+        Core = entity.Core;
         EntityData = entityData;
     }
 
     public virtual void Enter()
     {
-        DoChecks();
         StartTime = Time.time;
         Entity.Animator.SetBool(_animBoolName, true);
+        
+        DoChecks();
     }
 
     public virtual void Exit()

@@ -19,7 +19,7 @@ public class PlayerDashState : PlayerAbilityState
         
         if (Core.CollisionSenses.Wall)
         {
-            Core.Movement.WallDashFlip();
+            Core.Movement.Flip();
         }
         
         CanDash = false;
@@ -30,7 +30,7 @@ public class PlayerDashState : PlayerAbilityState
         //_dashDirection = new Vector2(Core.Movement.FacingDirection, 0);
         //Debug.Log(Player.RB.gravityScale);
         
-        Player.RB.gravityScale = 0;
+        Core.Movement.RB.gravityScale = 0;
         
         //Debug.Log(Player.RB.gravityScale);
         
@@ -41,7 +41,7 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Exit();
         
-        Player.RB.gravityScale = PlayerData.gravity;
+        Core.Movement.RB.gravityScale = PlayerData.gravity;
     }
 
     public override void LogicUpdate()

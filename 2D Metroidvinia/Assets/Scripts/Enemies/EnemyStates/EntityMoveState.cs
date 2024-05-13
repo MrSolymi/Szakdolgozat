@@ -12,7 +12,7 @@ public class EntityMoveState : EntityState
     {
         base.Enter();
         
-        Entity.SetVelocity(EntityData.movementSpeed);
+        Core.Movement.SetVelocityX(EntityData.movementSpeed * Core.Movement.FacingDirection);
     }
 
     public override void Exit()
@@ -23,6 +23,8 @@ public class EntityMoveState : EntityState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        
+        //Core.Movement.SetVelocityX(EntityData.movementSpeed * Core.Movement.FacingDirection);
     }
 
     public override void PhysicsUpdate()
