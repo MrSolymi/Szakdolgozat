@@ -8408,7 +8408,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 5
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 673032bee2b7b9a40bd6961940a1c99a, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -8522,9 +8522,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bfad3bd3f70948718e31d0ceae1ba664, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  entityData: {fileID: 11400000, guid: 3807319be63a9d249bdc5a8bf6ef92c1, type: 2}
   wallCheck: {fileID: 1785911737}
   ledgeCheck: {fileID: 1895576928}
-  entityData: {fileID: 11400000, guid: 3807319be63a9d249bdc5a8bf6ef92c1, type: 2}
 --- !u!1 &859211969
 GameObject:
   m_ObjectHideFlags: 0
