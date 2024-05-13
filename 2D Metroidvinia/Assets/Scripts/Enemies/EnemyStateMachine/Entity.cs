@@ -9,9 +9,6 @@ public class Entity : MonoBehaviour
     
     [SerializeField] protected EntityData entityData;
     public Animator Animator { get; private set; }
-    
-    [SerializeField] private Transform wallCheck;
-    [SerializeField] private Transform ledgeCheck;
 
     public virtual void Awake()
     {
@@ -40,19 +37,12 @@ public class Entity : MonoBehaviour
     // {
     //     Debug.Log(Core.Movement.RB==null);
     // }
-    public virtual bool CheckWall()
-    {
-        return Physics2D.Raycast(wallCheck.position, transform.right, entityData.wallCheckDistance, entityData.whatIsGround);
-    }
-    public virtual bool CheckLedge()
-    {
-        //Debug.Log(EntityData.whatIsGround);
-        return Physics2D.Raycast(ledgeCheck.position, Vector2.down, entityData.ledgeCheckDistance, entityData.whatIsGround);
-    }
     
-    // public void OnDrawGizmos()
-    // {
-    //     Gizmos.DrawLine(wallCheck.position, wallCheck.position + (Vector3)(Vector2.right * FacingDirection * EntityData.wallCheckDistance));
-    //     Gizmos.DrawLine(ledgeCheck.position, ledgeCheck.position + (Vector3)(Vector2.down * EntityData.ledgeCheckDistance));
-    // }
+    public virtual void OnDrawGizmos()
+    {
+        if (!Core) return;
+        Gizmos.DrawLine(Core.CollisionSenses.WallCheck.position, Core.CollisionSenses.WallCheck.position + (Vector3)(Vector2.right * Core.Movement.FacingDirection * Core.CollisionSenses.WallCheckDistance));
+        Gizmos.DrawLine(Core.CollisionSenses.LedgeCheckVertical.position, Core.CollisionSenses.LedgeCheckVertical.position + (Vector3)(Vector2.down * Core.CollisionSenses.WallCheckDistance));
+
+    }
 }

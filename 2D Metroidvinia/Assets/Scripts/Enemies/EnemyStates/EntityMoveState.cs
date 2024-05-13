@@ -38,7 +38,7 @@ public class EntityMoveState : EntityState
         
         //Entity.Testing();
         
-        isDetectingLedge = Entity.CheckLedge();
-        isDetectingWall = Entity.CheckWall();
+        isDetectingLedge = Core.CollisionSenses.LedgeVertical;
+        isDetectingWall = Core.CollisionSenses.Wall;
     }
 }

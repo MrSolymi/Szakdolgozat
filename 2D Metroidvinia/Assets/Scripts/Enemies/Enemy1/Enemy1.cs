@@ -20,4 +20,5 @@ public class Enemy1 : Entity
         
         StateMachine.Initialize(idleState);
     }
+    
 }
