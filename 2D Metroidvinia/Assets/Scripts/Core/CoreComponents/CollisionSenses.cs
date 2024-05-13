@@ -9,52 +9,28 @@ public class CollisionSenses : CoreComponent
     [SerializeField] private Transform groundCheck;
     public Transform GroundCheck
     {
-        get
-        {
-            if (groundCheck) return groundCheck;
-            
-            Debug.LogError("No groundCheck found on " + _core.transform.parent.name);
-            return null;
-        }   
+        get => GenericNotImplementedError<Transform>.TryGet(groundCheck, _core.transform.parent.name);
         private set => groundCheck = value;
     }
 
     [SerializeField] private Transform wallCheck;
     public Transform WallCheck
     {
-        get
-        {
-            if (wallCheck) return wallCheck;
-            
-            Debug.LogError("No wallCheck found on " + _core.transform.parent.name);
-            return null;
-        }
+        get => GenericNotImplementedError<Transform>.TryGet(wallCheck, _core.transform.parent.name);
         private set => wallCheck = value;
     }
     
     [SerializeField] private Transform ledgeCheckHorizontal;
     public Transform LedgeCheckHorizontal
     {
-        get
-        {
-            if (ledgeCheckHorizontal) return ledgeCheckHorizontal;
-            
-            Debug.LogError("No ledgeCheckHorizontal found on " + _core.transform.parent.name);
-            return null;
-        } 
+        get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckHorizontal, _core.transform.parent.name);
         private set => ledgeCheckHorizontal = value;
     }
 
     [SerializeField] private Transform ledgeCheckVertical;
     public Transform LedgeCheckVertical
     {
-        get
-        {
-            if (ledgeCheckVertical) return ledgeCheckVertical;
-            
-            Debug.LogError("No ledgeCheckVertical found on " + _core.transform.parent.name);
-            return null;
-        }
+        get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckVertical, _core.transform.parent.name);
         private set => ledgeCheckVertical = value;
     }
 

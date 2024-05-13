@@ -14,12 +14,9 @@ public class Entity : MonoBehaviour
     {
         Core = GetComponentInChildren<Core>();
         
-        StateMachine = new EntityStateMachine();
-    }
-
-    public virtual void Start()
-    {
         Animator = GetComponent<Animator>();
+        
+        StateMachine = new EntityStateMachine();
     }
 
     public virtual void Update()

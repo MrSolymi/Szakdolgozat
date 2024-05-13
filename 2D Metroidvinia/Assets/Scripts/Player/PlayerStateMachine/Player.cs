@@ -14,10 +14,13 @@ public class Player : MonoBehaviour
     public PlayerWallGrabState WallGrabState { get; private set; }
     public PlayerWallJumpState WallJumpState { get; private set; }
     public PlayerLedgeClimbState LedgeClimbState { get; private set; }
+    public PlayerAttackState PrimaryAttackState { get; private set; }
+    public PlayerAttackState SecondaryAttackState { get; private set; }
     
     public PlayerDashState DashState { get; private set; }
     public Animator Animator { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
+    public PlayerInventory Inventory { get; private set; }
     //public Rigidbody2D RB { get; private set; }
     
     [SerializeField] private PlayerData playerData;
@@ -38,12 +41,20 @@ public class Player : MonoBehaviour
         WallJumpState = new PlayerWallJumpState(this, playerData, "inAir");
         LedgeClimbState = new PlayerLedgeClimbState(this, playerData, "ledgeClimbState");
         DashState = new PlayerDashState(this, playerData, "inAir");
+        PrimaryAttackState = new PlayerAttackState(this, playerData, "attack");
+        SecondaryAttackState = new PlayerAttackState(this, playerData, "attack");
     }
 
     private void Start()
     {
         Animator = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
+        Inventory = GetComponent<PlayerInventory>();
+        
+        PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.PRIMARY]);
+        //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.PRIMARY]);
+        
+        
         //RB = GetComponent<Rigidbody2D>();
         
         //FacingDirection = 1;

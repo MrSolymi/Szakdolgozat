@@ -32,14 +32,24 @@ public class PlayerGroundedState : PlayerState
         _grabInput = Player.InputHandler.GrabInput;
         _dashInput = Player.InputHandler.DashInput;
 
-        if (_jumpInput && Player.JumpState.CanJump())
+        if (Player.InputHandler.AttackInputs[(int)CombatInputs.PRIMARY])
+        {
+            StateMachine.ChangeState(Player.PrimaryAttackState);
+        } 
+        else if (Player.InputHandler.AttackInputs[(int)CombatInputs.SECONDARY])
+        {
+            StateMachine.ChangeState(Player.SecondaryAttackState);
+        }
+        else if (_jumpInput && Player.JumpState.CanJump())
         {
             StateMachine.ChangeState(Player.JumpState);
-        } else if (!_isGrounded)
+        } 
+        else if (!_isGrounded)
         {
             Player.InAirState.StartCoyoteTime();
             StateMachine.ChangeState(Player.InAirState);
-        } else if (_isTouchingWall && _grabInput && !_isGrounded)
+        } 
+        else if (_isTouchingWall && _grabInput && !_isGrounded)
         {
             StateMachine.ChangeState(Player.WallGrabState);
         }

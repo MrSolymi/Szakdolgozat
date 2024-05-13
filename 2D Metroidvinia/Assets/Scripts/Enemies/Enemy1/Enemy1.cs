@@ -14,10 +14,8 @@ public class Enemy1 : Entity
         idleState = new Enemy1IdleState(this, entityData, "idle", this);
     }
 
-    public override void Start()
+    public  void Start()
     {
-        base.Start();
-        
         StateMachine.Initialize(idleState);
     }
     
