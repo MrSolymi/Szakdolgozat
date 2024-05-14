@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Core : MonoBehaviour
 {
+    private List<ILogicUpdate> _components = new List<ILogicUpdate>();
     public Movement Movement
     {
         get => GenericNotImplementedError<Movement>.TryGet(_movement, transform.parent.name);
@@ -25,15 +26,34 @@ public class Core : MonoBehaviour
         private set => _combat = value;
     }
     private Combat _combat;
+    
+    public Stats Stats
+    {
+        get => GenericNotImplementedError<Stats>.TryGet(_stats, transform.parent.name);
+        private set => _stats = value;
+    }
+    private Stats _stats;
     private void Awake()
     {
         Movement = GetComponentInChildren<Movement>();
         CollisionSenses = GetComponentInChildren<CollisionSenses>();
         Combat = GetComponentInChildren<Combat>();
+        Stats = GetComponentInChildren<Stats>();
     }
     
     public void LogicUpdate()
     {
-        Movement.LogicUpdate();
+        foreach (var component in _components)
+        {
+            component.LogicUpdate();
+        }
+    }
+    
+    public void AddComponent(ILogicUpdate component)
+    {
+        if (!_components.Contains(component))
+        {
+            _components.Add(component);
+        }
     }
 }
