@@ -6,6 +6,9 @@ using UnityEngine.Serialization;
 
 public class CollisionSenses : CoreComponent
 {
+    private Movement Movement => _movement ? _movement : _core.GetCoreComponent(ref _movement);
+    private Movement _movement;
+    
     [SerializeField] private Transform groundCheck;
     public Transform GroundCheck
     {
@@ -50,11 +53,11 @@ public class CollisionSenses : CoreComponent
 
     public bool Ground => Physics2D.OverlapCircle(GroundCheck.position, groundCheckRadius, whatIsGround);
     
-    public bool Wall => Physics2D.Raycast(WallCheck.position, Vector2.right * _core.Movement.FacingDirection ,wallCheckDistance, whatIsGround);
+    public bool Wall => Physics2D.Raycast(WallCheck.position, Vector2.right * Movement.FacingDirection ,wallCheckDistance, whatIsGround);
     
-    public bool WallBackwards => Physics2D.Raycast(WallCheck.position, Vector2.right * -_core.Movement.FacingDirection ,wallCheckDistance, whatIsGround);
+    public bool WallBackwards => Physics2D.Raycast(WallCheck.position, Vector2.right * -Movement.FacingDirection ,wallCheckDistance, whatIsGround);
     
-    public bool LedgeHorizontal => Physics2D.Raycast(LedgeCheckHorizontal.position, Vector2.right * _core.Movement.FacingDirection, wallCheckDistance, whatIsGround);
+    public bool LedgeHorizontal => Physics2D.Raycast(LedgeCheckHorizontal.position, Vector2.right * Movement.FacingDirection, wallCheckDistance, whatIsGround);
     
     public bool LedgeVertical => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, wallCheckDistance, whatIsGround);
 }

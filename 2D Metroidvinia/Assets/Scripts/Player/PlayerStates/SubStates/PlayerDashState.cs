@@ -17,9 +17,9 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Enter();
         
-        if (Core.CollisionSenses.Wall)
+        if (CollisionSenses.Wall)
         {
-            Core.Movement.Flip();
+            Movement.Flip();
         }
         
         CanDash = false;
@@ -30,7 +30,7 @@ public class PlayerDashState : PlayerAbilityState
         //_dashDirection = new Vector2(Core.Movement.FacingDirection, 0);
         //Debug.Log(Player.RB.gravityScale);
         
-        Core.Movement.RB.gravityScale = 0;
+        Movement.RB.gravityScale = 0;
         
         //Debug.Log(Player.RB.gravityScale);
         
@@ -41,19 +41,19 @@ public class PlayerDashState : PlayerAbilityState
     {
         base.Exit();
         
-        Core.Movement.RB.gravityScale = PlayerData.gravity;
+        Movement.RB.gravityScale = PlayerData.gravity;
     }
 
     public override void LogicUpdate()
     {
         base.LogicUpdate();
         
-        _dashDirection = Core.Movement.FacingDirection;
+        _dashDirection = Movement.FacingDirection;
         
         if (!IsExitingState)
         {
-            Player.Animator.SetFloat("yVelocity", Core.Movement.CurrentVelocity.y);
-            Player.Animator.SetFloat("xVelocity", Mathf.Abs(Core.Movement.CurrentVelocity.x));
+            Player.Animator.SetFloat("yVelocity", Movement.CurrentVelocity.y);
+            Player.Animator.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
             
             // if (_wallDash)
             // {
@@ -67,12 +67,12 @@ public class PlayerDashState : PlayerAbilityState
             
             PlaceAfterImage();
             
-            Core.Movement.SetDashVelocity(PlayerData.dashVelocity, _dashDirection);
+            Movement.SetDashVelocity(PlayerData.dashVelocity, _dashDirection);
             CheckIfShouldPlaceAfterImage();
             
             //Player.RB.drag = PlayerData.dashDrag;
             
-            if (Time.time >= StartTime + PlayerData.dashTime || Core.CollisionSenses.Wall)
+            if (Time.time >= StartTime + PlayerData.dashTime || CollisionSenses.Wall)
             {
                 //Player.RB.drag = 0;
                 IsAbilityDone = true;

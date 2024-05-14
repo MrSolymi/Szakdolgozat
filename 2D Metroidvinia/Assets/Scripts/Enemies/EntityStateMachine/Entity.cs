@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
+    private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+    private Movement _movement;
+
+    private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
+    private CollisionSenses _collisionSenses;
+    
     public Core Core { get; private set; }
     
     public EntityStateMachine StateMachine { get; private set; }
@@ -38,8 +44,8 @@ public class Entity : MonoBehaviour
     public virtual void OnDrawGizmos()
     {
         if (!Core) return;
-        Gizmos.DrawLine(Core.CollisionSenses.WallCheck.position, Core.CollisionSenses.WallCheck.position + (Vector3)(Vector2.right * Core.Movement.FacingDirection * Core.CollisionSenses.WallCheckDistance));
-        Gizmos.DrawLine(Core.CollisionSenses.LedgeCheckVertical.position, Core.CollisionSenses.LedgeCheckVertical.position + (Vector3)(Vector2.down * Core.CollisionSenses.WallCheckDistance));
+        Gizmos.DrawLine(CollisionSenses.WallCheck.position, CollisionSenses.WallCheck.position + (Vector3)(Vector2.right * Movement.FacingDirection * CollisionSenses.WallCheckDistance));
+        Gizmos.DrawLine(CollisionSenses.LedgeCheckVertical.position, CollisionSenses.LedgeCheckVertical.position + (Vector3)(Vector2.down * CollisionSenses.WallCheckDistance));
 
     }
 }

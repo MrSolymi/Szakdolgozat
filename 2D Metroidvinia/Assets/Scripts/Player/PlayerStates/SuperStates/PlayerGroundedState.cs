@@ -5,6 +5,12 @@ public class PlayerGroundedState : PlayerState
     protected int XInput;
     
     private bool _jumpInput, _isGrounded, _isTouchingWall, _grabInput, _dashInput;
+
+    protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+    private Movement _movement;
+
+    protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
+    private CollisionSenses _collisionSenses;
     
     public PlayerGroundedState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
     {
@@ -53,7 +59,7 @@ public class PlayerGroundedState : PlayerState
         {
             StateMachine.ChangeState(Player.WallGrabState);
         }
-        else if (_dashInput && Player.DashState.CheckIfCanDash() && (Core.CollisionSenses.Ground && !Core.CollisionSenses.Wall || !Core.CollisionSenses.Ground && !Core.CollisionSenses.Wall || !Core.CollisionSenses.Ground && Core.CollisionSenses.Wall))
+        else if (_dashInput && Player.DashState.CheckIfCanDash() && (CollisionSenses.Ground && !CollisionSenses.Wall || !CollisionSenses.Ground && !CollisionSenses.Wall || !CollisionSenses.Ground && CollisionSenses.Wall))
         {
             StateMachine.ChangeState(Player.DashState);
         }
@@ -68,9 +74,10 @@ public class PlayerGroundedState : PlayerState
     {
         base.DoChecks();
         
-        _isGrounded = Player.Core.CollisionSenses.Ground;
-        _isTouchingWall = Player.Core.CollisionSenses.Wall;
+        if (CollisionSenses)
+        {
+            _isGrounded = CollisionSenses.Ground;
+            _isTouchingWall = CollisionSenses.Wall;
+        }
     }
-
-    
 }

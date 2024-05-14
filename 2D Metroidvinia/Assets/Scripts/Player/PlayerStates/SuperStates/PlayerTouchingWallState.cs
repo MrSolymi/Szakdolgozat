@@ -4,6 +4,13 @@ public class PlayerTouchingWallState : PlayerState
 {
     protected bool IsGrounded, IsTouchingWall, GrabInput, JumpInput, DashInput;
     protected int XInput;
+
+    protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+    private Movement _movement;
+
+    protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
+    private CollisionSenses _collisionSenses;
+    
     public PlayerTouchingWallState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
     {
     }
@@ -38,7 +45,7 @@ public class PlayerTouchingWallState : PlayerState
         {
             StateMachine.ChangeState(Player.IdleState);
         }
-        else if (!IsTouchingWall || (XInput != Core.Movement.FacingDirection && !GrabInput))
+        else if (!IsTouchingWall || (XInput != Movement.FacingDirection && !GrabInput))
         {
             StateMachine.ChangeState(Player.InAirState);
         }
@@ -52,8 +59,11 @@ public class PlayerTouchingWallState : PlayerState
     public override void DoChecks()
     {
         base.DoChecks();
-        
-        IsGrounded = Core.CollisionSenses.Ground;
-        IsTouchingWall = Core.CollisionSenses.Wall;
+
+        if (CollisionSenses)
+        {
+            IsGrounded = CollisionSenses.Ground;
+            IsTouchingWall = CollisionSenses.Wall;
+        }
     }
 }

@@ -6,6 +6,8 @@ public class EntityIdleState : EntityState
     
     protected float idleTime;
     
+    protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+    private Movement _movement;
     public EntityIdleState(Entity entity, EntityData entityData, string animBoolName) : base(entity, entityData, animBoolName)
     {
     }
@@ -14,7 +16,7 @@ public class EntityIdleState : EntityState
     {
         base.Enter();
         
-        Core.Movement.SetVelocityX(0.0f);
+        Movement.SetVelocityX(0.0f);
         isIdleTimeOver = false;
         SetRandomIdleTime();
     }
@@ -25,7 +27,7 @@ public class EntityIdleState : EntityState
 
         if (flipAfterIdle)
         {
-            Core.Movement.Flip();
+            Movement.Flip();
         }
     }
 
