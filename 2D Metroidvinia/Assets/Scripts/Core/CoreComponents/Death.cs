@@ -33,7 +33,5 @@ public class Death : CoreComponent
     private void OnDisable()
     {
         Stats.OnHealthZero -= Die;
-        
-        Debug.LogError(transform.parent.parent.name + " health is 0!");
     }
 }

@@ -21,6 +21,8 @@ public class PlayerAbilityState : PlayerState
     public override void Exit()
     {
         base.Exit();
+        
+        IsAbilityDone = false;
     }
 
     public override void LogicUpdate()

@@ -1,3 +1,4 @@
+using Solymi.Weapons;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -25,9 +26,14 @@ public class Player : MonoBehaviour
     
     [SerializeField] private PlayerData playerData;
     
+    private Weapon _primaryWeapon, _secondaryWeapon;
+    
     private void Awake()
     {
         Core = GetComponentInChildren<Core>();
+        
+        _primaryWeapon = transform.Find("PrimaryWeapon").GetComponent<Weapon>();
+        _secondaryWeapon = transform.Find("SecondaryWeapon").GetComponent<Weapon>();
         
         StateMachine = new PlayerStateMachine();
 
@@ -41,8 +47,8 @@ public class Player : MonoBehaviour
         WallJumpState = new PlayerWallJumpState(this, playerData, "inAir");
         LedgeClimbState = new PlayerLedgeClimbState(this, playerData, "ledgeClimbState");
         DashState = new PlayerDashState(this, playerData, "inAir");
-        PrimaryAttackState = new PlayerAttackState(this, playerData, "attack");
-        SecondaryAttackState = new PlayerAttackState(this, playerData, "attack");
+        PrimaryAttackState = new PlayerAttackState(this, playerData, "attack", _primaryWeapon);
+        SecondaryAttackState = new PlayerAttackState(this, playerData, "attack", _secondaryWeapon);
     }
 
     private void Start()

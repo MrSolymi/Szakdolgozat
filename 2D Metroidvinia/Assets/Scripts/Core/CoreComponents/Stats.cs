@@ -23,6 +23,8 @@ public class Stats : CoreComponent
             _currentHealth = 0;
             
             //Die
+            Debug.LogError(transform.parent.parent.name + " health is 0!");
+            
             OnHealthZero?.Invoke();
         }
     }

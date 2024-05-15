@@ -34,7 +34,7 @@ public class PlayerDashState : PlayerAbilityState
         
         //Debug.Log(Player.RB.gravityScale);
         
-        IsAbilityDone = false;
+        //IsAbilityDone = false;
     }
 
     public override void Exit()
