@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     public PlayerDashState DashState { get; private set; }
     public Animator Animator { get; private set; }
     public PlayerInputHandler InputHandler { get; private set; }
-    public PlayerInventory Inventory { get; private set; }
+    
     //public Rigidbody2D RB { get; private set; }
     
     [SerializeField] private PlayerData playerData;
@@ -49,12 +49,6 @@ public class Player : MonoBehaviour
     {
         Animator = GetComponent<Animator>();
         InputHandler = GetComponent<PlayerInputHandler>();
-        Inventory = GetComponent<PlayerInventory>();
-        
-        PrimaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.PRIMARY]);
-        //SecondaryAttackState.SetWeapon(Inventory.weapons[(int)CombatInputs.PRIMARY]);
-        
-        
         //RB = GetComponent<Rigidbody2D>();
         
         //FacingDirection = 1;
