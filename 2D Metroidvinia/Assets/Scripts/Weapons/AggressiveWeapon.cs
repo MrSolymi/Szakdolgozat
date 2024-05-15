@@ -32,7 +32,11 @@ public class AggressiveWeapon : Weapon
     {
         WeaponAttackDetails details = aggressiveWeaponData.AttackDetails[attackCounter];
         
-        foreach (var item in _detectedDamageables)
+        //InvalidOperationException: Collection was modified; enumeration operation may not execute.System.Collections.Generic.List`1+Enumerator[T].MoveNextRare ()
+        //Solution was to create a copy of the list and iterate over it in the following line.
+        var targetsToDamage = new List<IDamageable>(_detectedDamageables);
+        
+        foreach (var item in targetsToDamage)
         {
             item.Damage(details.damageAmount);
         }

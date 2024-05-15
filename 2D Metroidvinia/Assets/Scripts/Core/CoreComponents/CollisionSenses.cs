@@ -6,34 +6,34 @@ using UnityEngine.Serialization;
 
 public class CollisionSenses : CoreComponent
 {
-    private Movement Movement => _movement ? _movement : _core.GetCoreComponent(ref _movement);
+    private Movement Movement => _movement ? _movement : core.GetCoreComponent(ref _movement);
     private Movement _movement;
     
     [SerializeField] private Transform groundCheck;
     public Transform GroundCheck
     {
-        get => GenericNotImplementedError<Transform>.TryGet(groundCheck, _core.transform.parent.name);
+        get => GenericNotImplementedError<Transform>.TryGet(groundCheck, core.transform.parent.name);
         private set => groundCheck = value;
     }
 
     [SerializeField] private Transform wallCheck;
     public Transform WallCheck
     {
-        get => GenericNotImplementedError<Transform>.TryGet(wallCheck, _core.transform.parent.name);
+        get => GenericNotImplementedError<Transform>.TryGet(wallCheck, core.transform.parent.name);
         private set => wallCheck = value;
     }
     
     [SerializeField] private Transform ledgeCheckHorizontal;
     public Transform LedgeCheckHorizontal
     {
-        get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckHorizontal, _core.transform.parent.name);
+        get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckHorizontal, core.transform.parent.name);
         private set => ledgeCheckHorizontal = value;
     }
 
     [SerializeField] private Transform ledgeCheckVertical;
     public Transform LedgeCheckVertical
     {
-        get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckVertical, _core.transform.parent.name);
+        get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckVertical, core.transform.parent.name);
         private set => ledgeCheckVertical = value;
     }
 
