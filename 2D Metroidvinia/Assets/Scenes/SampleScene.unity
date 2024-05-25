@@ -9571,6 +9571,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SecondaryWeapon
       objectReference: {fileID: 0}
+    - target: {fileID: 4457449014999249227, guid: 2d979742d5b812b4db7313b81a4ef5fb, type: 3}
+      propertyPath: numberOfAttacks
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457449014999249227, guid: 2d979742d5b812b4db7313b81a4ef5fb, type: 3}
+      propertyPath: attackCounterResetCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6039851698052933608, guid: 2d979742d5b812b4db7313b81a4ef5fb, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9660,6 +9668,14 @@ PrefabInstance:
     - target: {fileID: 219307858333322609, guid: 2d979742d5b812b4db7313b81a4ef5fb, type: 3}
       propertyPath: m_Name
       value: PrimaryWeapon
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457449014999249227, guid: 2d979742d5b812b4db7313b81a4ef5fb, type: 3}
+      propertyPath: numberOfAttacks
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4457449014999249227, guid: 2d979742d5b812b4db7313b81a4ef5fb, type: 3}
+      propertyPath: attackCounterResetCooldown
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6039851698052933608, guid: 2d979742d5b812b4db7313b81a4ef5fb, type: 3}
       propertyPath: m_LocalPosition.x

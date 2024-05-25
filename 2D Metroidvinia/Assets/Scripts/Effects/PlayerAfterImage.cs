@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerAfterImage : MonoBehaviour
 {
-    private float _activeTime = 0.1f, _timeActivated, _alpha, _alphaSet = 0.7f, _alphaMultiplier = 0.6f;
+    private float _activeTime = 0.1f, _timeActivated, _alpha, _alphaSet = 0.9f, _alphaMultiplier = 0.85f;
     
     private Transform _player;
     
