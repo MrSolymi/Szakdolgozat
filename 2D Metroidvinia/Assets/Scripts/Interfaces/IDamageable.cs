@@ -1,6 +1,7 @@
-using UnityEngine;
-
-public interface IDamageable
+namespace Solymi.Interfaces
 {
-    void Damage(float damage);
+    public interface IDamageable
+    {
+        void Damage(float damage);
+    }
 }

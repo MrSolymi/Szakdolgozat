@@ -1,45 +1,48 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerAfterImagePool : MonoBehaviour
+namespace Solymi.Effects
 {
-    [SerializeField] private GameObject afterImagePrefab;
-    
-    private Queue<GameObject> _availableObjects = new Queue<GameObject>();
-    
-    public static PlayerAfterImagePool Instance { get; private set; }
-    
-    private void Awake()
+    public class PlayerAfterImagePool : MonoBehaviour
     {
-        Instance = this;
-        GrowPool();
-    }
+        [SerializeField] private GameObject afterImagePrefab;
     
-    private void GrowPool()
-    {
-        for (int i = 0; i < 10; i++)
+        private Queue<GameObject> _availableObjects = new Queue<GameObject>();
+    
+        public static PlayerAfterImagePool Instance { get; private set; }
+    
+        private void Awake()
         {
-            var instanceToAdd = Instantiate(afterImagePrefab, transform, true);
-            AddToPool(instanceToAdd);
-        }
-    }
-    
-    public void AddToPool(GameObject instance)
-    {
-        instance.SetActive(false);
-        _availableObjects.Enqueue(instance);
-    }
-    
-    public GameObject GetFromPool()
-    {
-        if (_availableObjects.Count == 0)
-        {
+            Instance = this;
             GrowPool();
         }
+    
+        private void GrowPool()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                var instanceToAdd = Instantiate(afterImagePrefab, transform, true);
+                AddToPool(instanceToAdd);
+            }
+        }
+    
+        public void AddToPool(GameObject instance)
+        {
+            instance.SetActive(false);
+            _availableObjects.Enqueue(instance);
+        }
+    
+        public GameObject GetFromPool()
+        {
+            if (_availableObjects.Count == 0)
+            {
+                GrowPool();
+            }
         
-        var instance = _availableObjects.Dequeue();
-        instance.SetActive(true);
+            var instance = _availableObjects.Dequeue();
+            instance.SetActive(true);
         
-        return instance;
+            return instance;
+        }
     }
 }

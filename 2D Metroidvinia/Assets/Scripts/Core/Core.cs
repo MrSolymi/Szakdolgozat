@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
+using Solymi.Core.CoreComponents;
 using UnityEngine;
 
-public class Core : MonoBehaviour
+namespace Solymi.Core
 {
-    private readonly List<CoreComponent> _coreComponents = new List<CoreComponent>();
+    public class Core : MonoBehaviour
+    {
+        private readonly List<CoreComponent> _coreComponents = new List<CoreComponent>();
     
-    /*public Movement Movement
+        /*public Movement Movement
     {
         get => GenericNotImplementedError<Movement>.TryGet(_movement, transform.parent.name);
         private set => _movement = value;
@@ -35,47 +37,48 @@ public class Core : MonoBehaviour
     }
     private Stats _stats;*/
     
-    private void Awake()
-    {
-        // Movement = GetComponentInChildren<Movement>();
-        // CollisionSenses = GetComponentInChildren<CollisionSenses>();
-        // Combat = GetComponentInChildren<Combat>();
-        // Stats = GetComponentInChildren<Stats>();
-    }
-    
-    public void LogicUpdate()
-    {
-        foreach (var component in _coreComponents)
+        private void Awake()
         {
-            component.LogicUpdate();
+            // Movement = GetComponentInChildren<Movement>();
+            // CollisionSenses = GetComponentInChildren<CollisionSenses>();
+            // Combat = GetComponentInChildren<Combat>();
+            // Stats = GetComponentInChildren<Stats>();
         }
-    }
     
-    public void AddComponent(CoreComponent component)
-    {
-        if (!_coreComponents.Contains(component))
+        public void LogicUpdate()
         {
-            _coreComponents.Add(component);
+            foreach (var component in _coreComponents)
+            {
+                component.LogicUpdate();
+            }
         }
-    }
     
-    public T GetCoreComponent<T>() where T : CoreComponent
-    {
-        var component = _coreComponents.OfType<T>().FirstOrDefault();
-
-        if (component) return component;
-        
-        component = GetComponentInChildren<T>();
-
-        if (component) return component;
-        
-        Debug.LogWarning($"{typeof(T)} not found on {transform.parent.name}");
-        return null;
-    }
+        public void AddComponent(CoreComponent component)
+        {
+            if (!_coreComponents.Contains(component))
+            {
+                _coreComponents.Add(component);
+            }
+        }
     
-    public T GetCoreComponent<T>(ref T value) where T : CoreComponent
-    {
-        value = GetCoreComponent<T>();
-        return value;
+        public T GetCoreComponent<T>() where T : CoreComponent
+        {
+            var component = _coreComponents.OfType<T>().FirstOrDefault();
+
+            if (component) return component;
+        
+            component = GetComponentInChildren<T>();
+
+            if (component) return component;
+        
+            Debug.LogWarning($"{typeof(T)} not found on {transform.parent.name}");
+            return null;
+        }
+    
+        public T GetCoreComponent<T>(ref T value) where T : CoreComponent
+        {
+            value = GetCoreComponent<T>();
+            return value;
+        }
     }
 }

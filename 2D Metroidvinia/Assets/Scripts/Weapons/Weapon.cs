@@ -1,6 +1,7 @@
 using System;
 using Solymi.Utilities;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Solymi.Weapons
 {
@@ -14,10 +15,12 @@ namespace Solymi.Weapons
             get => _currentAttackCounter;
             private set => _currentAttackCounter = value >= numberOfAttacks ? 0 : value; 
         }
-        public event Action OnExit;
+        public event Action OnEnter, OnExit;
         
         private Animator _animator;
-        private GameObject _baseGameObject;
+        public GameObject BaseGameObject { get; private set; }
+        public GameObject WeaponSpriteGameObject { get; private set; }
+        
 
         private AnimationEventHandler _eventHandler;
         
@@ -32,6 +35,8 @@ namespace Solymi.Weapons
             
             _animator.SetBool("active", true);
             _animator.SetInteger("counter", CurrentAttackCounter);
+            
+            OnEnter?.Invoke();
         }
 
         private void Exit()
@@ -46,10 +51,12 @@ namespace Solymi.Weapons
 
         private void Awake()
         {
-            _baseGameObject = transform.Find("Base").gameObject;
-            _animator = _baseGameObject.GetComponent<Animator>();
+            BaseGameObject = transform.Find("Base").gameObject;
+            WeaponSpriteGameObject = transform.Find("WeaponSprite").gameObject;
             
-            _eventHandler = _baseGameObject.GetComponent<AnimationEventHandler>();
+            _animator = BaseGameObject.GetComponent<Animator>();
+            
+            _eventHandler = BaseGameObject.GetComponent<AnimationEventHandler>();
             
             _attackCounterResetTimer = new Timer(attackCounterResetCooldown);
         }

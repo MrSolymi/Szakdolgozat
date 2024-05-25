@@ -1,30 +1,34 @@
+using Solymi.Interfaces;
 using UnityEngine;
 
-public class CombatDummy : MonoBehaviour, IDamageable
+namespace Solymi.Enemies.CombatDummy
 {
-    [SerializeField] private GameObject hitParticles;
-    [SerializeField] private GameObject player;
+    public class CombatDummy : MonoBehaviour, IDamageable
+    {
+        [SerializeField] private GameObject hitParticles;
+        [SerializeField] private GameObject player;
     
-    private Animator _animator;
+        private Animator _animator;
 
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
-
-    public void Damage(float damage)
-    {
-        Debug.Log("CombatDummy took " + damage + " damage");
-        
-        Instantiate(hitParticles, transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
-        _animator.SetTrigger("damage");
-        if (player.transform.position.x - transform.position.x > 0)
+        private void Awake()
         {
-            _animator.SetBool("playerOnLeft", false);
+            _animator = GetComponent<Animator>();
         }
-        else
+
+        public void Damage(float damage)
         {
-            _animator.SetBool("playerOnLeft", true);
+            Debug.Log("CombatDummy took " + damage + " damage");
+        
+            Instantiate(hitParticles, transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
+            _animator.SetTrigger("damage");
+            if (player.transform.position.x - transform.position.x > 0)
+            {
+                _animator.SetBool("playerOnLeft", false);
+            }
+            else
+            {
+                _animator.SetBool("playerOnLeft", true);
+            }
         }
     }
 }

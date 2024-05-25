@@ -1,22 +1,25 @@
-using UnityEngine;
+using Solymi.Enemies.EntityStateMachine;
 
-public class Enemy1 : Entity
+namespace Solymi.Enemies.Enemy1
 {
-    public Enemy1IdleState idleState { get; private set; }
-    public Enemy1MoveState moveState { get; private set; }
-    
-    
-    public override void Awake()
+    public class Enemy1 : Entity
     {
-        base.Awake();
+        public Enemy1IdleState idleState { get; private set; }
+        public Enemy1MoveState moveState { get; private set; }
+    
+    
+        public override void Awake()
+        {
+            base.Awake();
         
-        moveState = new Enemy1MoveState(this, entityData, "move", this);
-        idleState = new Enemy1IdleState(this, entityData, "idle", this);
-    }
+            moveState = new Enemy1MoveState(this, entityData, "move", this);
+            idleState = new Enemy1IdleState(this, entityData, "idle", this);
+        }
 
-    public  void Start()
-    {
-        StateMachine.Initialize(idleState);
-    }
+        public  void Start()
+        {
+            StateMachine.Initialize(idleState);
+        }
     
+    }
 }

@@ -1,63 +1,68 @@
+using Solymi.Player.Data;
+using Solymi.Player.PlayerStates.SuperStates;
 using UnityEngine;
 
-public class PlayerWallJumpState : PlayerAbilityState
+namespace Solymi.Player.PlayerStates.SubStates
 {
-    private int _wallJumpDirection;
-    public PlayerWallJumpState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
+    public class PlayerWallJumpState : PlayerAbilityState
     {
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-        
-        IsAbilityDone = false;
-
-        Player.InputHandler.UseJumpInput();
-        Player.JumpState.ResetJumps();
-        Movement.SetVelocity(PlayerData.wallJumpVelocity, PlayerData.wallJumpAngle, _wallJumpDirection);
-        Movement.CheckIfShouldFlip(_wallJumpDirection);
-        Player.JumpState.DecreaseJumps();
-        
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-        
-        Player.Animator.SetFloat("yVelocity", Movement.CurrentVelocity.y);
-        Player.Animator.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
-
-        if (Time.time >= StartTime + PlayerData.wallJumpTime || CollisionSenses.Wall)
+        private int _wallJumpDirection;
+        public PlayerWallJumpState(PlayerStateMachine.Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
         {
-            IsAbilityDone = true;
         }
-    }
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
-
-    public void DetermineWallJumpDirection(bool isTouchingWall)
-    {
-        if (isTouchingWall)
+        public override void Enter()
         {
-            _wallJumpDirection = -Movement.FacingDirection;
+            base.Enter();
+        
+            IsAbilityDone = false;
+
+            Player.InputHandler.UseJumpInput();
+            Player.JumpState.ResetJumps();
+            Movement.SetVelocity(PlayerData.wallJumpVelocity, PlayerData.wallJumpAngle, _wallJumpDirection);
+            Movement.CheckIfShouldFlip(_wallJumpDirection);
+            Player.JumpState.DecreaseJumps();
+        
         }
-        else
+
+        public override void Exit()
         {
-            _wallJumpDirection = Movement.FacingDirection;
+            base.Exit();
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+        
+            Player.Animator.SetFloat("yVelocity", Movement.CurrentVelocity.y);
+            Player.Animator.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
+
+            if (Time.time >= StartTime + PlayerData.wallJumpTime || CollisionSenses.Wall)
+            {
+                IsAbilityDone = true;
+            }
+        }
+
+        public override void PhysicsUpdate()
+        {
+            base.PhysicsUpdate();
+        }
+
+        public override void DoChecks()
+        {
+            base.DoChecks();
+        }
+
+        public void DetermineWallJumpDirection(bool isTouchingWall)
+        {
+            if (isTouchingWall)
+            {
+                _wallJumpDirection = -Movement.FacingDirection;
+            }
+            else
+            {
+                _wallJumpDirection = Movement.FacingDirection;
+            }
         }
     }
 }

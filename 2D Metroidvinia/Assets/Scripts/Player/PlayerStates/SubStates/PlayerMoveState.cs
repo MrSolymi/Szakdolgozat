@@ -1,43 +1,46 @@
-using System;
-using UnityEngine;
+using Solymi.Player.Data;
+using Solymi.Player.PlayerStates.SuperStates;
 
-public class PlayerMoveState : PlayerGroundedState
+namespace Solymi.Player.PlayerStates.SubStates
 {
-    public PlayerMoveState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
+    public class PlayerMoveState : PlayerGroundedState
     {
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-        
-        Movement.CheckIfShouldFlip(XInput);
-        
-        Movement.SetVelocityX(PlayerData.movementVelocity * XInput);
-        
-        if (XInput == 0 && !IsExitingState)
+        public PlayerMoveState(PlayerStateMachine.Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
         {
-            StateMachine.ChangeState(Player.IdleState);
         }
-    }
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
+        public override void Enter()
+        {
+            base.Enter();
+        }
 
-    public override void DoChecks()
-    {
-        base.DoChecks();
+        public override void Exit()
+        {
+            base.Exit();
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+        
+            Movement.CheckIfShouldFlip(XInput);
+        
+            Movement.SetVelocityX(PlayerData.movementVelocity * XInput);
+        
+            if (XInput == 0 && !IsExitingState)
+            {
+                StateMachine.ChangeState(Player.IdleState);
+            }
+        }
+
+        public override void PhysicsUpdate()
+        {
+            base.PhysicsUpdate();
+        }
+
+        public override void DoChecks()
+        {
+            base.DoChecks();
+        }
     }
 }

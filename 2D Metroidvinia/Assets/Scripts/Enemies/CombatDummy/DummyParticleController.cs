@@ -1,9 +1,12 @@
 using UnityEngine;
 
-public class DummyParticleController : MonoBehaviour
+namespace Solymi.Enemies.CombatDummy
 {
-    private void FinishAnimation()
+    public class DummyParticleController : MonoBehaviour
     {
-        Destroy(gameObject);
+        private void FinishAnimation()
+        {
+            Destroy(gameObject);
+        }
     }
 }

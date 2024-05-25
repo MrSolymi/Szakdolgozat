@@ -1,55 +1,59 @@
+using Solymi.Player.Data;
 using UnityEngine;
 
-public class PlayerState
+namespace Solymi.Player.PlayerStateMachine
 {
-    protected Core Core;
-    
-    protected Player Player;
-    protected PlayerStateMachine StateMachine;
-    protected PlayerData PlayerData;
-    
-    protected float StartTime;
-    protected bool IsAnimationFinished, IsExitingState;
-    
-    private string _animBoolName;
-    
-    
-    public PlayerState(Player player, PlayerData playerData, string animBoolName)
+    public class PlayerState
     {
-        Player = player;
-        StateMachine = player.StateMachine;
-        PlayerData = playerData;
-        _animBoolName = animBoolName;
-        Core = player.Core;
-    }
+        protected Core.Core Core;
     
-    public virtual void Enter()
-    {
-        DoChecks();
-        Player.Animator.SetBool(_animBoolName, true);
-        StartTime = Time.time;
-        IsAnimationFinished = false;
-        IsExitingState = false;
-        //Debug.Log("Entered idle state");
-    }
+        protected Player Player;
+        protected PlayerStateMachine StateMachine;
+        protected PlayerData PlayerData;
     
-    public virtual void Exit()
-    {
-        Player.Animator.SetBool(_animBoolName, false);
-        IsExitingState = true;
-    }
+        protected float StartTime;
+        protected bool IsAnimationFinished, IsExitingState;
     
-    public virtual void LogicUpdate() { }
+        private string _animBoolName;
     
-    public virtual void PhysicsUpdate()
-    {
-        DoChecks();
-    }
     
-    public virtual void DoChecks() { }
+        public PlayerState(Player player, PlayerData playerData, string animBoolName)
+        {
+            Player = player;
+            StateMachine = player.StateMachine;
+            PlayerData = playerData;
+            _animBoolName = animBoolName;
+            Core = player.Core;
+        }
     
-    public virtual void AnimationTrigger() { }
+        public virtual void Enter()
+        {
+            DoChecks();
+            Player.Animator.SetBool(_animBoolName, true);
+            StartTime = Time.time;
+            IsAnimationFinished = false;
+            IsExitingState = false;
+            //Debug.Log("Entered idle state");
+        }
     
-    public virtual void AnimationFinishTrigger() => IsAnimationFinished = true;
+        public virtual void Exit()
+        {
+            Player.Animator.SetBool(_animBoolName, false);
+            IsExitingState = true;
+        }
+    
+        public virtual void LogicUpdate() { }
+    
+        public virtual void PhysicsUpdate()
+        {
+            DoChecks();
+        }
+    
+        public virtual void DoChecks() { }
+    
+        public virtual void AnimationTrigger() { }
+    
+        public virtual void AnimationFinishTrigger() => IsAnimationFinished = true;
 
+    }
 }

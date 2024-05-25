@@ -1,63 +1,69 @@
+using Solymi.Core.CoreComponents;
+using Solymi.Enemies.Data;
+using Solymi.Enemies.EntityStateMachine;
 using UnityEngine;
 
-public class EntityIdleState : EntityState
+namespace Solymi.Enemies.EntityStates
 {
-    protected bool flipAfterIdle, isIdleTimeOver;
-    
-    protected float idleTime;
-    
-    protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-    private Movement _movement;
-    public EntityIdleState(Entity entity, EntityData entityData, string animBoolName) : base(entity, entityData, animBoolName)
+    public class EntityIdleState : EntityState
     {
-    }
+        protected bool flipAfterIdle, isIdleTimeOver;
+    
+        protected float idleTime;
+    
+        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        private Movement _movement;
+        public EntityIdleState(Entity entity, EntityData entityData, string animBoolName) : base(entity, entityData, animBoolName)
+        {
+        }
 
-    public override void Enter()
-    {
-        base.Enter();
+        public override void Enter()
+        {
+            base.Enter();
         
-        Movement.SetVelocityX(0.0f);
-        isIdleTimeOver = false;
-        SetRandomIdleTime();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        if (flipAfterIdle)
-        {
-            Movement.Flip();
+            Movement.SetVelocityX(0.0f);
+            isIdleTimeOver = false;
+            SetRandomIdleTime();
         }
-    }
 
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-
-        if (Time.time >= StartTime + idleTime)
+        public override void Exit()
         {
-            isIdleTimeOver = true;
+            base.Exit();
+
+            if (flipAfterIdle)
+            {
+                Movement.Flip();
+            }
         }
-    }
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
 
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
+            if (Time.time >= StartTime + idleTime)
+            {
+                isIdleTimeOver = true;
+            }
+        }
+
+        public override void PhysicsUpdate()
+        {
+            base.PhysicsUpdate();
+        }
+
+        public override void DoChecks()
+        {
+            base.DoChecks();
+        }
     
-    public void SetFlipAfterIdle(bool flip)
-    {
-        flipAfterIdle = flip;
-    }
+        public void SetFlipAfterIdle(bool flip)
+        {
+            flipAfterIdle = flip;
+        }
     
-    public void SetRandomIdleTime()
-    {
-        idleTime = Random.Range(EntityData.minIdleTime, EntityData.maxIdleTime);
+        public void SetRandomIdleTime()
+        {
+            idleTime = Random.Range(EntityData.minIdleTime, EntityData.maxIdleTime);
+        }
     }
 }

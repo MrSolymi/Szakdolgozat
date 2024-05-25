@@ -1,37 +1,39 @@
-using System;
 using UnityEngine;
 
-public class Death : CoreComponent
+namespace Solymi.Core.CoreComponents
 {
-    private ParticleManager ParticleManager => _particleManager ? _particleManager : core.GetCoreComponent(ref _particleManager);
-    private ParticleManager _particleManager;
-    
-    private Stats Stats => _stats ? _stats : core.GetCoreComponent(ref _stats);
-    private Stats _stats;
-    
-    [SerializeField] private GameObject[] deathParticles;
-    
-    
-    public void Die()
+    public class Death : CoreComponent
     {
-        if (deathParticles != null)
+        private ParticleManager ParticleManager => _particleManager ? _particleManager : core.GetCoreComponent(ref _particleManager);
+        private ParticleManager _particleManager;
+    
+        private Stats Stats => _stats ? _stats : core.GetCoreComponent(ref _stats);
+        private Stats _stats;
+    
+        [SerializeField] private GameObject[] deathParticles;
+    
+    
+        public void Die()
         {
-            foreach (var particle in deathParticles)
+            if (deathParticles != null)
             {
-                ParticleManager.StartParticles(particle);
+                foreach (var particle in deathParticles)
+                {
+                    ParticleManager.StartParticles(particle);
+                }
             }
-        }
         
-        core.transform.parent.gameObject.SetActive(false);
-    }
+            core.transform.parent.gameObject.SetActive(false);
+        }
 
-    private void OnEnable()
-    {
-        Stats.OnHealthZero += Die;
-    }
+        private void OnEnable()
+        {
+            Stats.OnHealthZero += Die;
+        }
     
-    private void OnDisable()
-    {
-        Stats.OnHealthZero -= Die;
+        private void OnDisable()
+        {
+            Stats.OnHealthZero -= Die;
+        }
     }
 }

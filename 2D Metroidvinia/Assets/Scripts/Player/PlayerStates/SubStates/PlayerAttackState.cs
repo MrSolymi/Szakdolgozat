@@ -1,28 +1,33 @@
+using Solymi.Player.Data;
+using Solymi.Player.PlayerStates.SuperStates;
 using Solymi.Weapons;
 
-public class PlayerAttackState : PlayerAbilityState
+namespace Solymi.Player.PlayerStates.SubStates
 {
-    private Weapon _weapon;
+    public class PlayerAttackState : PlayerAbilityState
+    {
+        private Weapon _weapon;
     
-    public PlayerAttackState(Player player, PlayerData playerData, string animBoolName, Weapon weapon) : base(player, playerData, animBoolName)
-    {
-        _weapon = weapon;
+        public PlayerAttackState(PlayerStateMachine.Player player, PlayerData playerData, string animBoolName, Weapon weapon) : base(player, playerData, animBoolName)
+        {
+            _weapon = weapon;
         
-        _weapon.OnExit += ExitHandler;
-    }
+            _weapon.OnExit += ExitHandler;
+        }
 
-    public override void Enter()
-    {
-        base.Enter();
-        //IsAbilityDone = false;
+        public override void Enter()
+        {
+            base.Enter();
+            //IsAbilityDone = false;
         
         
-        _weapon.Enter();
-    }
+            _weapon.Enter();
+        }
 
-    private void ExitHandler()
-    {
-        AnimationFinishTrigger();
-        IsAbilityDone = true;
+        private void ExitHandler()
+        {
+            AnimationFinishTrigger();
+            IsAbilityDone = true;
+        }
     }
 }

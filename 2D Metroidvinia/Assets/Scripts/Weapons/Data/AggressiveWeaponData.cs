@@ -1,4 +1,5 @@
 using System;
+using Solymi.Structs;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewWeaponData", menuName = "Data/WeaponData/AggressiveWeapon")]

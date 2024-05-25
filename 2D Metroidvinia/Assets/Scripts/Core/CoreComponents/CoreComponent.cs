@@ -1,25 +1,26 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+using Solymi.Interfaces;
 using UnityEngine;
 
-public class CoreComponent : MonoBehaviour, ILogicUpdate
+namespace Solymi.Core.CoreComponents
 {
-    protected Core core;
-
-    protected virtual void Awake()
+    public class CoreComponent : MonoBehaviour, ILogicUpdate
     {
-        core = transform.parent.GetComponent<Core>();
+        protected Core core;
 
-        if (!core)
+        protected virtual void Awake()
         {
-            Debug.LogError("There is no Core on the parent object of " + this + " component.");
-        }
-        core.AddComponent(this);
-    }
+            core = transform.parent.GetComponent<Core>();
 
-    public virtual void LogicUpdate()
-    {
+            if (!core)
+            {
+                Debug.LogError("There is no Core on the parent object of " + this + " component.");
+            }
+            core.AddComponent(this);
+        }
+
+        public virtual void LogicUpdate()
+        {
         
+        }
     }
 }

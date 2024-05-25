@@ -1,5 +1,8 @@
-public enum CombatInputs
+namespace Solymi.Enums
 {
-        PRIMARY,
-        SECONDARY
+        public enum CombatInputs
+        {
+                PRIMARY,
+                SECONDARY
+        }
 }

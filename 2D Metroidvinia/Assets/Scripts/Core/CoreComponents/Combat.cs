@@ -1,24 +1,28 @@
+using Solymi.Interfaces;
 using UnityEngine;
 
-public class Combat : CoreComponent, IDamageable
+namespace Solymi.Core.CoreComponents
 {
-    private Stats Stats => _stats ? _stats : core.GetCoreComponent(ref _stats);
-    private Stats _stats;
-
-    private ParticleManager ParticleManager => _particleManager ? _particleManager : core.GetCoreComponent(ref _particleManager);
-    private ParticleManager _particleManager;
-    
-    [SerializeField] private GameObject hitParticles;
-    
-    public void Damage(float amount)
+    public class Combat : CoreComponent, IDamageable
     {
-        Debug.LogError(core.transform.parent.name + " damaged!");
-        Stats.DecreaseHealth(amount);
-        ParticleManager.StartParticlesRandomRotation(hitParticles);
-    }
+        private Stats Stats => _stats ? _stats : core.GetCoreComponent(ref _stats);
+        private Stats _stats;
 
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
+        private ParticleManager ParticleManager => _particleManager ? _particleManager : core.GetCoreComponent(ref _particleManager);
+        private ParticleManager _particleManager;
+    
+        [SerializeField] private GameObject hitParticles;
+    
+        public void Damage(float amount)
+        {
+            Debug.LogError(core.transform.parent.name + " damaged!");
+            Stats.DecreaseHealth(amount);
+            ParticleManager.StartParticlesRandomRotation(hitParticles);
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+        }
     }
 }
