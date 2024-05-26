@@ -9579,6 +9579,10 @@ PrefabInstance:
       propertyPath: attackCounterResetCooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4457449014999249227, guid: 2d979742d5b812b4db7313b81a4ef5fb, type: 3}
+      propertyPath: <WeaponData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: 67fb6ab8752a8494cba521bf0e7cec6c, type: 2}
     - target: {fileID: 5954356129176046422, guid: 2d979742d5b812b4db7313b81a4ef5fb, type: 3}
       propertyPath: _weaponSprites.Array.size
       value: 3
@@ -9753,6 +9757,10 @@ PrefabInstance:
       propertyPath: attackCounterResetCooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4457449014999249227, guid: 2d979742d5b812b4db7313b81a4ef5fb, type: 3}
+      propertyPath: <WeaponData>k__BackingField
+      value: 
+      objectReference: {fileID: 11400000, guid: cda6b289c7c9c984090154df0323e30d, type: 2}
     - target: {fileID: 5954356129176046422, guid: 2d979742d5b812b4db7313b81a4ef5fb, type: 3}
       propertyPath: _weaponSprites.Array.size
       value: 3

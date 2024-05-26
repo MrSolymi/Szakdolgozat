@@ -1,5 +1,6 @@
 using System;
 using Solymi.Utilities;
+using Solymi.Weapons.Data;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,14 +8,18 @@ namespace Solymi.Weapons
 {
     public class Weapon : MonoBehaviour
     {
-        [SerializeField] private int numberOfAttacks;
+        public Core.Core Core { get; private set; }
+        [field: SerializeField] public WeaponData WeaponData {get; private set;}
+        
         [SerializeField] private float attackCounterResetCooldown;
 
         public int CurrentAttackCounter
         {
             get => _currentAttackCounter;
-            private set => _currentAttackCounter = value >= numberOfAttacks ? 0 : value; 
+            private set => _currentAttackCounter = value >= WeaponData.NumberOfAttacks ? 0 : value; 
         }
+        
+        public void SetCore(Core.Core core) => Core = core;
         public event Action OnEnter, OnExit;
         
         private Animator _animator;
@@ -22,7 +27,7 @@ namespace Solymi.Weapons
         public GameObject WeaponSpriteGameObject { get; private set; }
         
 
-        private AnimationEventHandler _eventHandler;
+        public AnimationEventHandler EventHandler { get; private set; }
         
         private int _currentAttackCounter;
         
@@ -56,7 +61,7 @@ namespace Solymi.Weapons
             
             _animator = BaseGameObject.GetComponent<Animator>();
             
-            _eventHandler = BaseGameObject.GetComponent<AnimationEventHandler>();
+            EventHandler = BaseGameObject.GetComponent<AnimationEventHandler>();
             
             _attackCounterResetTimer = new Timer(attackCounterResetCooldown);
         }
@@ -68,13 +73,13 @@ namespace Solymi.Weapons
 
         private void OnEnable()
         {
-            _eventHandler.OnFinished += Exit;
+            EventHandler.OnFinished += Exit;
             _attackCounterResetTimer.OnTimerEnd += ResetAttackCounter;
         }
 
         private void OnDisable()
         {
-            _eventHandler.OnFinished -= Exit;
+            EventHandler.OnFinished -= Exit;
             _attackCounterResetTimer.OnTimerEnd -= ResetAttackCounter;
         }
         

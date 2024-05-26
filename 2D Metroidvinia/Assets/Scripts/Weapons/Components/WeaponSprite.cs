@@ -1,4 +1,5 @@
 using System;
+using Solymi.Weapons.Components.Data;
 using UnityEngine;
 
 namespace Solymi.Weapons.Components
@@ -7,12 +8,15 @@ namespace Solymi.Weapons.Components
     {
         private SpriteRenderer _baseSpriteRenderer, _weaponSpriteRenderer;
         
-        [SerializeField] private WeaponSprites[] _weaponSprites;
         private int _currentIndex;
+
+        private WeaponSpriteData _data;
         
         protected override void Awake()
         {
             base.Awake();
+            
+            _data = weapon.WeaponData.GetWeaponComponentData<WeaponSpriteData>();
             
             _baseSpriteRenderer = transform.Find("Base").GetComponent<SpriteRenderer>();
             _weaponSpriteRenderer = transform.Find("WeaponSprite").GetComponent<SpriteRenderer>();
@@ -48,13 +52,13 @@ namespace Solymi.Weapons.Components
             }
 
 
-            if (_currentIndex >= _weaponSprites[weapon.CurrentAttackCounter].Sprites.Length)
+            if (_currentIndex >= _data.AttackData[weapon.CurrentAttackCounter].Sprites.Length)
             {
                 Debug.LogWarning($"Not enough sprites for {weapon.name} attack counter");
                 return;
             }
             
-            _weaponSpriteRenderer.sprite = _weaponSprites[weapon.CurrentAttackCounter].Sprites[_currentIndex];
+            _weaponSpriteRenderer.sprite = _data.AttackData[weapon.CurrentAttackCounter].Sprites[_currentIndex];
 
             _currentIndex++;
         }
@@ -65,11 +69,5 @@ namespace Solymi.Weapons.Components
             
             _currentIndex = 0;
         }
-    }
-
-    [Serializable]
-    public class WeaponSprites
-    {
-        [field: SerializeField] public Sprite[] Sprites { get; private set; }
     }
 }

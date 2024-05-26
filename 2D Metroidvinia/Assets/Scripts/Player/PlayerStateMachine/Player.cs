@@ -39,6 +39,9 @@ namespace Solymi.Player.PlayerStateMachine
         
             _primaryWeapon = transform.Find("PrimaryWeapon").GetComponent<Weapon>();
             _secondaryWeapon = transform.Find("SecondaryWeapon").GetComponent<Weapon>();
+            
+            _primaryWeapon.SetCore(Core);
+            _secondaryWeapon.SetCore(Core);
         
             StateMachine = new PlayerStateMachine();
 
