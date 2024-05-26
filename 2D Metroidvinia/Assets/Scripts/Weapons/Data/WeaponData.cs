@@ -17,11 +17,21 @@ namespace Solymi.Weapons.Data
             return WeaponComponentDatas.OfType<T>().FirstOrDefault();
         }
         
-        
-        [ContextMenu("Add Sprite Data")]
-        private void AddSpriteData() => WeaponComponentDatas.Add(new WeaponSpriteData());
+        public void AddComponentData(WeaponComponentData data)
+        {
+            if (WeaponComponentDatas.FirstOrDefault(t => t.GetType() == data.GetType()) != null)
+            {
+                return;
+            }
+            
+            WeaponComponentDatas.Add(data);
+        }
 
-        [ContextMenu("Add Movement Data")]
-        private void AddMovementData() => WeaponComponentDatas.Add(new WeaponMovementData());
+
+        // [ContextMenu("Add Sprite Data")]
+        // private void AddSpriteData() => WeaponComponentDatas.Add(new WeaponSpriteData());
+        //
+        // [ContextMenu("Add Movement Data")]
+        // private void AddMovementData() => WeaponComponentDatas.Add(new WeaponMovementData());
     }
 }

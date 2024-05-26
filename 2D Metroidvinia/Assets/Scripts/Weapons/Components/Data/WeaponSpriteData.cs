@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace Solymi.Weapons.Components.Data
 {
-    public class WeaponSpriteData : WeaponComponentData
+    public class WeaponSpriteData : WeaponComponentData<AttackSprites>
     {
-        [field: SerializeField] public AttackSprites[] AttackData { get; private set; }
+        // [field: SerializeField] public AttackSprites[] AttackData { get; private set; }
     }
 }

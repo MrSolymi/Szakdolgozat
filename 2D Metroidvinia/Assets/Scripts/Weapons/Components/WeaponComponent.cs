@@ -1,3 +1,5 @@
+using Solymi.Weapons.Components.Data;
+using Solymi.Weapons.Components.Data.AttackData;
 using UnityEngine;
 
 namespace Solymi.Weapons.Components
@@ -38,6 +40,25 @@ namespace Solymi.Weapons.Components
         protected virtual void HandleExit()
         {
             isAttackActive = false;
+        }
+    }
+
+    public abstract class WeaponComponent<T1, T2> : WeaponComponent where T1 : WeaponComponentData<T2> where T2 : AttackData
+    {
+        protected T1 data;
+        protected T2 currentAttackData;
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            data = weapon.WeaponData.GetWeaponComponentData<T1>();
+        }
+
+        protected override void HandleEnter()
+        {
+            base.HandleEnter();
+            
+            currentAttackData = data.AttackData[weapon.CurrentAttackCounter];
         }
     }
 }

@@ -1,22 +1,23 @@
 using System;
 using Solymi.Weapons.Components.Data;
+using Solymi.Weapons.Components.Data.AttackData;
 using UnityEngine;
 
 namespace Solymi.Weapons.Components
 {
-    public class WeaponSprite : WeaponComponent
+    public class WeaponSprite : WeaponComponent<WeaponSpriteData, AttackSprites>
     {
         private SpriteRenderer _baseSpriteRenderer, _weaponSpriteRenderer;
         
         private int _currentIndex;
 
-        private WeaponSpriteData _data;
+        // private WeaponSpriteData _data;
         
         protected override void Awake()
         {
             base.Awake();
             
-            _data = weapon.WeaponData.GetWeaponComponentData<WeaponSpriteData>();
+            // data = weapon.WeaponData.GetWeaponComponentData<WeaponSpriteData>();
             
             _baseSpriteRenderer = transform.Find("Base").GetComponent<SpriteRenderer>();
             _weaponSpriteRenderer = transform.Find("WeaponSprite").GetComponent<SpriteRenderer>();
@@ -52,13 +53,13 @@ namespace Solymi.Weapons.Components
             }
 
 
-            if (_currentIndex >= _data.AttackData[weapon.CurrentAttackCounter].Sprites.Length)
+            if (_currentIndex >= currentAttackData.Sprites.Length)
             {
                 Debug.LogWarning($"Not enough sprites for {weapon.name} attack counter");
                 return;
             }
             
-            _weaponSpriteRenderer.sprite = _data.AttackData[weapon.CurrentAttackCounter].Sprites[_currentIndex];
+            _weaponSpriteRenderer.sprite = currentAttackData.Sprites[_currentIndex];
 
             _currentIndex++;
         }

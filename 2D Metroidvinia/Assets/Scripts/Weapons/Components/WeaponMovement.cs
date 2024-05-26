@@ -1,11 +1,12 @@
 using JetBrains.Annotations;
 using Solymi.Core.CoreComponents;
 using Solymi.Weapons.Components.Data;
+using Solymi.Weapons.Components.Data.AttackData;
 using UnityEngine;
 
 namespace Solymi.Weapons.Components
 {
-    public class WeaponMovement : WeaponComponent
+    public class WeaponMovement : WeaponComponent<WeaponMovementData, AttackMovement>
     {
         private Movement _coreMovement;
         private Movement CoreMovement => _coreMovement ? _coreMovement : _coreMovement = Core.GetCoreComponent<Movement>();
@@ -13,14 +14,13 @@ namespace Solymi.Weapons.Components
         private CollisionSenses _collisionSenses;
         private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : _collisionSenses = Core.GetCoreComponent<CollisionSenses>();
         
-        private WeaponMovementData _data;
-
-        protected override void Awake()
-        {
-            base.Awake();
-            
-            _data = weapon.WeaponData.GetWeaponComponentData<WeaponMovementData>();
-        }
+        //private WeaponMovementData _data;
+        // protected override void Awake()
+        // {
+        //     base.Awake();
+        //     
+        //     _data = weapon.WeaponData.GetWeaponComponentData<WeaponMovementData>();
+        // }
 
         protected override void OnEnable()
         {
@@ -42,7 +42,6 @@ namespace Solymi.Weapons.Components
         {
             if (!CollisionSenses.Ground) return; 
             
-            var currentAttackData = _data.AttackData[weapon.CurrentAttackCounter];
             CoreMovement.SetVelocity(currentAttackData.Velocity, currentAttackData.Direction, CoreMovement.FacingDirection);
         }
         private void HandleStopMovement()
