@@ -23,4 +23,24 @@ namespace Solymi.Core.CoreComponents
         
         }
     }
+
+    public class CoreComponent<T> where T : CoreComponent
+    {
+        private Core _core;
+        private T _component;
+        
+        public T Component => _component ? _component : _core.GetCoreComponent(ref _component);
+
+        public CoreComponent(Core core)
+        {
+            if (core == null)
+            {
+                Debug.LogWarning( $"Core is null for component {typeof(T)}!");
+            }
+            else
+            {
+                _core = core;
+            }
+        }
+    }
 }

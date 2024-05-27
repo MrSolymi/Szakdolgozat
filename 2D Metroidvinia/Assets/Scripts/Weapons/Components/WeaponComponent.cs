@@ -1,3 +1,4 @@
+using System;
 using Solymi.Weapons.Components.Data;
 using Solymi.Weapons.Components.Data.AttackData;
 using UnityEngine;
@@ -19,7 +20,12 @@ namespace Solymi.Weapons.Components
 
             animationEventHandler = GetComponentInChildren<AnimationEventHandler>();
         }
-        
+
+        protected virtual void Start()
+        {
+            
+        }
+
         protected virtual void OnEnable()
         {
             weapon.OnEnter += HandleEnter;
