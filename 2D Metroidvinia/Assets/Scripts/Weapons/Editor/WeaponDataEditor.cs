@@ -24,6 +24,8 @@ namespace Solymi.Weapons
         /// A reference to the WeaponData instance being edited.
         /// </summary>
         private WeaponData _weaponData;
+
+        private bool _showUpdateButtons, _showAddComponentButtons;
         
         /// <summary>
         /// Called when the editor is enabled.
@@ -43,15 +45,48 @@ namespace Solymi.Weapons
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
-
-            foreach (var dataComponentType in _dataComponentTypes)
+            
+            if (GUILayout.Button("Set Number Of Attacks"))
             {
-                if (GUILayout.Button(dataComponentType.Name))
+                foreach (var item in _weaponData.WeaponComponentDatas)
                 {
-                    var componentData = Activator.CreateInstance(dataComponentType) as WeaponComponentData;
-                    if (componentData == null) return;
+                    item.InitializeAttackData(_weaponData.NumberOfAttacks);
+                }
+            }
+            
+            _showAddComponentButtons = EditorGUILayout.Foldout(_showAddComponentButtons, "Add Components");
+            if (_showAddComponentButtons)
+            {
+                foreach (var dataComponentType in _dataComponentTypes)
+                {
+                    if (GUILayout.Button(dataComponentType.Name))
+                    {
+                        var componentData = Activator.CreateInstance(dataComponentType) as WeaponComponentData;
+                        if (componentData == null) return;
                     
-                    _weaponData.AddComponentData(componentData);
+                        componentData.InitializeAttackData(_weaponData.NumberOfAttacks);
+                    
+                        _weaponData.AddComponentData(componentData);
+                    }
+                }
+            }
+            
+            _showUpdateButtons = EditorGUILayout.Foldout(_showUpdateButtons, "Update Names");
+            if (_showUpdateButtons)
+            {
+                if (GUILayout.Button("Update Component Names"))
+                {
+                    foreach (var item in _weaponData.WeaponComponentDatas)
+                    {
+                        item.SetComponentName();
+                    }
+                }
+                if (GUILayout.Button("Update Attack Names"))
+                {
+                    foreach (var item in _weaponData.WeaponComponentDatas)
+                    {
+                        item.SetAttackDataNames();
+                    }
                 }
             }
         }

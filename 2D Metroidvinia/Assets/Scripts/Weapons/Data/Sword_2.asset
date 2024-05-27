@@ -23,7 +23,7 @@ MonoBehaviour:
     - rid: 3748552400718266369
       type: {class: WeaponSpriteData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
       data:
-        <AttackData>k__BackingField:
+        attackData:
         - <Sprites>k__BackingField:
           - {fileID: 723500400, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
           - {fileID: -1152204274, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
@@ -45,7 +45,7 @@ MonoBehaviour:
     - rid: 3748552400718266371
       type: {class: WeaponMovementData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
       data:
-        <AttackData>k__BackingField:
+        attackData:
         - <Direction>k__BackingField: {x: 1, y: 0}
           <Velocity>k__BackingField: 2
         - <Direction>k__BackingField: {x: 1, y: 0}
@@ -55,7 +55,7 @@ MonoBehaviour:
     - rid: 3748552420068687873
       type: {class: ActionHitBoxData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
       data:
-        <AttackData>k__BackingField:
+        attackData:
         - Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
