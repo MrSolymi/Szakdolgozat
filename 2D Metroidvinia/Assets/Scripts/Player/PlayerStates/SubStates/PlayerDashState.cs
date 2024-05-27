@@ -47,6 +47,10 @@ namespace Solymi.Player.PlayerStates.SubStates
             base.Exit();
         
             Movement.RB.gravityScale = PlayerData.gravity;
+            if (!CollisionSenses.Ground)
+            {
+                Player.JumpState.DecreaseJumps();
+            }
         }
 
         public override void LogicUpdate()

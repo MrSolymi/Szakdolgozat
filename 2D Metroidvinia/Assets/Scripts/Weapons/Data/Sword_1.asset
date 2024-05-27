@@ -17,26 +17,31 @@ MonoBehaviour:
   - rid: 3748552400718266368
   - rid: 3748552400718266370
   - rid: 3748552420068687872
+  - rid: 3748552420068687881
   references:
     version: 2
     RefIds:
     - rid: 3748552400718266368
       type: {class: WeaponSpriteData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
       data:
+        name: WeaponSpriteData
         attackData:
-        - <Sprites>k__BackingField:
+        - _name: Attack 1
+          <Sprites>k__BackingField:
           - {fileID: 1269045213, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
           - {fileID: -1585891521, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
           - {fileID: 996816011, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
           - {fileID: -1172523639, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
           - {fileID: 1751147329, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
-        - <Sprites>k__BackingField:
+        - _name: Attack 2
+          <Sprites>k__BackingField:
           - {fileID: -1256808398, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
           - {fileID: 909825794, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
           - {fileID: 139958054, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
           - {fileID: 1547187311, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
           - {fileID: -1754402883, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
-        - <Sprites>k__BackingField:
+        - _name: Attack 3
+          <Sprites>k__BackingField:
           - {fileID: 1730170566, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
           - {fileID: -891454013, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
           - {fileID: 1053272395, guid: adb52ea5d9a598841a3cbee46b270fa9, type: 3}
@@ -45,32 +50,40 @@ MonoBehaviour:
     - rid: 3748552400718266370
       type: {class: WeaponMovementData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
       data:
+        name: WeaponMovementData
         attackData:
-        - <Direction>k__BackingField: {x: 1, y: 0}
+        - _name: Attack 1
+          <Direction>k__BackingField: {x: 1, y: 0}
           <Velocity>k__BackingField: 2
-        - <Direction>k__BackingField: {x: 1, y: 0}
+        - _name: Attack 2
+          <Direction>k__BackingField: {x: 1, y: 0}
           <Velocity>k__BackingField: 3
-        - <Direction>k__BackingField: {x: 1, y: 8}
+        - _name: Attack 3
+          <Direction>k__BackingField: {x: 1, y: 8}
           <Velocity>k__BackingField: 5
     - rid: 3748552420068687872
       type: {class: ActionHitBoxData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
       data:
+        name: ActionHitBoxData
         attackData:
-        - Debug: 0
+        - _name: Attack 1
+          Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: 0.25
             y: -0.95
             width: 1.65
             height: 1.7
-        - Debug: 0
+        - _name: Attack 2
+          Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: 0.25
             y: -0.95
             width: 1.65
             height: 1.7
-        - Debug: 0
+        - _name: Attack 3
+          Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: 0.25
@@ -80,3 +93,14 @@ MonoBehaviour:
         <DetectableLayers>k__BackingField:
           serializedVersion: 2
           m_Bits: 512
+    - rid: 3748552420068687881
+      type: {class: WeaponDamageData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
+      data:
+        name: WeaponDamageData
+        attackData:
+        - _name: Attack 1
+          <DamageAmount>k__BackingField: 5
+        - _name: Attack 2
+          <DamageAmount>k__BackingField: 5
+        - _name: Attack 3
+          <DamageAmount>k__BackingField: 8

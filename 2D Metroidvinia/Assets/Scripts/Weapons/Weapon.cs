@@ -34,7 +34,7 @@ namespace Solymi.Weapons
         private Timer _attackCounterResetTimer;
         public void Enter()
         {
-            Debug.Log($"{transform.name} entered");
+            //Debug.Log($"{transform.name} entered");
             
             _attackCounterResetTimer.StopTimer();
             

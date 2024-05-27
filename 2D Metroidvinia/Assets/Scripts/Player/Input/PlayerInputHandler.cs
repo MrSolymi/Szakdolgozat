@@ -127,6 +127,7 @@ namespace Solymi.Player.Input
         public void UseJumpInput() => JumpInput = false;
     
         public void UseDashInput() => DashInput = false;
+        public void UseAttackInput(int index) => AttackInputs[index] = false;
     
         private void CheckJumpInputHoldTime()
         {

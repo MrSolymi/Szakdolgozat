@@ -1,3 +1,4 @@
+using Solymi.Enums;
 using Solymi.Player.Data;
 using Solymi.Player.PlayerStates.SuperStates;
 using Solymi.Weapons;
@@ -19,8 +20,8 @@ namespace Solymi.Player.PlayerStates.SubStates
         {
             base.Enter();
             //IsAbilityDone = false;
-        
-        
+            
+            
             _weapon.Enter();
         }
 

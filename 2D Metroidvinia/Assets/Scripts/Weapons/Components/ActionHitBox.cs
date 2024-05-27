@@ -8,7 +8,7 @@ namespace Solymi.Weapons.Components
 {
     public class ActionHitBox : WeaponComponent<ActionHitBoxData, AttackActionHitBox>
     {
-        private event Action<Collider2D[]> OnDetectedColliders; 
+        public event Action<Collider2D[]> OnDetectedColliders; 
         
         private CoreComponent<Movement> _movement;
 
@@ -49,11 +49,6 @@ namespace Solymi.Weapons.Components
             if (_detectedObjects.Length == 0) return;
             
             OnDetectedColliders?.Invoke(_detectedObjects);
-
-            foreach (var item in _detectedObjects)
-            {
-                Debug.LogWarning(item.name);
-            }
         }
 
         private void OnDrawGizmosSelected()

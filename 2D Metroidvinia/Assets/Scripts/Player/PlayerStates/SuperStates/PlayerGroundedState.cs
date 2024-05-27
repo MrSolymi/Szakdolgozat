@@ -45,10 +45,12 @@ namespace Solymi.Player.PlayerStates.SuperStates
 
             if (Player.InputHandler.AttackInputs[(int)CombatInputs.PRIMARY])
             {
+                Player.InputHandler.UseAttackInput((int)CombatInputs.PRIMARY);
                 StateMachine.ChangeState(Player.PrimaryAttackState);
             } 
             else if (Player.InputHandler.AttackInputs[(int)CombatInputs.SECONDARY])
             {
+                Player.InputHandler.UseAttackInput((int)CombatInputs.SECONDARY);
                 StateMachine.ChangeState(Player.SecondaryAttackState);
             }
             else if (_jumpInput && Player.JumpState.CanJump())
