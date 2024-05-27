@@ -40,8 +40,8 @@ namespace Solymi.Weapons.Components
         private void HandleAttackAction()
         {
             _offset.Set(
-                transform.position.x + (currentAttackData.HitBox.x * _movement.Component.FacingDirection),
-                transform.position.y + currentAttackData.HitBox.y
+                transform.position.x + currentAttackData.HitBox.center.x * _movement.Component.FacingDirection,
+                transform.position.y + currentAttackData.HitBox.center.y
                 );
 
             _detectedObjects = Physics2D.OverlapBoxAll(_offset, currentAttackData.HitBox.size, 0, data.DetectableLayers);
@@ -63,7 +63,7 @@ namespace Solymi.Weapons.Components
             foreach (var item in data.AttackData)
             {
                 if (item.Debug)
-                { 
+                {
                     Gizmos.DrawWireCube(transform.position + (Vector3)item.HitBox.center, item.HitBox.size);
                 }
             }
