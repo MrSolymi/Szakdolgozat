@@ -18,6 +18,7 @@ MonoBehaviour:
   - rid: 3748552400718266371
   - rid: 3748552420068687873
   - rid: 3748552420068687882
+  - rid: 3748552469977759747
   references:
     version: 2
     RefIds:
@@ -83,7 +84,7 @@ MonoBehaviour:
             width: 1.6
             height: 1.7
         - _name: Attack 3
-          Debug: 1
+          Debug: 0
           <HitBox>k__BackingField:
             serializedVersion: 2
             x: 0.25
@@ -104,3 +105,17 @@ MonoBehaviour:
           <DamageAmount>k__BackingField: 5
         - _name: Attack 3
           <DamageAmount>k__BackingField: 8
+    - rid: 3748552469977759747
+      type: {class: WeaponKnockBackData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
+      data:
+        name: WeaponKnockBackData
+        attackData:
+        - _name: Attack 1
+          <KnockBackAngle>k__BackingField: {x: 1, y: 1}
+          <KnockBackStrength>k__BackingField: 10
+        - _name: Attack 2
+          <KnockBackAngle>k__BackingField: {x: 1, y: 1}
+          <KnockBackStrength>k__BackingField: 10
+        - _name: Attack 3
+          <KnockBackAngle>k__BackingField: {x: 1, y: 1}
+          <KnockBackStrength>k__BackingField: 20

@@ -20,23 +20,18 @@ namespace Solymi.Weapons.Components
             }
         }
 
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
             
             _hitBox = GetComponent<ActionHitBox>();
-        }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
             
             _hitBox.OnDetectedColliders += HandleDetectedColliders;
         }
 
-        protected override void OnDisable()
+        protected override void OnDestroy()
         {
-            base.OnDisable();
+            base.OnDestroy();
             
             _hitBox.OnDetectedColliders -= HandleDetectedColliders;
         }

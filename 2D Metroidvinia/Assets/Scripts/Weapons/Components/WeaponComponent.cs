@@ -13,6 +13,8 @@ namespace Solymi.Weapons.Components
         protected Core.Core Core => weapon.Core;
         
         protected bool isAttackActive;
+
+        public virtual void Init() { }
         
         protected virtual void Awake()
         {
@@ -23,16 +25,11 @@ namespace Solymi.Weapons.Components
 
         protected virtual void Start()
         {
-            
-        }
-
-        protected virtual void OnEnable()
-        {
             weapon.OnEnter += HandleEnter;
             weapon.OnExit += HandleExit;
         }
         
-        protected virtual void OnDisable()
+        protected virtual void OnDestroy()
         {
             weapon.OnEnter -= HandleEnter;
             weapon.OnExit -= HandleExit;
@@ -53,9 +50,9 @@ namespace Solymi.Weapons.Components
     {
         protected T1 data;
         protected T2 currentAttackData;
-        protected override void Awake()
+        public override void Init()
         {
-            base.Awake();
+            base.Init();
             
             data = weapon.WeaponData.GetWeaponComponentData<T1>();
         }

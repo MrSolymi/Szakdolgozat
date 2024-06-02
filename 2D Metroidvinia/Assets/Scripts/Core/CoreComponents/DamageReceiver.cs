@@ -7,22 +7,25 @@ namespace Solymi.Core.CoreComponents
     {
         [SerializeField] private GameObject hitParticles;
 
-        private CoreComponent<Stats> _stats;
-        private CoreComponent<ParticleManager> _particleManager;
+        private Stats _stats;
+        private ParticleManager _particleManager;
         
         public void Damage(float amount)
         {
-            Debug.LogError(core.transform.parent.name + " damaged!");
-            _stats.Component.DecreaseHealth(amount);
-            _particleManager.Component.StartParticlesRandomRotation(hitParticles);
+            //Debug.LogError(core.transform.parent.name + " damaged!");
+            _stats.DecreaseHealth(amount);
+            _particleManager.StartParticlesRandomRotation(hitParticles);
         }
 
         protected override void Awake()
         {
             base.Awake();
 
-            _stats = new CoreComponent<Stats>(core);
-            _particleManager = new CoreComponent<ParticleManager>(core);
+            _stats = core.GetCoreComponent<Stats>();
+            _particleManager = core.GetCoreComponent<ParticleManager>();
+            
+            //_stats = new CoreComponent<Stats>(core);
+            //_particleManager = new CoreComponent<ParticleManager>(core);
         }
     }
 }

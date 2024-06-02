@@ -10,7 +10,7 @@ namespace Solymi.Weapons.Components
     {
         public event Action<Collider2D[]> OnDetectedColliders; 
         
-        private CoreComponent<Movement> _movement;
+        private Movement _movement;
 
         private Vector2 _offset;
         
@@ -20,19 +20,15 @@ namespace Solymi.Weapons.Components
         {
             base.Start();
             
-            _movement = new CoreComponent<Movement>(Core);
-        }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
+            //_movement = new CoreComponent<Movement>(Core);
+            _movement = Core.GetCoreComponent<Movement>();
             
             animationEventHandler.OnAttackAction += HandleAttackAction;
         }
 
-        protected override void OnDisable()
+        protected override void OnDestroy()
         {
-            base.OnDisable();
+            base.OnDestroy();
             
             animationEventHandler.OnAttackAction -= HandleAttackAction;
         }
@@ -40,7 +36,7 @@ namespace Solymi.Weapons.Components
         private void HandleAttackAction()
         {
             _offset.Set(
-                transform.position.x + currentAttackData.HitBox.center.x * _movement.Component.FacingDirection,
+                transform.position.x + currentAttackData.HitBox.center.x * _movement.FacingDirection,
                 transform.position.y + currentAttackData.HitBox.center.y
                 );
 

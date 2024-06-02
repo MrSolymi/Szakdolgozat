@@ -24,6 +24,7 @@ namespace Solymi.Core.CoreComponents
         }
     }
 
+    /*
     public class CoreComponent<T> where T : CoreComponent
     {
         private Core _core;
@@ -43,4 +44,5 @@ namespace Solymi.Core.CoreComponents
             }
         }
     }
+    */
 }

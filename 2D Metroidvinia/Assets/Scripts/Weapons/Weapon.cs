@@ -9,9 +9,10 @@ namespace Solymi.Weapons
     public class Weapon : MonoBehaviour
     {
         public Core.Core Core { get; private set; }
-        [field: SerializeField] public WeaponData WeaponData {get; private set;}
         
         [SerializeField] private float attackCounterResetCooldown;
+        
+        public WeaponData WeaponData {get; private set;}
 
         public int CurrentAttackCounter
         {
@@ -20,6 +21,7 @@ namespace Solymi.Weapons
         }
         
         public void SetCore(Core.Core core) => Core = core;
+        public void SetWeaponData(WeaponData weaponData) => WeaponData = weaponData;
         public event Action OnEnter, OnExit;
         
         private Animator _animator;

@@ -5,6 +5,10 @@ namespace Solymi.Weapons.Components.Data
 {
     public class WeaponSpriteData : WeaponComponentData<AttackSprites>
     {
-        // [field: SerializeField] public AttackSprites[] AttackData { get; private set; }
+        // [field: SerializeField] public AttackSprites[] AttackData { get; private set; 
+        protected override void SetComponentDependency()
+        {
+            ComponentDependency = typeof(WeaponSprite);
+        }
     }
 }

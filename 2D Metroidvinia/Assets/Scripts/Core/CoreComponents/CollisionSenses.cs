@@ -1,3 +1,4 @@
+using Solymi.Enemies.Data;
 using Solymi.Generics;
 using UnityEngine;
 
@@ -5,6 +6,9 @@ namespace Solymi.Core.CoreComponents
 {
     public class CollisionSenses : CoreComponent
     {
+        [SerializeField]
+        private EntityData entityData;
+        
         private Movement Movement => _movement ? _movement : core.GetCoreComponent(ref _movement);
         private Movement _movement;
     
@@ -35,6 +39,13 @@ namespace Solymi.Core.CoreComponents
             get => GenericNotImplementedError<Transform>.TryGet(ledgeCheckVertical, core.transform.parent.name);
             private set => ledgeCheckVertical = value;
         }
+        
+        [SerializeField] private Transform playerCheck;
+        public Transform PlayerCheck
+        {
+            get => GenericNotImplementedError<Transform>.TryGet(playerCheck, core.transform.parent.name);
+            private set => playerCheck = value;
+        }
 
         public float GroundCheckRadius { get => groundCheckRadius; set => groundCheckRadius = value; }
         [SerializeField] private float groundCheckRadius;
@@ -44,6 +55,9 @@ namespace Solymi.Core.CoreComponents
     
         public LayerMask WhatIsGround { get => whatIsGround; set => whatIsGround = value; }
         [SerializeField] private LayerMask whatIsGround;
+        
+        public LayerMask WhatIsPlayer { get => whatIsPlayer; set => whatIsPlayer = value; }
+        [SerializeField] private LayerMask whatIsPlayer;
 
         // public bool CheckIfGrounded()
         // {
@@ -59,5 +73,13 @@ namespace Solymi.Core.CoreComponents
         public bool LedgeHorizontal => Physics2D.Raycast(LedgeCheckHorizontal.position, Vector2.right * Movement.FacingDirection, wallCheckDistance, whatIsGround);
     
         public bool LedgeVertical => Physics2D.Raycast(LedgeCheckVertical.position, Vector2.down, wallCheckDistance, whatIsGround);
+        
+        public bool PlayerInMinAgroRange => Physics2D.Raycast(PlayerCheck.position, Vector2.right * Movement.FacingDirection, entityData.minAgroDistance, whatIsPlayer);
+        
+        public bool PlayerInMaxAgroRange => Physics2D.Raycast(PlayerCheck.position, Vector2.right * Movement.FacingDirection, entityData.maxAgroDistance, whatIsPlayer);
+        
+        public bool PlayerInCloseRangeAction => Physics2D.Raycast(PlayerCheck.position, Vector2.right * Movement.FacingDirection, entityData.closeRangeActionDistance, whatIsPlayer);
+        
+        public bool PlayerInLongRangeAction => Physics2D.Raycast(PlayerCheck.position, Vector2.right * Movement.FacingDirection, entityData.longRangeActionDistance, whatIsPlayer);
     }
 }

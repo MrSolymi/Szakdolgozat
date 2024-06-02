@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Solymi.Enemies.EntityStateMachine
 {
     public class EntityStateMachine
@@ -14,7 +16,7 @@ namespace Solymi.Enemies.EntityStateMachine
         public void ChangeState(EntityState newState)
         {
             CurrentState.Exit();
-            //Debug.Log(newState.GetType());
+            Debug.Log(newState.GetType());
             CurrentState = newState;
             CurrentState.Enter();
         }

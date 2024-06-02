@@ -1,25 +1,50 @@
 using Solymi.Enemies.EntityStateMachine;
+using UnityEngine;
 
 namespace Solymi.Enemies.Enemy1
 {
     public class Enemy1 : Entity
     {
-        public Enemy1IdleState idleState { get; private set; }
-        public Enemy1MoveState moveState { get; private set; }
-    
-    
+        public Enemy1IdleState IdleState { get; private set; }
+        public Enemy1MoveState MoveState { get; private set; }
+        public Enemy1PlayerDetectedState PlayerDetectedState { get; private set; }
+        public Enemy1ChargeState ChargeState { get; private set; }
+        public Enemy1LookForPlayerState LookForPlayerState { get; private set; }
+        public Enemy1MeleeAttackState MeleeAttackState { get; private set; }
+        
+        [SerializeField] private Transform meleeAttackPosition;
+        
         public override void Awake()
         {
             base.Awake();
         
-            moveState = new Enemy1MoveState(this, entityData, "move", this);
-            idleState = new Enemy1IdleState(this, entityData, "idle", this);
+            MoveState = new Enemy1MoveState(this, entityData, "move", this);
+            IdleState = new Enemy1IdleState(this, entityData, "idle", this);
+            PlayerDetectedState = new Enemy1PlayerDetectedState(this, entityData, "playerDetected", this);
+            ChargeState = new Enemy1ChargeState(this, entityData, "charge", this);
+            LookForPlayerState = new Enemy1LookForPlayerState(this, entityData, "lookForPlayer", this);
+            MeleeAttackState = new Enemy1MeleeAttackState(this, entityData, "meleeAttack", meleeAttackPosition, this);
         }
 
         public  void Start()
         {
-            StateMachine.Initialize(idleState);
+            StateMachine.Initialize(IdleState);
         }
-    
+
+        public override void OnDrawGizmos()
+        {
+            base.OnDrawGizmos();
+
+            Gizmos.DrawWireSphere(meleeAttackPosition.position, entityData.meleeAttackRadius);
+        }
+
+        private void TriggerAttack()
+        {
+            MeleeAttackState.TriggerAttack();
+        }
+        private void FinishAttack()
+        {
+            MeleeAttackState.FinishAttack();
+        }
     }
 }

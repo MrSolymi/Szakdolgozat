@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Solymi.Weapons.Components.Data;
@@ -15,6 +16,11 @@ namespace Solymi.Weapons.Data
         public T GetWeaponComponentData<T>()
         {
             return WeaponComponentDatas.OfType<T>().FirstOrDefault();
+        }
+        
+        public List<Type> GetAllDependencies()
+        {
+            return WeaponComponentDatas.Select(component => component.ComponentDependency).ToList();
         }
         
         public void AddComponentData(WeaponComponentData data)

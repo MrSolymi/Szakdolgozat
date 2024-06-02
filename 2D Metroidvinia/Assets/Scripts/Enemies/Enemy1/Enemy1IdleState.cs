@@ -16,31 +16,22 @@ namespace Solymi.Enemies.Enemy1
         public override void Enter()
         {
             base.Enter();
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
+            
+            Movement.SetVelocityZero();
         }
 
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-
-            if (isIdleTimeOver)
+            
+            if (isPlayerInMinAgroRange)
             {
-                StateMachine.ChangeState(_enemy.moveState);
+                StateMachine.ChangeState(_enemy.PlayerDetectedState);
             }
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-        }
-
-        public override void DoChecks()
-        {
-            base.DoChecks();
+            else if (isIdleTimeOver)
+            {
+                StateMachine.ChangeState(_enemy.MoveState);
+            }
         }
     }
 }

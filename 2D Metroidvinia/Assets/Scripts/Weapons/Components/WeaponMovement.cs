@@ -22,17 +22,17 @@ namespace Solymi.Weapons.Components
         //     _data = weapon.WeaponData.GetWeaponComponentData<WeaponMovementData>();
         // }
 
-        protected override void OnEnable()
+        protected override void Start()
         {
-            base.OnEnable();
+            base.Start();
             
             animationEventHandler.OnStartMovement += HandleStartMovement;
             animationEventHandler.OnStopMovement += HandleStopMovement;
         }
 
-        protected override void OnDisable()
+        protected override void OnDestroy()
         {
-            base.OnDisable();
+            base.OnDestroy();
             
             animationEventHandler.OnStartMovement -= HandleStartMovement;
             animationEventHandler.OnStopMovement -= HandleStopMovement;
@@ -42,12 +42,14 @@ namespace Solymi.Weapons.Components
         {
             if (!CollisionSenses.Ground) return; 
             
+            //CoreMovement.CanSetVelocity = true;
             CoreMovement.SetVelocity(currentAttackData.Velocity, currentAttackData.Direction, CoreMovement.FacingDirection);
         }
         private void HandleStopMovement()
         {
             if (!CollisionSenses.Ground) return;
             
+            //CoreMovement.CanSetVelocity = false;
             CoreMovement.SetVelocityZero();
         }
     }

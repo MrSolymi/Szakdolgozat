@@ -13,35 +13,23 @@ namespace Solymi.Weapons.Components
 
         // private WeaponSpriteData _data;
         
-        protected override void Awake()
+        protected override void Start()
         {
-            base.Awake();
+            base.Start();
             
-            // data = weapon.WeaponData.GetWeaponComponentData<WeaponSpriteData>();
+            _baseSpriteRenderer = weapon.BaseGameObject.GetComponent<SpriteRenderer>();
+            _weaponSpriteRenderer = weapon.WeaponSpriteGameObject.GetComponent<SpriteRenderer>();
             
-            _baseSpriteRenderer = transform.Find("Base").GetComponent<SpriteRenderer>();
-            _weaponSpriteRenderer = transform.Find("WeaponSprite").GetComponent<SpriteRenderer>();
-            
-            
-            //TODO: Sometimes this runs before the weapons awake set up the references
-            // _baseSpriteRenderer = weapon.BaseGameObject.GetComponent<SpriteRenderer>();
-            // _weaponSpriteRenderer = weapon.WeaponSpriteGameObject.GetComponent<SpriteRenderer>();
-        }
-
-        protected override void OnEnable()
-        {
-            base.OnEnable();
+            data = weapon.WeaponData.GetWeaponComponentData<WeaponSpriteData>();
             
             _baseSpriteRenderer.RegisterSpriteChangeCallback(HandleBaseSpriteChange);
-            weapon.OnEnter += HandleEnter;
         }
 
-        protected override void OnDisable()
+        protected override void OnDestroy()
         {
-            base.OnDisable();
+            base.OnDestroy();
             
             _baseSpriteRenderer.UnregisterSpriteChangeCallback(HandleBaseSpriteChange);
-            weapon.OnEnter -= HandleEnter;
         }
 
         private void HandleBaseSpriteChange(SpriteRenderer spriteRenderer)

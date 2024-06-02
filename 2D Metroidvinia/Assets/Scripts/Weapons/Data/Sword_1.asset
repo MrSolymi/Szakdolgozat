@@ -18,6 +18,7 @@ MonoBehaviour:
   - rid: 3748552400718266370
   - rid: 3748552420068687872
   - rid: 3748552420068687881
+  - rid: 3748552469977759746
   references:
     version: 2
     RefIds:
@@ -99,8 +100,22 @@ MonoBehaviour:
         name: WeaponDamageData
         attackData:
         - _name: Attack 1
-          <DamageAmount>k__BackingField: 5
+          <DamageAmount>k__BackingField: 0
         - _name: Attack 2
-          <DamageAmount>k__BackingField: 5
+          <DamageAmount>k__BackingField: 0
         - _name: Attack 3
-          <DamageAmount>k__BackingField: 8
+          <DamageAmount>k__BackingField: 0
+    - rid: 3748552469977759746
+      type: {class: WeaponKnockBackData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
+      data:
+        name: WeaponKnockBackData
+        attackData:
+        - _name: Attack 1
+          <KnockBackStrength>k__BackingField: 10
+          <KnockBackAngle>k__BackingField: {x: 1, y: 1}
+        - _name: Attack 2
+          <KnockBackStrength>k__BackingField: 10
+          <KnockBackAngle>k__BackingField: {x: 1, y: 1}
+        - _name: Attack 3
+          <KnockBackStrength>k__BackingField: 20
+          <KnockBackAngle>k__BackingField: {x: 1, y: 3}

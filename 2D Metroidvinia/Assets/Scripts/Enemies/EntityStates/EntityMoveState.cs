@@ -6,10 +6,9 @@ namespace Solymi.Enemies.EntityStates
 {
     public class EntityMoveState : EntityState
     {
-        protected bool isDetectingWall,  isDetectingLedge;
+        protected bool isDetectingWall,  isDetectingLedge, isPlayerInMinAgroRange;
     
-    
-        private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
 
         private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
@@ -17,31 +16,7 @@ namespace Solymi.Enemies.EntityStates
         public EntityMoveState(Entity entity, EntityData entityData, string animBoolName) : base(entity, entityData, animBoolName)
         {
         }
-
-        public override void Enter()
-        {
-            base.Enter();
         
-            Movement.SetVelocityX(EntityData.movementSpeed * Movement.FacingDirection);
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
-        public override void LogicUpdate()
-        {
-            base.LogicUpdate();
-        
-            Movement.SetVelocityX(EntityData.movementSpeed * Movement.FacingDirection);
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-        }
-
         public override void DoChecks()
         {
             base.DoChecks();
@@ -50,6 +25,7 @@ namespace Solymi.Enemies.EntityStates
         
             isDetectingLedge = CollisionSenses.LedgeVertical;
             isDetectingWall = CollisionSenses.Wall;
+            isPlayerInMinAgroRange = CollisionSenses.PlayerInMinAgroRange;
         }
     }
 }

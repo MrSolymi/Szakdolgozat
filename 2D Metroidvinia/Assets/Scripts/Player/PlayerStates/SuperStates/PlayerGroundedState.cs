@@ -14,7 +14,7 @@ namespace Solymi.Player.PlayerStates.SuperStates
         protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
 
-        protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
+        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
         private CollisionSenses _collisionSenses;
     
         public PlayerGroundedState(PlayerStateMachine.Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)

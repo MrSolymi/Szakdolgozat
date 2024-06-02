@@ -16,7 +16,7 @@ namespace Solymi.Player.PlayerStateMachine
         public void ChangeState(PlayerState newState)
         {
             CurrentState.Exit();
-            Debug.Log(newState.GetType());
+            //Debug.Log(newState.GetType());
             CurrentState = newState;
             CurrentState.Enter();
         }

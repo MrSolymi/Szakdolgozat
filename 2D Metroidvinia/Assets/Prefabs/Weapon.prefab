@@ -10,8 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6039851698052933608}
   - component: {fileID: 4457449014999249227}
-  - component: {fileID: 5954356129176046422}
-  - component: {fileID: 5465160477955558466}
+  - component: {fileID: 6609402233366361203}
   m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
@@ -48,9 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a330f2b88ff5414989d472501f632b28, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <WeaponData>k__BackingField: {fileID: 0}
   attackCounterResetCooldown: 0
---- !u!114 &5954356129176046422
+--- !u!114 &6609402233366361203
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -59,21 +57,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 219307858333322609}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a275dc190b09418280b5ea4c59eee7f0, type: 3}
+  m_Script: {fileID: 11500000, guid: f8d911b68e8d4b35ad30400442155ba4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5465160477955558466
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 219307858333322609}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c50d9acca5d1441bb07267f8b52738a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  weapon: {fileID: 4457449014999249227}
+  weaponData: {fileID: 0}
 --- !u!1 &5416604059322711313
 GameObject:
   m_ObjectHideFlags: 0
@@ -147,7 +135,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1172479485
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -264,7 +252,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1172479485
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 3
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

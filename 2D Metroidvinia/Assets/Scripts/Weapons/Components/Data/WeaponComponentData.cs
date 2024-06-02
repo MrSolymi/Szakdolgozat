@@ -4,9 +4,11 @@ using UnityEngine.Serialization;
 
 namespace Solymi.Weapons.Components.Data
 {
-    [Serializable] public class WeaponComponentData
+    [Serializable] public abstract class WeaponComponentData
     {
         [SerializeField, HideInInspector] private string name;
+        
+        public Type ComponentDependency { get; protected set; }
 
         public void SetComponentName()
         {
@@ -16,13 +18,16 @@ namespace Solymi.Weapons.Components.Data
         public WeaponComponentData()
         {
             SetComponentName();
+            SetComponentDependency();
         }
         
         public virtual void SetAttackDataNames() { }
         public virtual void InitializeAttackData(int numberOfAttacks) { }
+        
+        protected abstract void SetComponentDependency();
     }
     
-    [Serializable] public class WeaponComponentData<T> : WeaponComponentData where T : AttackData.AttackData
+    [Serializable] public abstract class WeaponComponentData<T> : WeaponComponentData where T : AttackData.AttackData
     {
         [SerializeField] private T[] attackData;
         public T[] AttackData { get => attackData; private set => attackData = value; }
