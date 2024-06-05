@@ -1,21 +1,24 @@
 using UnityEngine;
 
-public class PlayerStateMachine
+namespace Solymi.Player.PlayerStateMachine
 {
-    public PlayerState CurrentState { get; private set; }
-    
-    public void Initialize(PlayerState startingState)
+    public class PlayerStateMachine
     {
-        CurrentState = startingState;
-        CurrentState.Enter();
-    }
+        public PlayerState CurrentState { get; private set; }
     
-    // ReSharper disable Unity.PerformanceAnalysis
-    public void ChangeState(PlayerState newState)
-    {
-        CurrentState.Exit();
-        Debug.Log(newState.GetType());
-        CurrentState = newState;
-        CurrentState.Enter();
+        public void Initialize(PlayerState startingState)
+        {
+            CurrentState = startingState;
+            CurrentState.Enter();
+        }
+    
+        // ReSharper disable Unity.PerformanceAnalysis
+        public void ChangeState(PlayerState newState)
+        {
+            CurrentState.Exit();
+            //Debug.Log(newState.GetType());
+            CurrentState = newState;
+            CurrentState.Enter();
+        }
     }
 }

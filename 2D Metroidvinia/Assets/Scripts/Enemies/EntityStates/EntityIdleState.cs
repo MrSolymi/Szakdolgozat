@@ -1,63 +1,73 @@
+using Solymi.Core.CoreComponents;
+using Solymi.Enemies.Data;
+using Solymi.Enemies.EntityStateMachine;
 using UnityEngine;
 
-public class EntityIdleState : EntityState
+namespace Solymi.Enemies.EntityStates
 {
-    protected bool flipAfterIdle, isIdleTimeOver;
-    
-    protected float idleTime;
-    
-    protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-    private Movement _movement;
-    public EntityIdleState(Entity entity, EntityData entityData, string animBoolName) : base(entity, entityData, animBoolName)
+    public class EntityIdleState : EntityState
     {
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
+        protected bool flipAfterIdle, isIdleTimeOver, isPlayerInMinAgroRange;
+    
+        protected float idleTime;
+    
+        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        private Movement _movement;
         
-        Movement.SetVelocityX(0.0f);
-        isIdleTimeOver = false;
-        SetRandomIdleTime();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-
-        if (flipAfterIdle)
+        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
+        private CollisionSenses _collisionSenses;
+        public EntityIdleState(Entity entity, EntityData entityData, string animBoolName) : base(entity, entityData, animBoolName)
         {
-            Movement.Flip();
         }
-    }
 
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-
-        if (Time.time >= StartTime + idleTime)
+        public override void Enter()
         {
-            isIdleTimeOver = true;
+            base.Enter();
+            
+            isIdleTimeOver = false;
+            SetRandomIdleTime();
         }
-    }
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
+        public override void Exit()
+        {
+            base.Exit();
 
-    public override void DoChecks()
-    {
-        base.DoChecks();
-    }
+            if (flipAfterIdle)
+            {
+                Movement.Flip();
+            }
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+
+            if (Time.time >= StartTime + idleTime)
+            {
+                isIdleTimeOver = true;
+            }
+        }
+
+        public override void PhysicsUpdate()
+        {
+            base.PhysicsUpdate();
+        }
+
+        public override void DoChecks()
+        {
+            base.DoChecks();
+            
+            isPlayerInMinAgroRange = CollisionSenses.PlayerInMinAgroRange;
+        }
     
-    public void SetFlipAfterIdle(bool flip)
-    {
-        flipAfterIdle = flip;
-    }
+        public void SetFlipAfterIdle(bool flip)
+        {
+            flipAfterIdle = flip;
+        }
     
-    public void SetRandomIdleTime()
-    {
-        idleTime = Random.Range(EntityData.minIdleTime, EntityData.maxIdleTime);
+        private void SetRandomIdleTime()
+        {
+            idleTime = Random.Range(EntityData.minIdleTime, EntityData.maxIdleTime);
+        }
     }
 }

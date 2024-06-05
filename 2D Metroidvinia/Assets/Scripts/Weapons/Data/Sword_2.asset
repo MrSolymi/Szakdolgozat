@@ -1,0 +1,121 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f501510c86314f59a2f42b371e8a9491, type: 3}
+  m_Name: Sword_2
+  m_EditorClassIdentifier: 
+  <NumberOfAttacks>k__BackingField: 3
+  <WeaponComponentDatas>k__BackingField:
+  - rid: 3748552400718266369
+  - rid: 3748552400718266371
+  - rid: 3748552420068687873
+  - rid: 3748552420068687882
+  - rid: 3748552469977759747
+  references:
+    version: 2
+    RefIds:
+    - rid: 3748552400718266369
+      type: {class: WeaponSpriteData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
+      data:
+        name: WeaponSpriteData
+        attackData:
+        - _name: Attack 1
+          <Sprites>k__BackingField:
+          - {fileID: 723500400, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+          - {fileID: -1152204274, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+          - {fileID: -359026966, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+          - {fileID: 183859076, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+          - {fileID: 632369702, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+        - _name: Attack 2
+          <Sprites>k__BackingField:
+          - {fileID: -599302049, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+          - {fileID: 683755636, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+          - {fileID: 670767107, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+          - {fileID: 1278692168, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+          - {fileID: -1144827798, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+        - _name: Attack 3
+          <Sprites>k__BackingField:
+          - {fileID: 950042310, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+          - {fileID: -735762775, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+          - {fileID: -538148109, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+          - {fileID: -1647567096, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+          - {fileID: -1239647800, guid: 4c8d65a32de6ebe47a26b2ee771cd678, type: 3}
+    - rid: 3748552400718266371
+      type: {class: WeaponMovementData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
+      data:
+        name: WeaponMovementData
+        attackData:
+        - _name: Attack 1
+          <Direction>k__BackingField: {x: 1, y: 0}
+          <Velocity>k__BackingField: 2
+        - _name: Attack 2
+          <Direction>k__BackingField: {x: 1, y: 0}
+          <Velocity>k__BackingField: 3
+        - _name: Attack 3
+          <Direction>k__BackingField: {x: 1, y: 8}
+          <Velocity>k__BackingField: 5
+    - rid: 3748552420068687873
+      type: {class: ActionHitBoxData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
+      data:
+        name: ActionHitBoxData
+        attackData:
+        - _name: Attack 1
+          Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 0.25
+            y: -0.95
+            width: 1.65
+            height: 2
+        - _name: Attack 2
+          Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 0.25
+            y: -0.95
+            width: 1.6
+            height: 1.7
+        - _name: Attack 3
+          Debug: 0
+          <HitBox>k__BackingField:
+            serializedVersion: 2
+            x: 0.25
+            y: -0.95
+            width: 1.6
+            height: 2.6
+        <DetectableLayers>k__BackingField:
+          serializedVersion: 2
+          m_Bits: 512
+    - rid: 3748552420068687882
+      type: {class: WeaponDamageData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
+      data:
+        name: WeaponDamageData
+        attackData:
+        - _name: Attack 1
+          <DamageAmount>k__BackingField: 5
+        - _name: Attack 2
+          <DamageAmount>k__BackingField: 5
+        - _name: Attack 3
+          <DamageAmount>k__BackingField: 8
+    - rid: 3748552469977759747
+      type: {class: WeaponKnockBackData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
+      data:
+        name: WeaponKnockBackData
+        attackData:
+        - _name: Attack 1
+          <KnockBackAngle>k__BackingField: {x: 1, y: 1}
+          <KnockBackStrength>k__BackingField: 10
+        - _name: Attack 2
+          <KnockBackAngle>k__BackingField: {x: 1, y: 1}
+          <KnockBackStrength>k__BackingField: 10
+        - _name: Attack 3
+          <KnockBackAngle>k__BackingField: {x: 1, y: 1}
+          <KnockBackStrength>k__BackingField: 20

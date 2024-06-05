@@ -1,75 +1,34 @@
-using UnityEngine;
+using Solymi.Enums;
+using Solymi.Player.Data;
+using Solymi.Player.PlayerStates.SuperStates;
+using Solymi.Weapons;
 
-public class PlayerAttackState : PlayerAbilityState
+namespace Solymi.Player.PlayerStates.SubStates
 {
-    private Weapon _weapon;
+    public class PlayerAttackState : PlayerAbilityState
+    {
+        private Weapon _weapon;
     
-    private int xInput;
-    private float _velocityToSet;
-    private bool setVelocity, shouldCheckFlip;
-        
-    public PlayerAttackState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
-    {
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-        
-        IsAbilityDone = false;
-        
-        setVelocity = false;
-        
-        _weapon.EnterWeapon();
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-
-        xInput = Player.InputHandler.NormalizedInputX;
-        
-        if (shouldCheckFlip)
+        public PlayerAttackState(PlayerStateMachine.Player player, PlayerData playerData, string animBoolName, Weapon weapon) : base(player, playerData, animBoolName)
         {
-            Movement.CheckIfShouldFlip(xInput);
-        }
+            _weapon = weapon;
         
-        if (setVelocity)
-        {
-            Movement.SetVelocityX(_velocityToSet * Movement.FacingDirection);
+            _weapon.OnExit += ExitHandler;
         }
-    }
 
-    public override void Exit()
-    {
-        base.Exit();
-        
-        _weapon.ExitWeapon();
-    }
-    
-    public void SetWeapon(Weapon weapon)
-    {
-        _weapon = weapon;
-        
-        weapon.InitializeWeapon(this);
-    }
-    
-    public override void AnimationFinishTrigger()
-    {
-        base.AnimationFinishTrigger();
-        
-        IsAbilityDone = true;
-    }
-    
-    public void SetPlayerVelocity(float velocity)
-    {
-        Movement.SetVelocityX(velocity * Movement.FacingDirection);
-        _velocityToSet = velocity;
-        setVelocity = true;
-    }
-    
-    public void SetShouldCheckFlip(bool value)
-    {
-        shouldCheckFlip = value;
+        public override void Enter()
+        {
+            base.Enter();
+            //IsAbilityDone = false;
+            
+            
+            _weapon.Enter();
+        }
+
+        private void ExitHandler()
+        {
+            AnimationFinishTrigger();
+            IsAbilityDone = true;
+        }
     }
 }

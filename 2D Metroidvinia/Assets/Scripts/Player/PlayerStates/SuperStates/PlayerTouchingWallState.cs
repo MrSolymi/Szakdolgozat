@@ -1,69 +1,74 @@
-using UnityEngine;
+using Solymi.Core.CoreComponents;
+using Solymi.Player.Data;
+using Solymi.Player.PlayerStateMachine;
 
-public class PlayerTouchingWallState : PlayerState
+namespace Solymi.Player.PlayerStates.SuperStates
 {
-    protected bool IsGrounded, IsTouchingWall, GrabInput, JumpInput, DashInput;
-    protected int XInput;
+    public class PlayerTouchingWallState : PlayerState
+    {
+        protected bool IsGrounded, IsTouchingWall, GrabInput, JumpInput, DashInput;
+        protected int XInput;
 
-    protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-    private Movement _movement;
+        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        private Movement _movement;
 
-    protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
-    private CollisionSenses _collisionSenses;
+        protected CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
+        private CollisionSenses _collisionSenses;
     
-    public PlayerTouchingWallState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
-    {
-    }
+        public PlayerTouchingWallState(PlayerStateMachine.Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
+        {
+        }
 
-    public override void Enter()
-    {
-        base.Enter();
+        public override void Enter()
+        {
+            base.Enter();
         
-        Player.DashState.ResetDash();
-    }
+            Player.DashState.ResetDash();
+        }
 
-    public override void Exit()
-    {
-        base.Exit();
-    }
+        public override void Exit()
+        {
+            base.Exit();
+        }
 
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
         
-        XInput = Player.InputHandler.NormalizedInputX;
-        GrabInput = Player.InputHandler.GrabInput;
-        JumpInput = Player.InputHandler.JumpInput;
-        DashInput = Player.InputHandler.DashInput;
+            XInput = Player.InputHandler.NormalizedInputX;
+            GrabInput = Player.InputHandler.GrabInput;
+            JumpInput = Player.InputHandler.JumpInput;
+            DashInput = Player.InputHandler.DashInput;
 
-        if (JumpInput)
-        {
-            Player.WallJumpState.DetermineWallJumpDirection(IsTouchingWall);
-            StateMachine.ChangeState(Player.WallJumpState);
+            if (JumpInput)
+            {
+                Player.WallJumpState.DetermineWallJumpDirection(IsTouchingWall);
+                StateMachine.ChangeState(Player.WallJumpState);
+            }
+            else if (IsGrounded && !GrabInput)
+            {
+                StateMachine.ChangeState(Player.IdleState);
+            }
+            else if (!IsTouchingWall || (XInput != Movement.FacingDirection && !GrabInput))
+            {
+                StateMachine.ChangeState(Player.InAirState);
+            }
         }
-        else if (IsGrounded && !GrabInput)
+
+        public override void PhysicsUpdate()
         {
-            StateMachine.ChangeState(Player.IdleState);
+            base.PhysicsUpdate();
         }
-        else if (!IsTouchingWall || (XInput != Movement.FacingDirection && !GrabInput))
+
+        public override void DoChecks()
         {
-            StateMachine.ChangeState(Player.InAirState);
-        }
-    }
+            base.DoChecks();
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
-
-        if (CollisionSenses)
-        {
-            IsGrounded = CollisionSenses.Ground;
-            IsTouchingWall = CollisionSenses.Wall;
+            if (CollisionSenses)
+            {
+                IsGrounded = CollisionSenses.Ground;
+                IsTouchingWall = CollisionSenses.Wall;
+            }
         }
     }
 }

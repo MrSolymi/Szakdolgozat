@@ -1,6 +1,7 @@
-using UnityEngine;
-
-public interface ILogicUpdate
+namespace Solymi.Interfaces
 {
-    void LogicUpdate();
+    public interface ILogicUpdate
+    {
+        void LogicUpdate();
+    }
 }

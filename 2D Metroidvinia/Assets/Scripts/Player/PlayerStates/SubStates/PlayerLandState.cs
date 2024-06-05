@@ -1,44 +1,48 @@
-using UnityEngine;
+using Solymi.Player.Data;
+using Solymi.Player.PlayerStates.SuperStates;
 
-public class PlayerLandState : PlayerGroundedState
+namespace Solymi.Player.PlayerStates.SubStates
 {
-    public PlayerLandState(Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
+    public class PlayerLandState : PlayerGroundedState
     {
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
-
-        if (!IsExitingState)
+        public PlayerLandState(PlayerStateMachine.Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
         {
-            if (XInput != 0)
+        }
+
+        public override void Enter()
+        {
+            base.Enter();
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+
+            if (!IsExitingState)
             {
-                StateMachine.ChangeState(Player.MoveState);
-            } else if (IsAnimationFinished)
-            {
-                StateMachine.ChangeState(Player.IdleState);
+                if (XInput != 0)
+                {
+                    StateMachine.ChangeState(Player.MoveState);
+                } else if (IsAnimationFinished)
+                {
+                    StateMachine.ChangeState(Player.IdleState);
+                }
             }
         }
-    }
 
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
+        public override void PhysicsUpdate()
+        {
+            base.PhysicsUpdate();
+        }
 
-    public override void DoChecks()
-    {
-        base.DoChecks();
+        public override void DoChecks()
+        {
+            base.DoChecks();
+        }
     }
 }

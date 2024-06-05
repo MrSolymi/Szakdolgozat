@@ -1,50 +1,35 @@
-using UnityEngine;
+using Solymi.Core.CoreComponents;
+using Solymi.Enemies.Data;
+using Solymi.Enemies.EntityStateMachine;
 
-public class EntityMoveState : EntityState
+namespace Solymi.Enemies.EntityStates
 {
-    protected bool isDetectingWall,  isDetectingLedge;
+    public class EntityMoveState : EntityState
+    {
+        protected bool isDetectingWall,  isDetectingLedge, isPlayerInMinAgroRange, isDamaged;
     
-    
-    private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
-    private Movement _movement;
+        protected Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
+        private Movement _movement;
 
-    private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
-    private CollisionSenses _collisionSenses;
-    public EntityMoveState(Entity entity, EntityData entityData, string animBoolName) : base(entity, entityData, animBoolName)
-    {
-    }
-
-    public override void Enter()
-    {
-        base.Enter();
+        private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
+        private CollisionSenses _collisionSenses;
         
-        Movement.SetVelocityX(EntityData.movementSpeed * Movement.FacingDirection);
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-    }
-
-    public override void LogicUpdate()
-    {
-        base.LogicUpdate();
+        protected Stats Stats => _stats ? _stats : Core.GetCoreComponent(ref _stats);
+        private Stats _stats;
+        public EntityMoveState(Entity entity, EntityData entityData, string animBoolName) : base(entity, entityData, animBoolName)
+        {
+        }
         
-        Movement.SetVelocityX(EntityData.movementSpeed * Movement.FacingDirection);
-    }
-
-    public override void PhysicsUpdate()
-    {
-        base.PhysicsUpdate();
-    }
-
-    public override void DoChecks()
-    {
-        base.DoChecks();
+        public override void DoChecks()
+        {
+            base.DoChecks();
         
-        //Entity.Testing();
+            //Entity.Testing();
         
-        isDetectingLedge = CollisionSenses.LedgeVertical;
-        isDetectingWall = CollisionSenses.Wall;
+            isDetectingLedge = CollisionSenses.LedgeVertical;
+            isDetectingWall = CollisionSenses.Wall;
+            isPlayerInMinAgroRange = CollisionSenses.PlayerInMinAgroRange;
+            isDamaged = Stats.IsDamaged;
+        }
     }
 }

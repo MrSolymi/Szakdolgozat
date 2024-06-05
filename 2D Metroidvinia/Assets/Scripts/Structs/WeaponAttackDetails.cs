@@ -1,8 +1,9 @@
-using UnityEngine;
-
-[System.Serializable]
-public struct WeaponAttackDetails
+namespace Solymi.Structs
 {
-    public string attackName;
-    public float movementSpeed, damageAmount;
+    [System.Serializable]
+    public struct WeaponAttackDetails
+    {
+        public string attackName;
+        public float movementSpeed, damageAmount;
+    }
 }
