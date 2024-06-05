@@ -100,11 +100,11 @@ MonoBehaviour:
         name: WeaponDamageData
         attackData:
         - _name: Attack 1
-          <DamageAmount>k__BackingField: 0
+          <DamageAmount>k__BackingField: 5
         - _name: Attack 2
-          <DamageAmount>k__BackingField: 0
+          <DamageAmount>k__BackingField: 5
         - _name: Attack 3
-          <DamageAmount>k__BackingField: 0
+          <DamageAmount>k__BackingField: 8
     - rid: 3748552469977759746
       type: {class: WeaponKnockBackData, ns: Solymi.Weapons.Components.Data, asm: Assembly-CSharp}
       data:

@@ -33,6 +33,11 @@ namespace Solymi.Enemies.Enemy1
                 _enemy.IdleState.SetFlipAfterIdle(true);
                 StateMachine.ChangeState(_enemy.IdleState);
             }
+            else if (Stats.IsDamaged)
+            {
+                Stats.SetIsDamaged(false);
+                StateMachine.ChangeState(_enemy.LookForPlayerState);
+            }
         }
     }
 }
