@@ -4,22 +4,26 @@ namespace Solymi.Core.CoreComponents
 {
     public class Death : CoreComponent
     {
-        private ParticleManager ParticleManager => _particleManager ? _particleManager : core.GetCoreComponent(ref _particleManager);
         private ParticleManager _particleManager;
-    
-        private Stats Stats => _stats ? _stats : core.GetCoreComponent(ref _stats);
         private Stats _stats;
     
         [SerializeField] private GameObject[] deathParticles;
-    
-    
+
+        protected override void Awake()
+        {
+            base.Awake();
+
+            _particleManager = core.GetCoreComponent<ParticleManager>();
+            _stats = core.GetCoreComponent<Stats>();
+        }
+
         public void Die()
         {
             if (deathParticles != null)
             {
                 foreach (var particle in deathParticles)
                 {
-                    ParticleManager.StartParticles(particle);
+                    _particleManager.StartParticles(particle);
                 }
             }
         
@@ -28,12 +32,12 @@ namespace Solymi.Core.CoreComponents
 
         private void OnEnable()
         {
-            Stats.OnHealthZero += Die;
+            _stats.Health.OnCurrentValueZero += Die;
         }
     
         private void OnDisable()
         {
-            Stats.OnHealthZero -= Die;
+            _stats.Health.OnCurrentValueZero -= Die;
         }
     }
 }

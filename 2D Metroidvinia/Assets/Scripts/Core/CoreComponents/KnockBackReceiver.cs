@@ -7,7 +7,7 @@ namespace Solymi.Core.CoreComponents
 {
     public class KnockBackReceiver : CoreComponent, IKnockBackable
     {
-        [SerializeField] private float knockBackMaxDuration = 0.3f;
+        [SerializeField] public float knockBackMaxDuration = 0.3f;
         
         private bool _isKnockBackActive;
         private float _knockBackStartTime;
@@ -63,7 +63,7 @@ namespace Solymi.Core.CoreComponents
             _movement.CanSetVelocity = false;
             _isKnockBackActive = true;
             _knockBackStartTime = Time.time;
-            Debug.Log(_movement.transform.name + " Knocked back");
+            Debug.LogWarning(_movement.transform.parent.parent.name + " Knocked back");
         }
     }
 }

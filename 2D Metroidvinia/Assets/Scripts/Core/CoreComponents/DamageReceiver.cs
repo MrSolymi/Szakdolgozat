@@ -13,8 +13,11 @@ namespace Solymi.Core.CoreComponents
         public void Damage(float amount)
         {
             //Debug.LogError(core.transform.parent.name + " damaged!");
-            _stats.DecreaseHealth(amount);
+            
+            _stats.Health.Decrease(amount);
             _particleManager.StartParticlesRandomRotation(hitParticles);
+            
+            _stats.SetIsDamaged(true);
         }
 
         protected override void Awake()
@@ -23,9 +26,6 @@ namespace Solymi.Core.CoreComponents
 
             _stats = core.GetCoreComponent<Stats>();
             _particleManager = core.GetCoreComponent<ParticleManager>();
-            
-            //_stats = new CoreComponent<Stats>(core);
-            //_particleManager = new CoreComponent<ParticleManager>(core);
         }
     }
 }

@@ -17,7 +17,7 @@ namespace Solymi.Enemies.EntityStates
         public EntityPlayerDetectedState(Entity entity, EntityData entityData, string animBoolName) : base(entity, entityData, animBoolName)
         {
         }
-        
+
         public override void Enter()
         {
             base.Enter();

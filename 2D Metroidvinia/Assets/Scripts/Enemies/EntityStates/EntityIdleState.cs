@@ -7,7 +7,7 @@ namespace Solymi.Enemies.EntityStates
 {
     public class EntityIdleState : EntityState
     {
-        protected bool flipAfterIdle, isIdleTimeOver, isPlayerInMinAgroRange;
+        protected bool flipAfterIdle, isIdleTimeOver, isPlayerInMinAgroRange, isDamaged;
     
         protected float idleTime;
     
@@ -16,6 +16,9 @@ namespace Solymi.Enemies.EntityStates
         
         private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : Core.GetCoreComponent(ref _collisionSenses);
         private CollisionSenses _collisionSenses;
+        
+        protected Stats Stats => _stats ? _stats : Core.GetCoreComponent(ref _stats);
+        private Stats _stats;
         public EntityIdleState(Entity entity, EntityData entityData, string animBoolName) : base(entity, entityData, animBoolName)
         {
         }
@@ -58,6 +61,7 @@ namespace Solymi.Enemies.EntityStates
             base.DoChecks();
             
             isPlayerInMinAgroRange = CollisionSenses.PlayerInMinAgroRange;
+            isDamaged = Stats.IsDamaged;
         }
     
         public void SetFlipAfterIdle(bool flip)

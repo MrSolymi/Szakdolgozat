@@ -24,7 +24,12 @@ namespace Solymi.Enemies.Enemy1
         {
             base.LogicUpdate();
             
-            if (isPlayerInMinAgroRange)
+            if (isDamaged)
+            {
+                Stats.SetIsDamaged(false);
+                StateMachine.ChangeState(_enemy.LookForPlayerState);
+            }
+            else if (isPlayerInMinAgroRange)
             {
                 StateMachine.ChangeState(_enemy.PlayerDetectedState);
             }

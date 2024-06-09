@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Solymi.Enemies.Data
 {
@@ -29,6 +30,9 @@ namespace Solymi.Enemies.Data
         public float longRangeActionDistance = 3.0f;
         public float meleeAttackRadius = 0.5f;
         public float meleeAttackDamage = 10.0f;
+        
+        [FormerlySerializedAs("stunTime")] [Header("Stun State")]
+        public float stunDuration = 3.0f;
         
         [Header("KnockBacks")]
         public float knockBackStrength = 10.0f;

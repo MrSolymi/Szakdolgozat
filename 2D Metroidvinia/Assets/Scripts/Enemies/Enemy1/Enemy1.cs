@@ -1,3 +1,4 @@
+using System;
 using Solymi.Enemies.EntityStateMachine;
 using UnityEngine;
 
@@ -11,6 +12,7 @@ namespace Solymi.Enemies.Enemy1
         public Enemy1ChargeState ChargeState { get; private set; }
         public Enemy1LookForPlayerState LookForPlayerState { get; private set; }
         public Enemy1MeleeAttackState MeleeAttackState { get; private set; }
+        public Enemy1StunState StunState { get; private set; }
         
         [SerializeField] private Transform meleeAttackPosition;
         
@@ -24,6 +26,9 @@ namespace Solymi.Enemies.Enemy1
             ChargeState = new Enemy1ChargeState(this, entityData, "charge", this);
             LookForPlayerState = new Enemy1LookForPlayerState(this, entityData, "lookForPlayer", this);
             MeleeAttackState = new Enemy1MeleeAttackState(this, entityData, "meleeAttack", meleeAttackPosition, this);
+            StunState = new Enemy1StunState(this, entityData, "stun", this);
+            
+            Stats.Poise.OnCurrentValueZero += HandlePoiseZero;
         }
 
         public  void Start()
@@ -36,6 +41,17 @@ namespace Solymi.Enemies.Enemy1
             base.OnDrawGizmos();
 
             Gizmos.DrawWireSphere(meleeAttackPosition.position, entityData.meleeAttackRadius);
+        }
+
+        private void HandlePoiseZero()
+        {
+            StateMachine.ChangeState(StunState);
+        }
+
+        private void OnDestroy()
+        {
+            Stats.Poise.OnCurrentValueZero -= HandlePoiseZero;
+        
         }
 
         private void TriggerAttack()
