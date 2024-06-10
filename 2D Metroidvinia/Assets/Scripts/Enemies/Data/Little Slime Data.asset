@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dda090636cc443d5b3c554e45c69c445, type: 3}
-  m_Name: Slime Data
+  m_Name: Little Slime Data
   m_EditorClassIdentifier: 
   movementSpeed: 3.5
-  minAgroDistance: 10
-  maxAgroDistance: 15
+  minAgroDistance: 15
+  maxAgroDistance: 20
   timeBeforeLongRangeAction: 1
   minIdleTime: 1
   maxIdleTime: 2
@@ -22,7 +22,7 @@ MonoBehaviour:
   chargeTime: 2
   chargeSpeed: 6
   amountOfTurns: 2
-  timeBetweenTurns: 0.4
+  timeBetweenTurns: 0.2
   closeRangeActionDistance: 1
   longRangeActionDistance: 3
   meleeAttackRadius: 0.5

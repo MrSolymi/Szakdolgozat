@@ -2,12 +2,12 @@ using Solymi.Enemies.Data;
 using Solymi.Enemies.EntityStateMachine;
 using Solymi.Enemies.EntityStates;
 
-namespace Solymi.Enemies.Slime
+namespace Solymi.Enemies.Slime.LittleSlime
 {
-    public class SlimeIdleState : EntityIdleState
+    public class LittleSlimeIdleState : EntityIdleState
     {
-        private Slime _slime;
-        public SlimeIdleState(Entity entity, EntityData entityData, string animBoolName, Slime slime) : base(entity, entityData, animBoolName)
+        private LittleSlime _slime;
+        public LittleSlimeIdleState(Entity entity, EntityData entityData, string animBoolName, LittleSlime slime) : base(entity, entityData, animBoolName)
         {
             _slime = slime;
         }

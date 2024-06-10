@@ -2,16 +2,16 @@ using Solymi.Enemies.Data;
 using Solymi.Enemies.EntityStateMachine;
 using Solymi.Enemies.EntityStates;
 
-namespace Solymi.Enemies.Slime
+namespace Solymi.Enemies.Slime.LittleSlime
 {
-    public class SlimeIdleState : EntityIdleState
+    public class LittleSlimeLookForPlayerState : EntityLookForPlayerState
     {
-        private Slime _slime;
-        public SlimeIdleState(Entity entity, EntityData entityData, string animBoolName, Slime slime) : base(entity, entityData, animBoolName)
+        private LittleSlime _slime;
+        public LittleSlimeLookForPlayerState(Entity entity, EntityData entityData, string animBoolName, LittleSlime slime) : base(entity, entityData, animBoolName)
         {
             _slime = slime;
         }
-
+        
         public override void Enter()
         {
             base.Enter();
@@ -23,18 +23,12 @@ namespace Solymi.Enemies.Slime
         {
             base.LogicUpdate();
 
-            if (isDamaged)
-            {
-                Stats.SetIsDamaged(false);
-                StateMachine.ChangeState(_slime.LookForPlayerState);
-            }
-            else if (isPlayerInMinAgroRange)
+            if (isPlayerInMinAgroRange)
             {
                 StateMachine.ChangeState(_slime.PlayerDetectedState);
             }
-            else if (isIdleTimeOver)
+            else if (isAllTurnsDone)
             {
-                Movement.Flip();
                 StateMachine.ChangeState(_slime.IdleState);
             }
         }

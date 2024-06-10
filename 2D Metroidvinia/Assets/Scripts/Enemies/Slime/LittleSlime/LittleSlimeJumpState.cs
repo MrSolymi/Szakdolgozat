@@ -3,25 +3,24 @@ using Solymi.Enemies.EntityStateMachine;
 using Solymi.Enemies.EntityStates;
 using UnityEngine;
 
-namespace Solymi.Enemies.Slime
+namespace Solymi.Enemies.Slime.LittleSlime
 {
-    public class SlimeJumpState : EntityJumpState
+    public class LittleSlimeJumpState : EntityJumpState
     {
-        private Slime _slime;
-        public SlimeJumpState(Entity entity, EntityData entityData, string animBoolName, Slime slime) : base(entity, entityData, animBoolName)
+        private LittleSlime _slime;
+        public LittleSlimeJumpState(Entity entity, EntityData entityData, string animBoolName, LittleSlime slime) : base(entity, entityData, animBoolName)
         {
             _slime = slime;
         }
-
+        
         public override void Enter()
         {
             base.Enter();
-
+            
             if (!isGrounded) return;
             
             Movement.SetVelocityX(EntityData.movementSpeed * Movement.FacingDirection);
-            Movement.RB.AddForce(Vector2.up * Random.Range(EntityData.jumpForce-2f, EntityData.jumpForce+2f), ForceMode2D.Impulse);
-
+            Movement.RB.AddForce(Vector2.up * Random.Range(EntityData.jumpForce-2f, EntityData.jumpForce+2f) , ForceMode2D.Impulse);
         }
         
         public override void LogicUpdate()

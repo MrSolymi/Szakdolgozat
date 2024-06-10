@@ -42,6 +42,11 @@ namespace Solymi.Weapons.Components
 
             _detectedObjects = Physics2D.OverlapBoxAll(_offset, currentAttackData.HitBox.size, 0, data.DetectableLayers);
 
+            // foreach (var detectedObject in _detectedObjects)
+            // {
+            //     Debug.LogError(detectedObject.name);
+            // }
+            
             if (_detectedObjects.Length == 0) return;
             
             OnDetectedColliders?.Invoke(_detectedObjects);
