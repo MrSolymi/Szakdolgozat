@@ -17,6 +17,9 @@ namespace Solymi.Enemies.Data
         public float minIdleTime = 1.0f;
         public float maxIdleTime = 2.0f;
         
+        [Header("Jump State")]
+        public float jumpForce = 15.0f;
+        
         [Header("Charge State")]
         public float chargeTime = 2.0f;
         public float chargeSpeed = 6.0f;

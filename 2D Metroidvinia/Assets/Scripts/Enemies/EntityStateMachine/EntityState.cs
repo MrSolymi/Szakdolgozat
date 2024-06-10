@@ -27,15 +27,19 @@ namespace Solymi.Enemies.EntityStateMachine
 
         public virtual void Enter()
         {
+            DoChecks();
+            
             StartTime = Time.time;
             Entity.Animator.SetBool(_animBoolName, true);
-        
-            DoChecks();
+            
+            IsAnimationFinished = false;
+            IsExitingState = false;
         }
 
         public virtual void Exit()
         {
             Entity.Animator.SetBool(_animBoolName, false);
+            IsExitingState = true;
         }
 
         public virtual void LogicUpdate()
@@ -52,5 +56,8 @@ namespace Solymi.Enemies.EntityStateMachine
         {
         
         }
+        public virtual void AnimationTrigger() { }
+    
+        public virtual void AnimationFinishTrigger() => IsAnimationFinished = true;
     }
 }

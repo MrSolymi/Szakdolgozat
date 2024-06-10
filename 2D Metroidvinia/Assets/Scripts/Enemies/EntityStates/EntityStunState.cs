@@ -17,6 +17,9 @@ namespace Solymi.Enemies.EntityStates
         
         private Movement Movement => _movement ? _movement : Core.GetCoreComponent(ref _movement);
         private Movement _movement;
+        
+        private Stats Stats => _stats ? _stats : Core.GetCoreComponent(ref _stats);
+        private Stats _stats;
         public EntityStunState(Entity entity, EntityData entityData, string animBoolName) : base(entity, entityData, animBoolName)
         {
         }
@@ -52,6 +55,13 @@ namespace Solymi.Enemies.EntityStates
             IsGrounded = CollisionSenses.Ground;
             DoCloseRangeAction = CollisionSenses.PlayerInCloseRangeAction;
             IsPlayerInMinAgroRange = CollisionSenses.PlayerInMinAgroRange;
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            
+            Stats.Poise.Reset();
         }
     }
 }
