@@ -32,28 +32,16 @@ namespace Solymi.Enemies.Enemy1
             //Stats.Health.OnCurrentValueZero += HandleHealthZero;
         }
 
-        public  void Start()
+        public void Start()
         {
             StateMachine.Initialize(IdleState);
         }
-
-        public override void OnDrawGizmos()
-        {
-            base.OnDrawGizmos();
-
-            Gizmos.DrawWireSphere(meleeAttackPosition.position, entityData.meleeAttackRadius);
-        }
-
+        
         private void HandlePoiseZero()
         {
             StateMachine.ChangeState(StunState);
         }
         
-        // private void HandleHealthZero()
-        // {
-        //     //gameObject.SetActive(false);
-        // }
-
         private void OnDestroy()
         {
             Stats.Poise.OnCurrentValueZero -= HandlePoiseZero;
@@ -64,9 +52,21 @@ namespace Solymi.Enemies.Enemy1
         {
             MeleeAttackState.TriggerAttack();
         }
+        
         private void FinishAttack()
         {
             MeleeAttackState.FinishAttack();
         }
+        
+        public override void OnDrawGizmos()
+        {
+            base.OnDrawGizmos();
+
+            Gizmos.DrawWireSphere(meleeAttackPosition.position, entityData.meleeAttackRadius);
+        }
+        // private void HandleHealthZero()
+        // {
+        //     //gameObject.SetActive(false);
+        // }
     }
 }

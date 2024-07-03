@@ -33,9 +33,19 @@ namespace Solymi.Enemies.Data
         public float longRangeActionDistance = 3.0f;
         public float meleeAttackRadius = 0.5f;
         public float meleeAttackDamage = 10.0f;
+        public GameObject projectile;
+        public float projectileDamage = 10.0f;
+        public float projectileSpeed = 10.0f;
+        public float projectileTravelDistance = 10.0f;
         
-        [FormerlySerializedAs("stunTime")] [Header("Stun State")]
+        [Header("Stun State")]
         public float stunDuration = 3.0f;
+        
+        [Header("Dodge State")]
+        public float dodgeSpeed = 10.0f;
+        public Vector2 dodgeAngle = new Vector2(1.0f, 1.0f);
+        public float dodgeTime = 0.2f;
+        public float dodgeCoolDown = 2.0f;
         
         [Header("KnockBacks")]
         public float knockBackStrength = 10.0f;

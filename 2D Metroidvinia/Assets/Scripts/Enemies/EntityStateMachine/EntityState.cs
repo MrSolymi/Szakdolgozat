@@ -11,7 +11,7 @@ namespace Solymi.Enemies.EntityStateMachine
         protected EntityStateMachine StateMachine;
         protected EntityData EntityData;
     
-        protected float StartTime;
+        public float StartTime { get; protected set; }
         protected bool IsAnimationFinished, IsExitingState;
     
         private string _animBoolName;

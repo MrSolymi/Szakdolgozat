@@ -2,16 +2,17 @@ using Solymi.Enemies.Data;
 using Solymi.Enemies.EntityStateMachine;
 using Solymi.Enemies.EntityStates;
 
-namespace Solymi.Enemies.Enemy1
+namespace Solymi.Enemies.Archer
 {
-    public class Enemy1LookForPlayerState : EntityLookForPlayerState
+    public class ArcherLookForPlayerState : EntityLookForPlayerState
     {
-        private Enemy1 _enemy;
-        public Enemy1LookForPlayerState(Entity entity, EntityData entityData, string animBoolName, Enemy1 enemy) : base(entity, entityData, animBoolName)
+        private Archer _archer;
+        
+        public ArcherLookForPlayerState(Entity entity, EntityData entityData, string animBoolName, Archer archer) : base(entity, entityData, animBoolName)
         {
-            _enemy = enemy;
+            _archer = archer;
         }
-
+        
         public override void Enter()
         {
             base.Enter();
@@ -22,14 +23,14 @@ namespace Solymi.Enemies.Enemy1
         public override void LogicUpdate()
         {
             base.LogicUpdate();
-            
+
             if (isPlayerInMinAgroRange)
             {
-                StateMachine.ChangeState(_enemy.PlayerDetectedState);
+                StateMachine.ChangeState(_archer.PlayerDetectedState);
             }
             else if (isTurningTimesOver)
             {
-                StateMachine.ChangeState(_enemy.MoveState);
+                StateMachine.ChangeState(_archer.MoveState);
             }
         }
     }

@@ -39,7 +39,7 @@ AnimatorStateMachine:
     m_Position: {x: 360, y: 10, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8092974068593748365}
-    m_Position: {x: 180, y: 300, z: 0}
+    m_Position: {x: 150, y: 330, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6344241323255882825}
     m_Position: {x: 670, y: 305.5, z: 0}
@@ -328,6 +328,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: jumpLand
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: death
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0

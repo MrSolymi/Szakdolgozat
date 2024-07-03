@@ -1,0 +1,41 @@
+using Solymi.Enemies.Data;
+using Solymi.Enemies.EntityStateMachine;
+using Solymi.Enemies.EntityStates;
+using UnityEngine;
+
+namespace Solymi.Enemies.Archer
+{
+    public class ArcherMeleeAttackState : EntityMeleeAttackState
+    {
+        private Archer _archer;
+        
+        public ArcherMeleeAttackState(Entity entity, EntityData entityData, string animBoolName, Transform attackPosition, Archer archer) : base(entity, entityData, animBoolName, attackPosition)
+        {
+            _archer = archer;
+        }
+
+        public override void Enter()
+        {
+            base.Enter();
+            
+            Movement.SetVelocityZero();
+        }
+
+        public override void LogicUpdate()
+        {
+            base.LogicUpdate();
+
+            if (isAnimationFinished)
+            {
+                if (isPlayerInMinAgroRange)
+                {
+                    StateMachine.ChangeState(_archer.PlayerDetectedState);
+                }
+                else if (!isPlayerInMinAgroRange)
+                {
+                    StateMachine.ChangeState(_archer.LookForPlayerState);
+                }
+            }
+        }
+    }
+}
