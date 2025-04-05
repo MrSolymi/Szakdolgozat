@@ -1,5 +1,8 @@
 using System;
+using Solymi.Core.CoreComponents;
 using Solymi.Enemies.EntityStateMachine;
+using Solymi.Interfaces;
+using Solymi.Utilities;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -28,11 +31,24 @@ namespace Solymi.Enemies.Slime
             Stats.Health.OnCurrentValueZero += HandleHealthZero;
         }
         
+        private Timer _attackCooldownTimer;
+        private bool _canAttack = true;
         public void Start()
         {
             StateMachine.Initialize(IdleState);
+            
+            // Inicializáljuk a cooldown timer-t 1 másodperces időtartammal
+            _attackCooldownTimer = new Timer(entityData.collisionDamageCooldown); // 1 másodperces cooldown
+            _attackCooldownTimer.OnTimerEnd += ResetAttackCooldown; // Ha lejár a cooldown, engedjük a támadást
         }
-        
+
+        public override void Update()
+        {
+            base.Update();
+            
+            _attackCooldownTimer.Tick();
+        }
+
         // ReSharper disable Unity.PerformanceAnalysis
         private void HandleHealthZero()
         {
@@ -59,5 +75,47 @@ namespace Solymi.Enemies.Slime
 
         private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
         private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+
+        public override void OnDrawGizmos()
+        {
+            base.OnDrawGizmos();
+        }
+        
+        private void ResetAttackCooldown()
+        {
+            _canAttack = true; // A cooldown lejárt, most már támadhatunk
+        }
+
+        private void OnTriggerEnter2D(Collider2D other)
+        {
+            try
+            {
+                
+                if (other.gameObject.transform.parent.parent.CompareTag("Player") && _canAttack)
+                {
+                    Debug.LogWarning(other.gameObject.name + " : " + other.gameObject.name);
+                    
+                    if (other.GetComponent<DamageReceiver>().TryGetComponent(out IDamageable damageable))
+                    {
+                        //Debug.LogError(damageable);
+                        damageable.Damage(entityData.collisionDamage);
+                    }
+
+                    if (other.GetComponent<KnockBackReceiver>().TryGetComponent(out IKnockBackable knockBackable))
+                    {
+                        //Debug.LogError(knockBackable);
+                        knockBackable.KnockBack(entityData.knockBackAngle, entityData.knockBackStrength, Movement.FacingDirection);
+                    }
+                    
+                    // Indítjuk el a cooldown-ot
+                    _attackCooldownTimer.StartTimer();
+                    _canAttack = false; // Aktiváljuk a cooldown-t, nem támadhatunk újra azonnal
+                }
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+        }
     }
 }

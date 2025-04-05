@@ -80,6 +80,8 @@ namespace Solymi.Player.PlayerStateMachine
         {
             StateMachine.CurrentState.PhysicsUpdate();
         }
+        
+        
     
         private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
         private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();

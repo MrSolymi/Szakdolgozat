@@ -37,6 +37,8 @@ namespace Solymi.Enemies.Data
         public float projectileDamage = 10.0f;
         public float projectileSpeed = 10.0f;
         public float projectileTravelDistance = 10.0f;
+        public float collisionDamage = 10.0f;
+        public float collisionDamageCooldown = 1.0f;
         
         [Header("Stun State")]
         public float stunDuration = 3.0f;

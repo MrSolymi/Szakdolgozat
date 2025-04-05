@@ -1,3 +1,4 @@
+using System;
 using Solymi.Core.CoreComponents;
 using Solymi.Enemies.Data;
 using Solymi.Intermediaries;
@@ -47,8 +48,7 @@ namespace Solymi.Enemies.EntityStateMachine
         // {
         //     Debug.Log(Core.Movement.RB==null);
         // }
-        
-    
+
         public virtual void OnDrawGizmos()
         {
             if (!Core) return;

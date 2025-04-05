@@ -1,6 +1,10 @@
 using System;
+using Solymi.Core.CoreComponents;
 using Solymi.Enemies.EntityStateMachine;
+using Solymi.Interfaces;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
+using Update = Unity.VisualScripting.Update;
 
 namespace Solymi.Enemies.Enemy1
 {
@@ -15,6 +19,7 @@ namespace Solymi.Enemies.Enemy1
         public Enemy1StunState StunState { get; private set; }
         
         [SerializeField] private Transform meleeAttackPosition;
+        [SerializeField] private LayerMask whatIsPlayer;
         
         public override void Awake()
         {
@@ -57,7 +62,7 @@ namespace Solymi.Enemies.Enemy1
         {
             MeleeAttackState.FinishAttack();
         }
-        
+
         public override void OnDrawGizmos()
         {
             base.OnDrawGizmos();
