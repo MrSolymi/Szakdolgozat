@@ -40,7 +40,11 @@ namespace Solymi.Enemies.Enemy1
                 isChargeTimeOver = true;
                 StateMachine.ChangeState(_enemy.MeleeAttackState);
             }
-            else if (!isDetectingLedge || isDetectingWall)
+            else if (isDetectingWall)
+            {
+                StateMachine.ChangeState(_enemy.StunState);
+            }
+            else if (!isDetectingLedge)
             {
                 //_enemy.IdleState.SetFlipAfterIdle(true);
                 StateMachine.ChangeState(_enemy.LookForPlayerState);

@@ -14,6 +14,8 @@ namespace Solymi.Player.PlayerStates.SubStates
         private int _dashDirection;
     
         private Vector2 _lastAfterImagePosition;
+        
+        private BoxCollider2D _playerCombatCollider;
         public PlayerDashState(PlayerStateMachine.Player player, PlayerData playerData, string animBoolName) : base(player, playerData, animBoolName)
         {
         }
@@ -21,6 +23,17 @@ namespace Solymi.Player.PlayerStates.SubStates
         public override void Enter()
         {
             base.Enter();
+            
+            var playerBoxColliders = Player.gameObject.transform.GetComponentsInChildren<BoxCollider2D>();
+            foreach (var boxCollider2D in playerBoxColliders)
+            {
+                if (!boxCollider2D.gameObject.name.Equals("Combat")) continue;
+                
+                //Debug.Log(boxCollider2D.name);
+                _playerCombatCollider = boxCollider2D;
+                _playerCombatCollider.enabled = false;
+            }
+            //playerBoxCollider.enabled = false;
         
             if (CollisionSenses.Wall)
             {
@@ -45,6 +58,8 @@ namespace Solymi.Player.PlayerStates.SubStates
         public override void Exit()
         {
             base.Exit();
+            
+            _playerCombatCollider.enabled = true;
         
             Movement.RB.gravityScale = PlayerData.gravity;
             if (!CollisionSenses.Ground)
