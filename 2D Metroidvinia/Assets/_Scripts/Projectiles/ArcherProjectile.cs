@@ -13,11 +13,13 @@ namespace Solymi.Projectiles
         private Rigidbody2D _rigidbody2D;
         
         [SerializeField]
-        private float gravity, damageRadius;
+        private float gravity, damageRadius, kockbackStrength;
         [SerializeField]
         private LayerMask whatIsGround, whatIsPlayer;
         [SerializeField]
         private Transform damagePosition;
+        [SerializeField]
+        private Vector2 knockbackAngle;
         private void Start()
         {
             _rigidbody2D = GetComponent<Rigidbody2D>();
@@ -50,6 +52,11 @@ namespace Solymi.Projectiles
 
                 if (playerHit)
                 {
+                    if (playerHit.GetComponentInChildren<KnockBackReceiver>().TryGetComponent(out IKnockBackable knockBackable))
+                    {
+                        knockBackable.KnockBack(knockbackAngle, kockbackStrength, (int)(playerHit.transform.position.x - _xStartPosition));
+                    }
+                    
                     if (playerHit.GetComponentInChildren<DamageReceiver>().TryGetComponent(out IDamageable damageable))
                     {
                         damageable.Damage(_damage);
@@ -59,10 +66,10 @@ namespace Solymi.Projectiles
                 
 
                 //TODO: Implement knockback on arrow hit
-                // if (hitDamage.GetComponentInChildren<KnockBackReceiver>().TryGetComponent(out IKnockBackable knockBackable))
-                // {
-                //     knockBackable.KnockBack();
-                // }
+                //if (hitDamage.GetComponentInChildren<KnockBackReceiver>().TryGetComponent(out IKnockBackable knockBackable))
+                //{
+                //    knockBackable.KnockBack();
+                //}
 
                 if (groundHit)
                 {

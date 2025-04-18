@@ -23,11 +23,23 @@ namespace Solymi.Enemies.Slime.LittleSlime
             JumpPrepState = new LittleSlimeJumpPrepState(this, entityData, "jumpPrep", this);
             JumpState = new LittleSlimeJumpState(this, entityData, "jump", this);
             JumpLandState = new LittleSlimeJumpLandState(this, entityData, "jumpLand", this);
+            
+            Stats.Health.OnCurrentValueZero += HandleHealthZero;
         }
         
         public void Start()
         {
             StateMachine.Initialize(IdleState);
+        }
+        
+        private void HandleHealthZero()
+        {
+            Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            Stats.Health.OnCurrentValueZero -= HandleHealthZero;
         }
 
 

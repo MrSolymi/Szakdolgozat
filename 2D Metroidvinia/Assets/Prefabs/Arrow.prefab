@@ -74,7 +74,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2104380779
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: -1
   m_Sprite: {fileID: 275444753, guid: 7fc2e49f11abae1479b579f2211517b7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gravity: 3
   damageRadius: 0.1
+  kockbackStrength: 10
   whatIsGround:
     serializedVersion: 2
     m_Bits: 128
@@ -135,6 +136,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   damagePosition: {fileID: 6550527656232038326}
+  knockbackAngle: {x: 1, y: 0.1}
 --- !u!1 &715973989483793842
 GameObject:
   m_ObjectHideFlags: 0

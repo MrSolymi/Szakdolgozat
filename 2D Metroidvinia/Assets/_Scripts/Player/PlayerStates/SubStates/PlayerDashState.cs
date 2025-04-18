@@ -32,6 +32,7 @@ namespace Solymi.Player.PlayerStates.SubStates
                 //Debug.Log(boxCollider2D.name);
                 _playerCombatCollider = boxCollider2D;
                 _playerCombatCollider.enabled = false;
+                Player.gameObject.layer = LayerMask.NameToLayer("Invincible");
             }
             //playerBoxCollider.enabled = false;
         
@@ -58,6 +59,8 @@ namespace Solymi.Player.PlayerStates.SubStates
         public override void Exit()
         {
             base.Exit();
+            
+            Player.gameObject.layer = LayerMask.NameToLayer("Player");
             
             _playerCombatCollider.enabled = true;
         
