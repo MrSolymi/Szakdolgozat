@@ -45,6 +45,7 @@ namespace Solymi.Enemies.EntityStates
             {
                 Movement.SetVelocityZero();
                 IsMovementStopped = true;
+                
             }
         }
 
@@ -60,6 +61,8 @@ namespace Solymi.Enemies.EntityStates
         public override void Exit()
         {
             base.Exit();
+            
+            Movement.CanSetVelocity = true;
             
             Stats.Poise.Reset();
         }

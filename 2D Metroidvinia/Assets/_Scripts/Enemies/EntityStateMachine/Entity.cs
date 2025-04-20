@@ -1,7 +1,8 @@
 using System;
+using Solymi._Scripts.GameManager;
 using Solymi.Core.CoreComponents;
 using Solymi.Enemies.Data;
-using Solymi.Intermediaries;
+using Solymi.Interfaces;
 using UnityEngine;
 
 namespace Solymi.Enemies.EntityStateMachine
@@ -14,10 +15,11 @@ namespace Solymi.Enemies.EntityStateMachine
     
         [SerializeField] protected EntityData entityData;
         
+        [SerializeField] protected UniqueId uniqueId;
+        
         public Core.Core Core { get; private set; }
         public EntityStateMachine StateMachine { get; private set; }
         public Animator Animator { get; private set; }
-
 
         public virtual void Awake()
         {
@@ -30,6 +32,18 @@ namespace Solymi.Enemies.EntityStateMachine
             Animator = GetComponent<Animator>();
         
             StateMachine = new EntityStateMachine();
+            if (transform.name != "LittleSlime(Clone)")
+                Stats.RespawnPoint.Initialize(FindGameObjectWithUniqueId(uniqueId));
+        }
+
+        private void Start()
+        {
+            
+            
+            if (EntitySaveTracker.IsDead(uniqueId.Id))
+            {
+                gameObject.SetActive(false);
+            }
         }
 
         public virtual void Update()
@@ -62,6 +76,44 @@ namespace Solymi.Enemies.EntityStateMachine
             Gizmos.DrawWireSphere(_collisionSenses.PlayerCheck.position + (Vector3)(Movement.RB.transform.right * entityData.minAgroDistance), 0.2f);
             Gizmos.DrawWireSphere(_collisionSenses.PlayerCheck.position + (Vector3)(Movement.RB.transform.right * entityData.maxAgroDistance), 0.2f);
             Gizmos.DrawWireSphere(_collisionSenses.GroundCheck.position, _collisionSenses.GroundCheckRadius);
-        }   
+        }
+
+        public virtual void ResetAfterSave()
+        {
+            Stats.RespawnPoint.Respawn(transform);
+            gameObject.SetActive(true);
+            Stats.Health.Reset();
+            
+            var go = GetComponentInChildren<HealthBar>()?.gameObject;
+
+            if (go != null)
+            {
+                go.SetActive(false);
+            }
+        }
+
+        private void OnDisable()
+        {
+            if (transform.name == "LittleSlime(Clone)") return;
+            
+            EntitySaveTracker.RegisterDeath(uniqueId.Id);
+            Stats.Health.Initialize();
+        }
+
+        private GameObject FindGameObjectWithUniqueId(UniqueId uniqueId)
+        {
+            var resPoints = GameObject.FindGameObjectsWithTag("EnemyRespawnPoint");
+
+            foreach (var point in resPoints)
+            {
+                if (point.gameObject.name != uniqueId.Id) continue;
+                
+                return point;
+            }
+            
+            Debug.LogWarning(name + " could not find its spawn point!");
+            
+            return null;
+        }
     }
 }

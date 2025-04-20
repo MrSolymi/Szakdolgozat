@@ -1,4 +1,6 @@
 using System;
+using Solymi._Scripts.GameManager;
+using Solymi.Core.Stats;
 using Solymi.Enemies.EntityStateMachine;
 using UnityEngine;
 
@@ -32,12 +34,21 @@ namespace Solymi.Enemies.Archer
             RangedAttackState = new ArcherRangedAttackState(this, entityData, "rangedAttack", rangedAttackPosition, this);
             
             Stats.Poise.OnCurrentValueZero += HandlePoiseZero;
+            Stats.Health.OnCurrentValueZero += HandleHealthOnZero;
+        }
+        
+        public override void ResetAfterSave()
+        {
+            base.ResetAfterSave();
+            
+            StateMachine.ChangeState(IdleState);
         }
 
         public void Start()
         {
-            StateMachine.Initialize(MoveState);
+            StateMachine.Initialize(IdleState);
         }
+
 
         public override void Update()
         {
@@ -46,14 +57,19 @@ namespace Solymi.Enemies.Archer
             Animator.SetFloat("yVelocity", Movement.RB.velocity.y);
         }
 
-        private void HandlePoiseZero()
+        private void HandleHealthOnZero()
         {
-            StateMachine.ChangeState(StunState);
+            EntitySaveTracker.RegisterDeath(uniqueId.Id);
         }
+
+
+        private void HandlePoiseZero() => StateMachine.ChangeState(StunState);
+        
         
         private void OnDestroy()
         {
             Stats.Poise.OnCurrentValueZero -= HandlePoiseZero;
+            Stats.Health.OnCurrentValueZero -= HandleHealthOnZero;
         }
         
         private void TriggerAttack()

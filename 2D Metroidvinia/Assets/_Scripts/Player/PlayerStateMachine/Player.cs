@@ -1,14 +1,20 @@
+using System;
+using Solymi._Scripts.GameManager;
+using Solymi.Core.CoreComponents;
 using Solymi.Player.Data;
 using Solymi.Player.Input;
 using Solymi.Player.PlayerStates.SubStates;
 using Solymi.Weapons;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Solymi.Player.PlayerStateMachine
 {
     public class Player : MonoBehaviour
     {
         public Core.Core Core { get; private set; }
+        
+        protected Stats Stats;
     
         public PlayerStateMachine StateMachine { get; private set; }
         public PlayerIdleState IdleState { get; private set; }
@@ -32,13 +38,19 @@ namespace Solymi.Player.PlayerStateMachine
         [SerializeField] private PlayerData playerData;
     
         private Weapon _primaryWeapon, _secondaryWeapon;
+        
+        private PlayerInput _playerInput;
     
         private void Awake()
         {
             Core = GetComponentInChildren<Core.Core>();
+            
+            Stats = Core.GetCoreComponent<Stats>();
         
             _primaryWeapon = transform.Find("PrimaryWeapon").GetComponent<Weapon>();
             _secondaryWeapon = transform.Find("SecondaryWeapon").GetComponent<Weapon>();
+            
+            _playerInput = GetComponent<PlayerInput>();
             
             _primaryWeapon.SetCore(Core);
             _secondaryWeapon.SetCore(Core);
@@ -74,15 +86,30 @@ namespace Solymi.Player.PlayerStateMachine
         {
             Core.LogicUpdate();
             StateMachine.CurrentState.LogicUpdate();
+            
+            //Debug.LogWarning(Stats.Health.CurrentValue);
         }
     
         private void FixedUpdate()
         {
             StateMachine.CurrentState.PhysicsUpdate();
         }
-        
-        
-    
+
+        private void OnDisable()
+        {
+            //Debug.LogError("Player is currently disabled");
+            _playerInput.SwitchCurrentActionMap("UI");
+            GameManager.Instance.playerDeathUI.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        private void OnEnable()
+        {
+            _playerInput.SwitchCurrentActionMap("Gameplay");
+        }
+
+
         private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
         private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
     }

@@ -8,6 +8,7 @@ TagManager:
   - ParticleContainer
   - NormalEnemyHealthBar
   - LerpEnemyHealthBar
+  - EnemyRespawnPoint
   layers:
   - Default
   - TransparentFX

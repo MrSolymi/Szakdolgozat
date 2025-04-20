@@ -1,5 +1,7 @@
 using System;
+using Solymi._Scripts.GameManager;
 using Solymi.Core.CoreComponents;
+using Solymi.Core.Stats;
 using Solymi.Enemies.EntityStateMachine;
 using Solymi.Interfaces;
 using UnityEngine;
@@ -37,7 +39,14 @@ namespace Solymi.Enemies.Enemy1
             //Stats.Health.OnCurrentValueZero += HandleHealthZero;
         }
 
-        public void Start()
+        public override void ResetAfterSave()
+        {
+            base.ResetAfterSave();
+            
+            StateMachine.ChangeState(IdleState);
+        }
+
+        private void Start()
         {
             StateMachine.Initialize(IdleState);
         }
@@ -46,6 +55,11 @@ namespace Solymi.Enemies.Enemy1
         {
             StateMachine.ChangeState(StunState);
         }
+
+        //private void HandleHealthZero()
+        //{
+        //    EntitySaveTracker.RegisterDeath(uniqueId.Id);
+        //}
         
         private void OnDestroy()
         {

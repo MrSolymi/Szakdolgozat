@@ -1,3 +1,6 @@
+using Solymi.Core.CoreComponents;
+using Solymi.Enemies.EntityStateMachine;
+using Solymi.Enemies.Slime.LittleSlime;
 using Solymi.Player.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -14,6 +17,8 @@ namespace Solymi._Scripts.GameManager
         public GameObject pauseMenuUI;
         private bool _isPaused = false;
         private PlayerInput _playerInput;
+        
+        public GameObject playerDeathUI;
         private void Awake()
         {
             if (Instance != null)
@@ -95,6 +100,42 @@ namespace Solymi._Scripts.GameManager
             //_playerInput.SwitchCurrentActionMap("Gameplay");
             
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+        }
+
+        public void OnSaveGameButton()
+        {
+            EntitySaveTracker.ClearAll();
+            
+            var littleSlimes = GameObject.FindObjectsOfType<LittleSlime>();
+            foreach (var littleSlime in littleSlimes)
+            {
+                GameObject.Destroy(littleSlime.gameObject);
+            }
+            
+            var entities = GameObject.FindObjectsOfType<Entity>(true);
+
+            foreach (var entity in entities)
+            {
+                entity.gameObject.SetActive(true);
+                entity.ResetAfterSave();
+            }
+        }
+
+        public void OnRespawnButton()
+        {
+            var littleSlimes = GameObject.FindObjectsOfType<LittleSlime>();
+            foreach (var littleSlime in littleSlimes)
+            {
+                GameObject.Destroy(littleSlime.gameObject);
+            }
+            
+            var entities = GameObject.FindObjectsOfType<Entity>(true);
+            
+            foreach (var entity in entities)
+            {
+                //entity.gameObject.SetActive(true);
+                entity.ResetAfterSave();
+            }
         }
     }
 }

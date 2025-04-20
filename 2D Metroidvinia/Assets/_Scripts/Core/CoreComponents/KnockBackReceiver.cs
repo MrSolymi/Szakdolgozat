@@ -27,6 +27,8 @@ namespace Solymi.Core.CoreComponents
             //_stats = new CoreComponent<Stats>(core);
             //_movement = new CoreComponent<Movement>(core);
             //_collisionSenses = new CoreComponent<CollisionSenses>(core);
+            
+            _isKnockBackActive = false;
         }
         
         public override void LogicUpdate()
@@ -50,11 +52,12 @@ namespace Solymi.Core.CoreComponents
                 _movement.CanSetVelocity = true;
                 _movement.SetVelocityZero();
             }
-            else if (Time.time >= _knockBackStartTime + knockBackMaxDuration)
-            {
-                _isKnockBackActive = false;
-                _movement.CanSetVelocity = true;
-            }
+            // it caused a bug, but i dont really know what was wrong, without it, it works
+            //else if (Time.time >= _knockBackStartTime + knockBackMaxDuration)
+            //{
+            //    _isKnockBackActive = false;
+            //    _movement.CanSetVelocity = true;
+            //}
         }
 
         public void KnockBack(Vector2 knockBackAngle, float knockBackStrength, int direction)
@@ -63,7 +66,7 @@ namespace Solymi.Core.CoreComponents
             _movement.CanSetVelocity = false;
             _isKnockBackActive = true;
             _knockBackStartTime = Time.time;
-            Debug.LogWarning(_movement.transform.parent.parent.name + " Knocked back");
+            //Debug.LogWarning(_movement.transform.parent.parent.name + " Knocked back");
         }
     }
 }

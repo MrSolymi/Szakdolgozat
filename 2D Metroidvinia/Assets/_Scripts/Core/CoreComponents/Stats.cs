@@ -11,6 +11,8 @@ namespace Solymi.Core.CoreComponents
         [field: SerializeField] public Stat Poise { get; private set; }
         [SerializeField] private float poiseRecoveryRate;
         
+        [field: SerializeField] public RespawnPoint RespawnPoint { get; private set; }
+        
         public bool IsDamaged { get; private set; }
 
         protected override void Awake()
@@ -19,6 +21,7 @@ namespace Solymi.Core.CoreComponents
 
             Health.Initialize();
             Poise.Initialize();
+            //RespawnPoint.Initialize(transform.parent.parent.position); entity classban van az Initialize
             
             IsDamaged = false;
         }

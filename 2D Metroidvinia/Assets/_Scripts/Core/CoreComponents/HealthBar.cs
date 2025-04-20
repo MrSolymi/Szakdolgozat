@@ -40,6 +40,7 @@ namespace Solymi.Core.CoreComponents
         public override void LogicUpdate()
         {
             base.LogicUpdate();
+            
             if (_stats.Health.CurrentValue != _stats.Health.MaxValue)
             {
                 gameObject.SetActive(true);

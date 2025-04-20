@@ -1,4 +1,5 @@
 using System;
+using Solymi._Scripts.GameManager;
 using Solymi.Core.CoreComponents;
 using Solymi.Enemies.EntityStateMachine;
 using Solymi.Interfaces;
@@ -31,6 +32,13 @@ namespace Solymi.Enemies.Slime
             Stats.Health.OnCurrentValueZero += HandleHealthZero;
         }
         
+        public override void ResetAfterSave()
+        {
+            base.ResetAfterSave();
+            
+            StateMachine.ChangeState(IdleState);
+        }
+
         private Timer _attackCooldownTimer;
         private bool _canAttack = true;
         public void Start()
@@ -52,6 +60,9 @@ namespace Solymi.Enemies.Slime
         // ReSharper disable Unity.PerformanceAnalysis
         private void HandleHealthZero()
         {
+            EntitySaveTracker.RegisterDeath(uniqueId.Id);
+            Stats.Health.Initialize();
+            
             var littleSlimesContainer = GameObject.Find("LittleSlimes");
             
             var rnd = Random.Range(4, 6);
