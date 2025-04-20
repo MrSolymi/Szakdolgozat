@@ -11,5 +11,10 @@ namespace Solymi.Weapons
         private void StartMovementTrigger() => OnStartMovement?.Invoke();
         private void StopMovementTrigger() => OnStopMovement?.Invoke();
         private void AttackActionTrigger() => OnAttackAction?.Invoke();
+        
+        public void ForceFinish()
+        {
+            AnimationFinishTrigger();
+        }
     }
 }

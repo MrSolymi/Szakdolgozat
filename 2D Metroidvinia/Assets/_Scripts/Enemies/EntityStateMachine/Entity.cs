@@ -81,9 +81,9 @@ namespace Solymi.Enemies.EntityStateMachine
         public virtual void ResetAfterSave()
         {
             Stats.RespawnPoint.Respawn(transform);
-            gameObject.SetActive(true);
             Stats.Health.Reset();
-            
+            gameObject.SetActive(true);
+
             var go = GetComponentInChildren<HealthBar>()?.gameObject;
 
             if (go != null)

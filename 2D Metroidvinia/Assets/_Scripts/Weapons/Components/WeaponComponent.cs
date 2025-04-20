@@ -25,12 +25,16 @@ namespace Solymi.Weapons.Components
 
         protected virtual void Start()
         {
+            animationEventHandler.OnFinished += HandleExit; //bugfix for reset at death
+            
             weapon.OnEnter += HandleEnter;
             weapon.OnExit += HandleExit;
         }
         
         protected virtual void OnDestroy()
         {
+            animationEventHandler.OnFinished -= HandleExit; //bugfix for reset at death
+            
             weapon.OnEnter -= HandleEnter;
             weapon.OnExit -= HandleExit;
         }

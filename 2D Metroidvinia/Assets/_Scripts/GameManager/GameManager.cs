@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Solymi._Scripts.Scene;
 using Solymi.Core.CoreComponents;
 using Solymi.Enemies.EntityStateMachine;
 using Solymi.Enemies.Slime.LittleSlime;
@@ -19,6 +21,31 @@ namespace Solymi._Scripts.GameManager
         private PlayerInput _playerInput;
         
         public GameObject playerDeathUI;
+        
+        private static readonly Dictionary<string, Vector2> ActivatedCampfires = new Dictionary<string, Vector2>();
+        
+        public static void RegisterCampfire(string name, Vector2 position)
+        {
+            ActivatedCampfires[name] = position;
+        }
+        
+        public static Vector2 GetCampfirePosition(string name)
+        {
+            if (ActivatedCampfires.TryGetValue(name, out var pos))
+            {
+                return pos;
+            }
+
+            Debug.LogWarning("Entry point not found: " + name);
+            return Vector2.zero;
+        }
+
+        public static bool IsCampfireRegistered(string name)
+        {
+            return ActivatedCampfires.ContainsKey(name);
+        }
+        
+        public static void ClearCampfires() => ActivatedCampfires.Clear();
         private void Awake()
         {
             if (Instance != null)
@@ -40,6 +67,8 @@ namespace Solymi._Scripts.GameManager
         {
             if (pauseMenuUI != null)
                 pauseMenuUI.SetActive(false);
+            if (playerDeathUI != null)
+                playerDeathUI.SetActive(false);
         }
         
         // Ez kell az Input System Pause action-jához
@@ -97,6 +126,9 @@ namespace Solymi._Scripts.GameManager
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             
+            EntitySaveTracker.ClearAll();
+            ActivatedCampfires.Clear();
+            
             //_playerInput.SwitchCurrentActionMap("Gameplay");
             
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
@@ -123,6 +155,8 @@ namespace Solymi._Scripts.GameManager
 
         public void OnRespawnButton()
         {
+            EntitySaveTracker.ClearAll();
+            
             var littleSlimes = GameObject.FindObjectsOfType<LittleSlime>();
             foreach (var littleSlime in littleSlimes)
             {
@@ -136,6 +170,10 @@ namespace Solymi._Scripts.GameManager
                 //entity.gameObject.SetActive(true);
                 entity.ResetAfterSave();
             }
+            
+            var player = GameObject.FindObjectOfType<Player.PlayerStateMachine.Player>(true);
+            
+            player.Respawn();
         }
     }
 }

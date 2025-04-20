@@ -9,6 +9,7 @@ TagManager:
   - NormalEnemyHealthBar
   - LerpEnemyHealthBar
   - EnemyRespawnPoint
+  - Campfire
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - Weapon
   - Dead
   - Invincible
-  - 
+  - Campfire
   - 
   - 
   - 
@@ -54,6 +55,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 2190586517
+    locked: 0
+  - name: Useables
+    uniqueID: 3767932387
     locked: 0
   - name: Player
     uniqueID: 1172479485

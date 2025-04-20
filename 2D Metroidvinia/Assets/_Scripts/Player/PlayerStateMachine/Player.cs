@@ -1,10 +1,12 @@
 using System;
 using Solymi._Scripts.GameManager;
+using Solymi._Scripts.Scene;
 using Solymi.Core.CoreComponents;
 using Solymi.Player.Data;
 using Solymi.Player.Input;
 using Solymi.Player.PlayerStates.SubStates;
 using Solymi.Weapons;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -69,6 +71,8 @@ namespace Solymi.Player.PlayerStateMachine
             DashState = new PlayerDashState(this, playerData, "inAir");
             PrimaryAttackState = new PlayerAttackState(this, playerData, "attack", _primaryWeapon);
             SecondaryAttackState = new PlayerAttackState(this, playerData, "attack", _secondaryWeapon);
+            
+            Stats.RespawnPoint.Initialize();
         }
 
         private void Start()
@@ -112,5 +116,21 @@ namespace Solymi.Player.PlayerStateMachine
 
         private void AnimationTrigger() => StateMachine.CurrentState.AnimationTrigger();
         private void AnimationFinishTrigger() => StateMachine.CurrentState.AnimationFinishTrigger();
+
+        public void Respawn()
+        {
+            GameManager.Instance.playerDeathUI.SetActive(false);
+            
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+            
+            FindObjectOfType<FadeController>().FadeToBlackAndLoadScene(Stats.RespawnPoint.CurrentRespawnPointSceneName, Stats.RespawnPoint.CurrentRespawnPoint, transform.gameObject);
+            
+            Stats.Health.Reset();
+            StateMachine.Initialize(IdleState);
+            
+            _primaryWeapon.EventHandler.ForceFinish();
+            _secondaryWeapon.EventHandler.ForceFinish();
+        }
     }
 }

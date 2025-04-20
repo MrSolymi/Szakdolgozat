@@ -25,8 +25,15 @@ namespace Solymi._Scripts.Scene
             StartCoroutine(FadeAndSwitch(sceneName, entryPointName));
         }
 
+        public void FadeToBlackAndLoadScene(string sceneName, Vector3 entryPointPosition, GameObject playerObject)
+        {
+            StartCoroutine(FadeAndSwitch(sceneName, entryPointPosition, playerObject));
+        }
+
         private void Awake()
         {
+            if (FindObjectOfType<PlayerInput>() == null) return;
+            
             _playerInput = FindObjectOfType<PlayerInput>();
         }
 
@@ -78,6 +85,65 @@ namespace Solymi._Scripts.Scene
             }
 
             yield return StartCoroutine(Fade(0)); // Fade in
+            _playerInput.SwitchCurrentActionMap("Gameplay");
+        }
+        
+        private IEnumerator FadeAndSwitch(string sceneName, Vector2 entryPointPosition, GameObject playerObject)
+        {
+            playerObject.SetActive(true);
+            playerObject.transform.GetComponent<SpriteRenderer>().enabled = false;
+            
+            yield return StartCoroutine(Fade(1)); // Fade to black
+
+            // unload korábbi scene, ha nem "Persistent"
+            string prev = GameManager.GameManager.Instance.currentGameSceneName;
+            if (!string.IsNullOrEmpty(prev) && prev != "Persistent" && SceneManager.GetSceneByName(prev).isLoaded)
+            {
+                yield return SceneManager.UnloadSceneAsync(prev);
+            }
+
+            // új scene betöltése ADDITIVELY
+            AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
+            while (!loadOp.isDone)
+                yield return null;
+
+            // új scene legyen az aktív
+            UnityEngine.SceneManagement.Scene newScene = SceneManager.GetSceneByName(sceneName);
+            SceneManager.SetActiveScene(newScene);
+
+            // frissítjük a GameManager-ben az aktív scene nevet
+            GameManager.GameManager.Instance.currentGameSceneName = sceneName;
+
+            // entryPoint regisztráció lefutásához várunk egy frame-et
+            yield return null;
+
+            playerObject.transform.GetComponent<SpriteRenderer>().enabled = true;
+            _playerInput = FindObjectOfType<PlayerInput>();
+            _playerInput.SwitchCurrentActionMap("EmptyActionMap");
+            
+            
+            
+            // játékos mozgatás
+            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            
+            if (player != null)
+            {
+                player.transform.position = entryPointPosition;
+            }
+            
+            bool finished = false;
+            _timer = new Timer(waitBeforeFadeOut);
+            _timer.OnTimerEnd += () => finished = true;
+            _timer.StartTimer();
+
+            while (!finished)
+            {
+                _timer.Tick();
+                yield return null;
+            }
+            
+            yield return StartCoroutine(Fade(0)); // Fade out
+            
             _playerInput.SwitchCurrentActionMap("Gameplay");
         }
         

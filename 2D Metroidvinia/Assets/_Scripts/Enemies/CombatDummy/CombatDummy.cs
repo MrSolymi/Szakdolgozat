@@ -6,7 +6,7 @@ namespace Solymi.Enemies.CombatDummy
     public class CombatDummy : MonoBehaviour, IDamageable
     {
         [SerializeField] private GameObject hitParticles;
-        [SerializeField] private GameObject player;
+        private GameObject _player;
     
         private Animator _animator;
 
@@ -15,19 +15,24 @@ namespace Solymi.Enemies.CombatDummy
             _animator = GetComponent<Animator>();
         }
 
+        private void Start()
+        {
+            _player = GameObject.Find("Player");
+        }
+
         public void Damage(float damage)
         {
             Debug.Log("CombatDummy took " + damage + " damage");
         
             Instantiate(hitParticles, transform.position, Quaternion.Euler(0.0f, 0.0f, Random.Range(0.0f, 360.0f)));
-            _animator.SetTrigger("damage");
-            if (player.transform.position.x - transform.position.x > 0)
+            _animator.SetTrigger($"damage");
+            if (_player.transform.position.x - transform.position.x > 0)
             {
-                _animator.SetBool("playerOnLeft", false);
+                _animator.SetBool($"playerOnLeft", false);
             }
             else
             {
-                _animator.SetBool("playerOnLeft", true);
+                _animator.SetBool($"playerOnLeft", true);
             }
         }
     }
