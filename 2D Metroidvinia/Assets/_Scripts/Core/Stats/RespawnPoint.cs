@@ -28,7 +28,12 @@ namespace Solymi.Core.Stats
     
         public void SetRespawnPoint(Vector2 respawnPoint)
         {
-            _currentRespawnPoint = respawnPoint;
+            _currentRespawnPoint.Set(respawnPoint.x, respawnPoint.y);
+        }
+
+        public void SetRespawnPointSceneName(string sceneName)
+        {
+            _currentRespawnPointSceneName = sceneName;
         }
     
         public void Reset()

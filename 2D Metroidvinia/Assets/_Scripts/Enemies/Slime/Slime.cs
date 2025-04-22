@@ -104,7 +104,7 @@ namespace Solymi.Enemies.Slime
                 
                 if (other.gameObject.transform.parent.parent.CompareTag("Player") && _canAttack)
                 {
-                    Debug.LogWarning(gameObject.name + " : " + other.gameObject.name);
+                    //Debug.LogWarning(gameObject.name + " : " + other.gameObject.name);
                     
                     if (other.GetComponent<DamageReceiver>().TryGetComponent(out IDamageable damageable))
                     {

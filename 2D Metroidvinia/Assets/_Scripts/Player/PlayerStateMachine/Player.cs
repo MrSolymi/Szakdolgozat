@@ -9,6 +9,7 @@ using Solymi.Weapons;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Random = UnityEngine.Random;
 
 namespace Solymi.Player.PlayerStateMachine
 {
@@ -71,8 +72,20 @@ namespace Solymi.Player.PlayerStateMachine
             DashState = new PlayerDashState(this, playerData, "inAir");
             PrimaryAttackState = new PlayerAttackState(this, playerData, "attack", _primaryWeapon);
             SecondaryAttackState = new PlayerAttackState(this, playerData, "attack", _secondaryWeapon);
+
+            if (!GameManager.HasActivatedCampfire())
+            {
+                Stats.RespawnPoint.Initialize();
+                GameManager.Instance.savedGamePosition.Set(Stats.RespawnPoint.DefaultRespawnPoint.x, Stats.RespawnPoint.DefaultRespawnPoint.y);
+                GameManager.Instance.currentGameSceneName = "GameStarterScene";
+            }
+            else
+            {
+                Stats.RespawnPoint.SetRespawnPointSceneName(GameManager.Instance.savedGameSceneName);
+                Stats.RespawnPoint.SetRespawnPoint(GameManager.Instance.savedGamePosition);
+            }
             
-            Stats.RespawnPoint.Initialize();
+            
         }
 
         private void Start()
@@ -102,10 +115,13 @@ namespace Solymi.Player.PlayerStateMachine
         private void OnDisable()
         {
             //Debug.LogError("Player is currently disabled");
-            _playerInput.SwitchCurrentActionMap("UI");
-            GameManager.Instance.playerDeathUI.SetActive(true);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            if (GameManager.Instance.playerDeathUI != null)
+            {
+                _playerInput.SwitchCurrentActionMap("UI");
+                GameManager.Instance.playerDeathUI.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
         }
 
         private void OnEnable()
@@ -124,7 +140,27 @@ namespace Solymi.Player.PlayerStateMachine
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
             
-            FindObjectOfType<FadeController>().FadeToBlackAndLoadScene(Stats.RespawnPoint.CurrentRespawnPointSceneName, Stats.RespawnPoint.CurrentRespawnPoint, transform.gameObject);
+            var rnd = Mathf.Round(Random.Range(-1.2f, 1.2f) * 100f) / 100f;
+            var resPoint = new Vector2();
+            if (Stats.RespawnPoint.CurrentRespawnPointSceneName.Equals(Stats.RespawnPoint.DefaultRespawnPointSceneName) && 
+                Stats.RespawnPoint.CurrentRespawnPoint.Equals(Stats.RespawnPoint.DefaultRespawnPoint))
+            {
+                resPoint.Set(
+                    Stats.RespawnPoint.DefaultRespawnPoint.x + rnd,
+                    Stats.RespawnPoint.DefaultRespawnPoint.y + 0.5f);
+                
+                FindObjectOfType<FadeController>().FadeToBlackAndLoadScene(
+                    Stats.RespawnPoint.DefaultRespawnPointSceneName, resPoint);
+            }
+            else
+            {
+                resPoint.Set(
+                    Stats.RespawnPoint.CurrentRespawnPoint.x + rnd,
+                    Stats.RespawnPoint.CurrentRespawnPoint.y + 0.5f);
+            
+                FindObjectOfType<FadeController>().FadeToBlackAndLoadScene(
+                    Stats.RespawnPoint.CurrentRespawnPointSceneName, resPoint);
+            }
             
             Stats.Health.Reset();
             StateMachine.Initialize(IdleState);

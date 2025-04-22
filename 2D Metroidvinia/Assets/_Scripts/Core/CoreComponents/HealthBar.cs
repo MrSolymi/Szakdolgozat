@@ -33,8 +33,8 @@ namespace Solymi.Core.CoreComponents
             
             _healthSlider.value = 100;
             _lerpHealthSlider.value = 100;
-            
-            gameObject.SetActive(false);
+            if (!transform.parent.parent.name.Equals("Player"))
+                gameObject.SetActive(false);
         }
 
         public override void LogicUpdate()

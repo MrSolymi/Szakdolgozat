@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.IO;
+using Solymi._Scripts.GameManager.GameSave;
 using Solymi._Scripts.Scene;
 using Solymi.Core.CoreComponents;
 using Solymi.Enemies.EntityStateMachine;
@@ -7,6 +9,7 @@ using Solymi.Player.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace Solymi._Scripts.GameManager
 {
@@ -14,6 +17,7 @@ namespace Solymi._Scripts.GameManager
     {
         public static GameManager Instance;
         public string currentGameSceneName = "";
+        public string savedDate = "";
 
         [Header("Pause Menu")]
         public GameObject pauseMenuUI;
@@ -21,8 +25,20 @@ namespace Solymi._Scripts.GameManager
         private PlayerInput _playerInput;
         
         public GameObject playerDeathUI;
+
+        public int playingSlot;
         
         private static readonly Dictionary<string, Vector2> ActivatedCampfires = new Dictionary<string, Vector2>();
+        
+        public string savedGameSceneName = "";
+        public Vector2 savedGamePosition = Vector2.zero;
+        
+        private GameObject _playerGameObject;
+
+        public static bool HasActivatedCampfire()
+        {
+            return ActivatedCampfires.Count > 0;
+        }
         
         public static void RegisterCampfire(string name, Vector2 position)
         {
@@ -61,6 +77,8 @@ namespace Solymi._Scripts.GameManager
             
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
+            
+            _playerGameObject = _playerInput.gameObject;
         }
 
         private void Start()
@@ -121,20 +139,27 @@ namespace Solymi._Scripts.GameManager
         
         public void OnBackToMainMenu()
         {
-            Resume();
+            Time.timeScale = 1f;
+            _isPaused = false;
+            _playerInput.SwitchCurrentActionMap("Gameplay");
 
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
             
             EntitySaveTracker.ClearAll();
             ActivatedCampfires.Clear();
+            currentGameSceneName = "";
+            savedDate = "";
+            playingSlot = 0;
+            savedGameSceneName = "";
+            savedGamePosition = Vector2.zero;
             
             //_playerInput.SwitchCurrentActionMap("Gameplay");
             
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         }
 
-        public void OnSaveGameButton()
+        private void ResetEntities()
         {
             EntitySaveTracker.ClearAll();
             
@@ -148,32 +173,76 @@ namespace Solymi._Scripts.GameManager
 
             foreach (var entity in entities)
             {
-                entity.gameObject.SetActive(true);
                 entity.ResetAfterSave();
             }
         }
 
         public void OnRespawnButton()
         {
-            EntitySaveTracker.ClearAll();
+            ResetEntities();
             
-            var littleSlimes = GameObject.FindObjectsOfType<LittleSlime>();
-            foreach (var littleSlime in littleSlimes)
+            _playerGameObject.GetComponent<Player.PlayerStateMachine.Player>().Respawn();
+        }
+
+        public void MovePlayerToStartPosition()
+        {
+            var rnd = Mathf.Round(Random.Range(-1.2f, 1.2f) * 100f) / 100f;
+            var spawnPos = new Vector2(savedGamePosition.x + rnd, savedGamePosition.y + 0.5f);
+            _playerGameObject.transform.position = spawnPos;
+        }
+        
+        public void SaveGame(string filename = "savefile.json")
+        {
+            var campfireList = new List<CampfireEntry>();
+            foreach (var kv in ActivatedCampfires)
             {
-                GameObject.Destroy(littleSlime.gameObject);
+                campfireList.Add(new CampfireEntry(kv.Key, kv.Value));
             }
-            
-            var entities = GameObject.FindObjectsOfType<Entity>(true);
-            
-            foreach (var entity in entities)
+
+            var data = new SaveData
             {
-                //entity.gameObject.SetActive(true);
-                entity.ResetAfterSave();
+                activatedCampfires = campfireList,
+                savedGameSceneName = savedGameSceneName,
+                savedGamePosition = savedGamePosition,
+                savedDate = System.DateTime.Now.ToString("yyyy.MM.dd")
+            };
+
+            var json = JsonUtility.ToJson(data, prettyPrint: true);
+
+            var path = Path.Combine(Application.persistentDataPath, filename);
+            File.WriteAllText(path, json);
+            Debug.Log($"Game saved to: {path}");
+            savedDate = data.savedDate;
+            
+            ResetEntities();
+        }
+
+        public bool LoadGame(string filename = "default.json")
+        {
+            var path = Path.Combine(Application.persistentDataPath, filename);
+            if (!File.Exists(path))
+            {
+                Debug.LogWarning($"Save file not found: {path}");
+                return false;
             }
+
+            string json = File.ReadAllText(path);
+            SaveData data = JsonUtility.FromJson<SaveData>(json);
+
+            // Dictionary törlése, majd feltöltése
+            ActivatedCampfires.Clear();
+            foreach (var entry in data.activatedCampfires)
+                ActivatedCampfires[entry.key] = entry.value;
+
+            // Egyéb mezők visszaállítása
+            savedGameSceneName = data.savedGameSceneName;
+            savedGamePosition = data.savedGamePosition;
+            savedDate = data.savedDate;
             
-            var player = GameObject.FindObjectOfType<Player.PlayerStateMachine.Player>(true);
-            
-            player.Respawn();
+            currentGameSceneName = data.savedGameSceneName;
+
+            Debug.Log($"Game loaded from: {path}");
+            return true;
         }
     }
 }

@@ -37,6 +37,7 @@ namespace Solymi.Weapons
         public void Enter()
         {
             //Debug.Log($"{transform.name} entered");
+            EventHandler.OnFinished += Exit;
             
             _attackCounterResetTimer.StopTimer();
             
@@ -48,6 +49,8 @@ namespace Solymi.Weapons
 
         private void Exit()
         {
+            EventHandler.OnFinished -= Exit;
+            
             _animator.SetBool("active", false);
             CurrentAttackCounter++;
             
@@ -75,13 +78,13 @@ namespace Solymi.Weapons
 
         private void OnEnable()
         {
-            EventHandler.OnFinished += Exit;
+            //EventHandler.OnFinished += Exit;
             _attackCounterResetTimer.OnTimerEnd += ResetAttackCounter;
         }
 
         private void OnDisable()
         {
-            EventHandler.OnFinished -= Exit;
+            //EventHandler.OnFinished -= Exit;
             _attackCounterResetTimer.OnTimerEnd -= ResetAttackCounter;
         }
         

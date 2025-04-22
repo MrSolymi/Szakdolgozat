@@ -19,8 +19,7 @@ namespace Solymi.Player.PlayerStates.SubStates
         public override void Enter()
         {
             base.Enter();
-            //IsAbilityDone = false;
-            
+            IsAbilityDone = false;
             
             _weapon.Enter();
         }

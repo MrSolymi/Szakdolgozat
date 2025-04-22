@@ -22,12 +22,13 @@ namespace Solymi._Scripts.Scene
 
         public void FadeToBlackAndLoadScene(string sceneName, string entryPointName)
         {
+            //Debug.Log("Fade to Black and Load Scene: " + sceneName);
             StartCoroutine(FadeAndSwitch(sceneName, entryPointName));
         }
 
-        public void FadeToBlackAndLoadScene(string sceneName, Vector3 entryPointPosition, GameObject playerObject)
+        public void FadeToBlackAndLoadScene(string sceneName, Vector3 entryPointPosition)
         {
-            StartCoroutine(FadeAndSwitch(sceneName, entryPointPosition, playerObject));
+            StartCoroutine(FadeAndSwitch(sceneName, entryPointPosition));
         }
 
         private void Awake()
@@ -36,6 +37,11 @@ namespace Solymi._Scripts.Scene
             
             _playerInput = FindObjectOfType<PlayerInput>();
         }
+
+        //private void Start()
+        //{
+        //    Awake();
+        //}
 
         private IEnumerator FadeAndSwitch(string sceneName, string entryPointName)
         {
@@ -88,10 +94,13 @@ namespace Solymi._Scripts.Scene
             _playerInput.SwitchCurrentActionMap("Gameplay");
         }
         
-        private IEnumerator FadeAndSwitch(string sceneName, Vector2 entryPointPosition, GameObject playerObject)
+        private IEnumerator FadeAndSwitch(string sceneName, Vector2 entryPointPosition)
         {
-            playerObject.SetActive(true);
-            playerObject.transform.GetComponent<SpriteRenderer>().enabled = false;
+            var player = _playerInput.gameObject;
+            
+            player.SetActive(true);
+            player.layer = LayerMask.NameToLayer("Invincible");
+            player.transform.GetComponent<SpriteRenderer>().enabled = false;
             
             yield return StartCoroutine(Fade(1)); // Fade to black
 
@@ -117,19 +126,21 @@ namespace Solymi._Scripts.Scene
             // entryPoint regisztráció lefutásához várunk egy frame-et
             yield return null;
 
-            playerObject.transform.GetComponent<SpriteRenderer>().enabled = true;
-            _playerInput = FindObjectOfType<PlayerInput>();
+            player.transform.GetComponent<SpriteRenderer>().enabled = true;
+            // _playerInput = FindObjectOfType<PlayerInput>();
             _playerInput.SwitchCurrentActionMap("EmptyActionMap");
             
             
             
             // játékos mozgatás
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
+            // GameObject player = GameObject.FindGameObjectWithTag("Player");
             
             if (player != null)
             {
                 player.transform.position = entryPointPosition;
             }
+            
+            _playerInput.gameObject.layer = LayerMask.NameToLayer("Player");
             
             bool finished = false;
             _timer = new Timer(waitBeforeFadeOut);

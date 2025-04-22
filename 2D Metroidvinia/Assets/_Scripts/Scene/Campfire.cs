@@ -1,13 +1,15 @@
 using System;
+using Solymi.Core.CoreComponents;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Solymi._Scripts.GameManager;
 
 namespace Solymi._Scripts.Scene
 {
     public class Campfire : MonoBehaviour
     {
-        [SerializeField] private string campfireSceneName; 
+        private string _campfireSceneName; 
         
         private Animator _animator;
         private PlayerInput _playerInput;
@@ -16,6 +18,8 @@ namespace Solymi._Scripts.Scene
         private InputAction _interactionAction;
 
         private TextMeshProUGUI _interactText;
+        
+        private Stats _playerStats;
 
         private void Awake()
         {
@@ -27,7 +31,15 @@ namespace Solymi._Scripts.Scene
             
             _canInteract = false;
         }
-        
+
+        private void Update()
+        {
+            if (_canInteract && _activated && _playerStats)
+            {
+                _playerStats.Health.Increase(0.1f);
+            }
+        }
+
         private void Start()
         {
             var panel = GameObject.Find("InfoPanel");
@@ -37,7 +49,10 @@ namespace Solymi._Scripts.Scene
 
         public void OnInteraction(InputAction.CallbackContext context)
         {
+            
             if (!context.performed) return;
+            
+            //Debug.LogError("Interaction called");
             
             if (!_canInteract) return;
             
@@ -54,9 +69,11 @@ namespace Solymi._Scripts.Scene
 
         private void OnEnable()
         {
+            _campfireSceneName = gameObject.scene.name;
+            
             _canInteract = false;
             
-            _activated = GameManager.GameManager.IsCampfireRegistered(campfireSceneName);
+            _activated = GameManager.GameManager.IsCampfireRegistered(_campfireSceneName);
             
             if (_activated) _animator.SetBool($"isActivated", true);
             
@@ -79,6 +96,10 @@ namespace Solymi._Scripts.Scene
             _canInteract = true;
             
             _interactText.text = !_activated ? "Press E to activate the campfire" : "Press E to save the game";
+            
+            _playerStats = other.gameObject.GetComponent<Player.PlayerStateMachine.Player>().Core.GetCoreComponent<Stats>();
+            
+            //Debug.Log(_playerStats.Health.CurrentValue);
         }
         
         private void OnTriggerExit2D(Collider2D other)
@@ -88,7 +109,6 @@ namespace Solymi._Scripts.Scene
                 _interactText.text = "";
                 _interactText.gameObject.SetActive(false);
                 _canInteract = false;
-                // TODO: UI jelzés elrejtése
             }
         }
         
@@ -99,13 +119,23 @@ namespace Solymi._Scripts.Scene
             
             RefreshAfterActivation();
             
-            GameManager.GameManager.RegisterCampfire(campfireSceneName, transform.position);
+            GameManager.GameManager.RegisterCampfire(_campfireSceneName, transform.position);
 
         }
 
         private void SaveGame()
         {
-            Debug.LogWarning("WHOHOOOOO GAME SAVED");
+            //var playerStats = _playerInput.gameObject.GetComponent<Player.PlayerStateMachine.Player>().Core.GetCoreComponent<Stats>();
+
+            //Debug.LogError("---"+_campfireSceneName+"---");
+            
+            _playerStats.RespawnPoint.SetRespawnPoint(GameManager.GameManager.GetCampfirePosition(_campfireSceneName));
+            _playerStats.RespawnPoint.SetRespawnPointSceneName(_campfireSceneName);
+            
+            GameManager.GameManager.Instance.savedGameSceneName = _playerStats.RespawnPoint.CurrentRespawnPointSceneName;
+            GameManager.GameManager.Instance.savedGamePosition.Set(_playerStats.RespawnPoint.CurrentRespawnPoint.x, _playerStats.RespawnPoint.CurrentRespawnPoint.y);
+            
+            GameManager.GameManager.Instance.SaveGame($"slot{GameManager.GameManager.Instance.playingSlot}.json");
         }
 
         private void RefreshAfterActivation()

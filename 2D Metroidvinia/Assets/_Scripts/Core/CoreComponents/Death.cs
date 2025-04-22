@@ -1,3 +1,4 @@
+using Solymi.Weapons;
 using UnityEngine;
 
 namespace Solymi.Core.CoreComponents
@@ -19,6 +20,14 @@ namespace Solymi.Core.CoreComponents
 
         public void Die()
         {
+            //var playerRoot = core.transform.parent.gameObject;
+            //var weapons = playerRoot.GetComponentsInChildren<Weapon>(includeInactive: true);
+            //foreach (var w in weapons)
+            //{
+            //    // ha van event handler, kényszerítjük a Finish-t
+            //    w.EventHandler?.ForceFinish();
+            //}
+            
             if (deathParticles != null)
             {
                 foreach (var particle in deathParticles)

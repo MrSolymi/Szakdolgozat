@@ -10,6 +10,7 @@ TagManager:
   - LerpEnemyHealthBar
   - EnemyRespawnPoint
   - Campfire
+  - ParallaxBackground
   layers:
   - Default
   - TransparentFX
