@@ -15,9 +15,21 @@ EditorBuildSettings:
     path: Assets/Scenes/Persistent.unity
     guid: 0ada1e22b03ad5e40b2a448f9c57219a
   - enabled: 1
-    path: Assets/Scenes/GameStarterScene.unity
+    path: Assets/Scenes/Gameplay Scenes/GameStarterScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/GameScene2.unity
+    path: Assets/Scenes/Gameplay Scenes/GameScene2.unity
     guid: e3c8929aef060d748bb1b0562731013e
+  - enabled: 1
+    path: Assets/Scenes/Gameplay Scenes/GameScene3.unity
+    guid: c488da3bedca17b4a857a42948b61dcc
+  - enabled: 1
+    path: Assets/Scenes/Gameplay Scenes/GameScene4.unity
+    guid: 2ae2d67a0a24ba44dad489ada5faa8a0
+  - enabled: 1
+    path: Assets/Scenes/Gameplay Scenes/GameScene5.unity
+    guid: bf020b10fecee4f448f08a1b786af963
+  - enabled: 1
+    path: Assets/Scenes/Gameplay Scenes/GameScene6.unity
+    guid: 8a933fafdafa2964486dc35dfb995219
   m_configObjects: {}
