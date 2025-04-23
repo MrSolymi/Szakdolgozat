@@ -67,6 +67,8 @@ namespace Solymi._Scripts.UI
                 
                 GameManager.GameManager.Instance.MovePlayerToStartPosition();
                 
+                GameManager.GameManager.Instance.playingSlot = slotIndex;
+                
                 yield return SceneManager.LoadSceneAsync(GameManager.GameManager.Instance.currentGameSceneName, LoadSceneMode.Additive);
                 
                 SceneManager.SetActiveScene(SceneManager.GetSceneByName(GameManager.GameManager.Instance.currentGameSceneName));
