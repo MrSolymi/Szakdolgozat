@@ -36,7 +36,6 @@ namespace Solymi.Player.PlayerStateMachine
         public Animator Animator { get; private set; }
         public PlayerInputHandler InputHandler { get; private set; }
     
-        //public Rigidbody2D RB { get; private set; }
     
         [SerializeField] private PlayerData playerData;
     
@@ -92,9 +91,6 @@ namespace Solymi.Player.PlayerStateMachine
         {
             Animator = GetComponent<Animator>();
             InputHandler = GetComponent<PlayerInputHandler>();
-            //RB = GetComponent<Rigidbody2D>();
-        
-            //FacingDirection = 1;
         
             StateMachine.Initialize(IdleState);
         }
@@ -103,8 +99,6 @@ namespace Solymi.Player.PlayerStateMachine
         {
             Core.LogicUpdate();
             StateMachine.CurrentState.LogicUpdate();
-            
-            //Debug.LogWarning(Stats.Health.CurrentValue);
         }
     
         private void FixedUpdate()

@@ -25,11 +25,6 @@ namespace Solymi.Player.PlayerStates.SubStates
         
         }
 
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
@@ -41,16 +36,6 @@ namespace Solymi.Player.PlayerStates.SubStates
             {
                 IsAbilityDone = true;
             }
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-        }
-
-        public override void DoChecks()
-        {
-            base.DoChecks();
         }
 
         public void DetermineWallJumpDirection(bool isTouchingWall)

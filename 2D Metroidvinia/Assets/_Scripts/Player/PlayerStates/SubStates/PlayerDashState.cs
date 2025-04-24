@@ -44,16 +44,7 @@ namespace Solymi.Player.PlayerStates.SubStates
             CanDash = false;
             Player.InputHandler.UseDashInput();
         
-            //Debug.LogError("helo");
-        
-            //_dashDirection = new Vector2(Core.Movement.FacingDirection, 0);
-            //Debug.Log(Player.RB.gravityScale);
-        
             Movement.RB.gravityScale = 0;
-        
-            //Debug.Log(Player.RB.gravityScale);
-        
-            //IsAbilityDone = false;
         }
 
         public override void Exit()

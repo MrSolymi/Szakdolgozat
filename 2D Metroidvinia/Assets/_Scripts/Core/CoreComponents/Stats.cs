@@ -21,7 +21,7 @@ namespace Solymi.Core.CoreComponents
 
             Health.Initialize();
             Poise.Initialize();
-            //RespawnPoint.Initialize(transform.parent.parent.position); entity classban van az Initialize
+            //RespawnPoint.Initialize(transform.parent.parent.position); it is initialized in the entity class
             
             IsDamaged = false;
         }

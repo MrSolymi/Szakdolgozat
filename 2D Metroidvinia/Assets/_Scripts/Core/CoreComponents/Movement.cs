@@ -31,8 +31,6 @@ namespace Solymi.Core.CoreComponents
     
         public void SetVelocityZero()
         {
-            // RB.velocity = Vector2.zero;
-            // CurrentVelocity = Vector2.zero;
             _workspace.Set(Vector2.zero.x, Vector2.zero.y);
             FinalizeVelocity();
         }

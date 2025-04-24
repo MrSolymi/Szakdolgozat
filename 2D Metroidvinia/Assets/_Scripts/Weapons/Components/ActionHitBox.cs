@@ -20,7 +20,6 @@ namespace Solymi.Weapons.Components
         {
             base.Start();
             
-            //_movement = new CoreComponent<Movement>(Core);
             _movement = Core.GetCoreComponent<Movement>();
             
             animationEventHandler.OnAttackAction += HandleAttackAction;

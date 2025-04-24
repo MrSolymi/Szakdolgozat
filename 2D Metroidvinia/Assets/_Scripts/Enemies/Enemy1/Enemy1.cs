@@ -36,7 +36,6 @@ namespace Solymi.Enemies.Enemy1
             StunState = new Enemy1StunState(this, entityData, "stun", this);
             
             Stats.Poise.OnCurrentValueZero += HandlePoiseZero;
-            //Stats.Health.OnCurrentValueZero += HandleHealthZero;
         }
 
         public override void ResetAfterSave()
@@ -55,16 +54,10 @@ namespace Solymi.Enemies.Enemy1
         {
             StateMachine.ChangeState(StunState);
         }
-
-        //private void HandleHealthZero()
-        //{
-        //    EntitySaveTracker.RegisterDeath(uniqueId.Id);
-        //}
         
         private void OnDestroy()
         {
             Stats.Poise.OnCurrentValueZero -= HandlePoiseZero;
-            //Stats.Health.OnCurrentValueZero -= HandleHealthZero;
         }
 
         private void TriggerAttack()
@@ -83,9 +76,5 @@ namespace Solymi.Enemies.Enemy1
 
             Gizmos.DrawWireSphere(meleeAttackPosition.position, entityData.meleeAttackRadius);
         }
-        // private void HandleHealthZero()
-        // {
-        //     //gameObject.SetActive(false);
-        // }
     }
 }

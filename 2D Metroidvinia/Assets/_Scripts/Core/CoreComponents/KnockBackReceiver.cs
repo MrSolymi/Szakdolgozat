@@ -12,7 +12,6 @@ namespace Solymi.Core.CoreComponents
         private bool _isKnockBackActive;
         private float _knockBackStartTime;
         
-        //private Stats _stats;
         private Movement _movement;
         private CollisionSenses _collisionSenses;
 
@@ -20,13 +19,8 @@ namespace Solymi.Core.CoreComponents
         {
             base.Awake();
             
-            //_stats = core.GetCoreComponent<Stats>();
             _movement = core.GetCoreComponent<Movement>();
             _collisionSenses = core.GetCoreComponent<CollisionSenses>();
-            
-            //_stats = new CoreComponent<Stats>(core);
-            //_movement = new CoreComponent<Movement>(core);
-            //_collisionSenses = new CoreComponent<CollisionSenses>(core);
             
             _isKnockBackActive = false;
         }
@@ -37,11 +31,6 @@ namespace Solymi.Core.CoreComponents
         }
         private void CheckKnockBack()
         {
-            // if (_isKnockBackActive && ((_movement.CurrentVelocity.y <= 0.01 && _collisionSenses.Ground) || Time.time >= _knockBackStartTime + knockBackMaxDuration))
-            // {
-            //     _isKnockBackActive = false;
-            //     _movement.CanSetVelocity = true;
-            // }
 
             if (!_isKnockBackActive) return;
             
@@ -52,12 +41,6 @@ namespace Solymi.Core.CoreComponents
                 _movement.CanSetVelocity = true;
                 _movement.SetVelocityZero();
             }
-            // it caused a bug, but i dont really know what was wrong, without it, it works
-            //else if (Time.time >= _knockBackStartTime + knockBackMaxDuration)
-            //{
-            //    _isKnockBackActive = false;
-            //    _movement.CanSetVelocity = true;
-            //}
         }
 
         public void KnockBack(Vector2 knockBackAngle, float knockBackStrength, int direction)

@@ -19,11 +19,6 @@ namespace Solymi.Player.PlayerStates.SubStates
             HoldPosition();
         }
 
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
@@ -46,16 +41,6 @@ namespace Solymi.Player.PlayerStates.SubStates
                 //     StateMachine.ChangeState(Player.WallJumpState);
                 // }
             }
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-        }
-
-        public override void DoChecks()
-        {
-            base.DoChecks();
         }
 
         private void HoldPosition()

@@ -21,13 +21,6 @@ namespace Solymi.Enemies.EntityStates
 
             foreach (var item in detectedObjects)
             {
-                
-                // if (item.TryGetComponent(out IDamageable damageable))
-                // {
-                //     Debug.LogError(damageable);
-                //     damageable.Damage(EntityData.meleeAttackDamage);
-                // }
-
                 if (item.GetComponentInChildren<DamageReceiver>().TryGetComponent(out IDamageable damageable))
                 {
                     //Debug.LogError(damageable);

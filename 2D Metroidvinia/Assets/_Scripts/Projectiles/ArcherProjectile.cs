@@ -63,13 +63,6 @@ namespace Solymi.Projectiles
                         Destroy(gameObject);
                     }
                 }
-                
-
-                //TODO: Implement knockback on arrow hit
-                //if (hitDamage.GetComponentInChildren<KnockBackReceiver>().TryGetComponent(out IKnockBackable knockBackable))
-                //{
-                //    knockBackable.KnockBack();
-                //}
 
                 if (groundHit)
                 {

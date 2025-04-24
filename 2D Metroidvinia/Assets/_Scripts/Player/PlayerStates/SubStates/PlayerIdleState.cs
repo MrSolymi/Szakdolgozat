@@ -17,11 +17,6 @@ namespace Solymi.Player.PlayerStates.SubStates
             Movement.SetVelocityX(0f);
         }
 
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
@@ -30,16 +25,6 @@ namespace Solymi.Player.PlayerStates.SubStates
             {
                 StateMachine.ChangeState(Player.MoveState);
             }
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-        }
-
-        public override void DoChecks()
-        {
-            base.DoChecks();
         }
     }
 }

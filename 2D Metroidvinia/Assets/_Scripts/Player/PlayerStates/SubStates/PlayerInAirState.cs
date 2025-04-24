@@ -25,11 +25,6 @@ namespace Solymi.Player.PlayerStates.SubStates
         {
         }
 
-        public override void Enter()
-        {
-            base.Enter();
-        }
-
         public override void Exit()
         {
             base.Exit();
@@ -103,11 +98,6 @@ namespace Solymi.Player.PlayerStates.SubStates
                 Player.Animator.SetFloat("yVelocity", Movement.CurrentVelocity.y);
                 Player.Animator.SetFloat("xVelocity", Mathf.Abs(Movement.CurrentVelocity.x));
             }
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
         }
 
         public override void DoChecks()

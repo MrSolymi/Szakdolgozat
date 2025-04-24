@@ -9,16 +9,6 @@ namespace Solymi.Player.PlayerStates.SubStates
         {
         }
 
-        public override void Enter()
-        {
-            base.Enter();
-        }
-
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
@@ -31,16 +21,6 @@ namespace Solymi.Player.PlayerStates.SubStates
             {
                 StateMachine.ChangeState(Player.IdleState);
             }
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-        }
-
-        public override void DoChecks()
-        {
-            base.DoChecks();
         }
     }
 }

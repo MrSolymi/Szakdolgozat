@@ -19,11 +19,6 @@ namespace Solymi.Player.PlayerStates.SuperStates
         {
         }
 
-        public override void Enter()
-        {
-            base.Enter();
-        }
-
         public override void Exit()
         {
             base.Exit();
@@ -47,11 +42,6 @@ namespace Solymi.Player.PlayerStates.SuperStates
                 }
             
             }
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
         }
 
         public override void DoChecks()

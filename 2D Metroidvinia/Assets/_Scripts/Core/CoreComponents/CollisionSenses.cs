@@ -65,11 +65,6 @@ namespace Solymi.Core.CoreComponents
         public LayerMask WhatIsPlayer { get => whatIsPlayer; set => whatIsPlayer = value; }
         [SerializeField] private LayerMask whatIsPlayer;
 
-        // public bool CheckIfGrounded()
-        // {
-        //     return Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround);
-        // }
-
         public bool Ground => Physics2D.OverlapCircle(GroundCheck.position, groundCheckRadius, whatIsGround);
     
         public bool Wall => Physics2D.Raycast(WallCheck.position, Vector2.right * _movement.FacingDirection ,wallCheckDistance, whatIsGround);

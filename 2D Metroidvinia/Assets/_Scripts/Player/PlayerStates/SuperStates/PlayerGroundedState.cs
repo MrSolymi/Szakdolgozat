@@ -29,11 +29,6 @@ namespace Solymi.Player.PlayerStates.SuperStates
             Player.DashState.ResetDash();
         }
 
-        public override void Exit()
-        {
-            base.Exit();
-        }
-
         public override void LogicUpdate()
         {
             base.LogicUpdate();
@@ -70,11 +65,6 @@ namespace Solymi.Player.PlayerStates.SuperStates
             {
                 StateMachine.ChangeState(Player.DashState);
             }
-        }
-
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
         }
 
         public override void DoChecks()

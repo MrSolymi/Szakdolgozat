@@ -125,10 +125,6 @@ namespace Solymi._Scripts.Scene
 
         private void SaveGame()
         {
-            //var playerStats = _playerInput.gameObject.GetComponent<Player.PlayerStateMachine.Player>().Core.GetCoreComponent<Stats>();
-
-            //Debug.LogError("---"+_campfireSceneName+"---");
-            
             _playerStats.RespawnPoint.SetRespawnPoint(GameManager.GameManager.GetCampfirePosition(_campfireSceneName));
             _playerStats.RespawnPoint.SetRespawnPointSceneName(_campfireSceneName);
             

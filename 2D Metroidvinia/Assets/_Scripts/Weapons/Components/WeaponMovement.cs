@@ -13,14 +13,6 @@ namespace Solymi.Weapons.Components
         
         private CollisionSenses _collisionSenses;
         private CollisionSenses CollisionSenses => _collisionSenses ? _collisionSenses : _collisionSenses = Core.GetCoreComponent<CollisionSenses>();
-        
-        //private WeaponMovementData _data;
-        // protected override void Awake()
-        // {
-        //     base.Awake();
-        //     
-        //     _data = weapon.WeaponData.GetWeaponComponentData<WeaponMovementData>();
-        // }
 
         protected override void Start()
         {

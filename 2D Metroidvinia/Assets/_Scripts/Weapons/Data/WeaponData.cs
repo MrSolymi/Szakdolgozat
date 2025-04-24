@@ -32,12 +32,5 @@ namespace Solymi.Weapons.Data
             
             WeaponComponentDatas.Add(data);
         }
-
-
-        // [ContextMenu("Add Sprite Data")]
-        // private void AddSpriteData() => WeaponComponentDatas.Add(new WeaponSpriteData());
-        //
-        // [ContextMenu("Add Movement Data")]
-        // private void AddMovementData() => WeaponComponentDatas.Add(new WeaponMovementData());
     }
 }

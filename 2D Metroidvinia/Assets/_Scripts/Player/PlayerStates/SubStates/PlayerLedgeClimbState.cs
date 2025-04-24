@@ -82,16 +82,6 @@ namespace Solymi.Player.PlayerStates.SubStates
             }
         }
 
-        public override void PhysicsUpdate()
-        {
-            base.PhysicsUpdate();
-        }
-
-        public override void DoChecks()
-        {
-            base.DoChecks();
-        }
-
         public override void AnimationTrigger()
         {
             base.AnimationTrigger();

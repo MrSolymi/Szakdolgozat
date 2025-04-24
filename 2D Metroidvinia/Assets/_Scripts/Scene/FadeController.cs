@@ -38,39 +38,28 @@ namespace Solymi._Scripts.Scene
             _playerInput = FindObjectOfType<PlayerInput>();
         }
 
-        //private void Start()
-        //{
-        //    Awake();
-        //}
-
         private IEnumerator FadeAndSwitch(string sceneName, string entryPointName)
         {
             _playerInput.SwitchCurrentActionMap("EmptyActionMap");
             yield return StartCoroutine(Fade(1)); // Fade to black
 
-            // unload korábbi scene, ha nem "Persistent"
             string prev = GameManager.GameManager.Instance.currentGameSceneName;
             if (!string.IsNullOrEmpty(prev) && prev != "Persistent" && SceneManager.GetSceneByName(prev).isLoaded)
             {
                 yield return SceneManager.UnloadSceneAsync(prev);
             }
 
-            // új scene betöltése ADDITIVELY
             AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             while (!loadOp.isDone)
                 yield return null;
 
-            // új scene legyen az aktív
             UnityEngine.SceneManagement.Scene newScene = SceneManager.GetSceneByName(sceneName);
             SceneManager.SetActiveScene(newScene);
 
-            // frissítjük a GameManager-ben az aktív scene nevet
             GameManager.GameManager.Instance.currentGameSceneName = sceneName;
 
-            // entryPoint regisztráció lefutásához várunk egy frame-et
             yield return null;
 
-            // játékos mozgatás
             GameObject player = GameObject.FindGameObjectWithTag("Player");
             
             if (player != null)
@@ -104,36 +93,26 @@ namespace Solymi._Scripts.Scene
             
             yield return StartCoroutine(Fade(1)); // Fade to black
 
-            // unload korábbi scene, ha nem "Persistent"
             string prev = GameManager.GameManager.Instance.currentGameSceneName;
             if (!string.IsNullOrEmpty(prev) && prev != "Persistent" && SceneManager.GetSceneByName(prev).isLoaded)
             {
                 yield return SceneManager.UnloadSceneAsync(prev);
             }
 
-            // új scene betöltése ADDITIVELY
             AsyncOperation loadOp = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
             while (!loadOp.isDone)
                 yield return null;
 
-            // új scene legyen az aktív
             UnityEngine.SceneManagement.Scene newScene = SceneManager.GetSceneByName(sceneName);
             SceneManager.SetActiveScene(newScene);
 
-            // frissítjük a GameManager-ben az aktív scene nevet
             GameManager.GameManager.Instance.currentGameSceneName = sceneName;
 
-            // entryPoint regisztráció lefutásához várunk egy frame-et
             yield return null;
 
             player.transform.GetComponent<SpriteRenderer>().enabled = true;
-            // _playerInput = FindObjectOfType<PlayerInput>();
+
             _playerInput.SwitchCurrentActionMap("EmptyActionMap");
-            
-            
-            
-            // játékos mozgatás
-            // GameObject player = GameObject.FindGameObjectWithTag("Player");
             
             if (player != null)
             {

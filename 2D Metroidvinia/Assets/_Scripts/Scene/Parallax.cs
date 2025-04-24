@@ -9,13 +9,12 @@ namespace Solymi._Scripts.Scene
     {
         private float startPos, length;
         private GameObject cam;
-        public float parallaxEffect; // A háttér mozgásának sebessége a kamera mozgásához képest
+        public float parallaxEffect;
 
         private void Start()
         {
             cam = FindObjectOfType<CinemachineBrain>().transform.GetComponent<Camera>().gameObject;
             var parentParallaxObject = GameObject.FindGameObjectWithTag("ParallaxBackground");
-            //Debug.LogError(parentParallaxObject.transform.name+" "+cam.transform.parent.name);
             parentParallaxObject.transform.position = new Vector3(cam.transform.position.x, cam.transform.position.y, 0);
             startPos = transform.position.x;
             length   = GetComponent<SpriteRenderer>().bounds.size.x;
