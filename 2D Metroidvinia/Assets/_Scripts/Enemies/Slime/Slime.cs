@@ -48,6 +48,11 @@ namespace Solymi.Enemies.Slime
             // Inicializáljuk a cooldown timer-t 1 másodperces időtartammal
             _attackCooldownTimer = new Timer(entityData.collisionDamageCooldown); // 1 másodperces cooldown
             _attackCooldownTimer.OnTimerEnd += ResetAttackCooldown; // Ha lejár a cooldown, engedjük a támadást
+
+            if (EntitySaveTracker.IsDead(uniqueId.Id))
+            {
+                transform.gameObject.SetActive(false);
+            }
         }
 
         public override void Update()
@@ -61,7 +66,7 @@ namespace Solymi.Enemies.Slime
         private void HandleHealthZero()
         {
             EntitySaveTracker.RegisterDeath(uniqueId.Id);
-            Stats.Health.Initialize();
+            //Stats.Health.Initialize();
             
             var littleSlimesContainer = GameObject.Find("LittleSlimes");
             

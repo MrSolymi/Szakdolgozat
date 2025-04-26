@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using Solymi._Scripts.GameManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,6 +15,11 @@ namespace Solymi._Scripts.Scene
         {
             if (other.CompareTag("Player"))
             {
+                //foreach (var deadEnemy in EntitySaveTracker.GetDeadEnemies())
+                //{
+                //    Debug.LogError(deadEnemy);
+                //}
+
                 FindObjectOfType<FadeController>().FadeToBlackAndLoadScene(sceneToLoad, entryPointNameInNewScene);
             }
         }

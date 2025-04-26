@@ -18,5 +18,7 @@ namespace Solymi._Scripts.GameManager
         {
             _deadEnemies.Clear();
         }
+        
+        public static HashSet<string> GetDeadEnemies() => _deadEnemies;
     }
 }

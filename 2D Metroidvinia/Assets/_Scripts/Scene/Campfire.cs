@@ -49,21 +49,21 @@ namespace Solymi._Scripts.Scene
 
         public void OnInteraction(InputAction.CallbackContext context)
         {
-            
-            if (!context.performed) return;
-            
-            //Debug.LogError("Interaction called");
-            
-            if (!_canInteract) return;
-            
-            switch (_activated)
+            if (context.performed)
             {
-                case false:
-                    Activate();
-                    break;
-                case true:
-                    SaveGame();
-                    break;
+                //Debug.LogError("Keyboard E interaction called");
+
+                if (!_canInteract) return;
+
+                switch (_activated)
+                {
+                    case false:
+                        Activate();
+                        break;
+                    case true:
+                        SaveGame();
+                        break;
+                }
             }
         }
 

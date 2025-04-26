@@ -47,6 +47,11 @@ namespace Solymi.Enemies.Archer
         public void Start()
         {
             StateMachine.Initialize(IdleState);
+            
+            if (EntitySaveTracker.IsDead(uniqueId.Id))
+            {
+                transform.gameObject.SetActive(false);
+            }
         }
 
 

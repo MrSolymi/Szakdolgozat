@@ -36,6 +36,7 @@ namespace Solymi.Enemies.Enemy1
             StunState = new Enemy1StunState(this, entityData, "stun", this);
             
             Stats.Poise.OnCurrentValueZero += HandlePoiseZero;
+            Stats.Health.OnCurrentValueZero += HandleHealthZero;
         }
 
         public override void ResetAfterSave()
@@ -48,16 +49,27 @@ namespace Solymi.Enemies.Enemy1
         private void Start()
         {
             StateMachine.Initialize(IdleState);
+            
+            if (EntitySaveTracker.IsDead(uniqueId.Id))
+            {
+                transform.gameObject.SetActive(false);
+            }
         }
         
         private void HandlePoiseZero()
         {
             StateMachine.ChangeState(StunState);
         }
+
+        private void HandleHealthZero()
+        {
+            EntitySaveTracker.RegisterDeath(uniqueId.Id);
+        }
         
         private void OnDestroy()
         {
             Stats.Poise.OnCurrentValueZero -= HandlePoiseZero;
+            Stats.Health.OnCurrentValueZero -= HandleHealthZero;
         }
 
         private void TriggerAttack()

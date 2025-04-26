@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Solymi.Enemies.EntityStateMachine
 {
-    public class Entity : MonoBehaviour
+    public abstract class Entity : MonoBehaviour
     {
         private CollisionSenses _collisionSenses;
         protected Movement Movement;
@@ -36,15 +36,13 @@ namespace Solymi.Enemies.EntityStateMachine
                 Stats.RespawnPoint.Initialize(FindGameObjectWithUniqueId(uniqueId));
         }
 
-        private void Start()
-        {
-            
-            
-            if (EntitySaveTracker.IsDead(uniqueId.Id))
-            {
-                gameObject.SetActive(false);
-            }
-        }
+        //private void Start()
+        //{
+        //    if (EntitySaveTracker.IsDead(uniqueId.Id))
+        //    {
+        //        gameObject.SetActive(false);
+        //    }
+        //}
 
         public virtual void Update()
         {
@@ -90,14 +88,6 @@ namespace Solymi.Enemies.EntityStateMachine
             {
                 go.SetActive(false);
             }
-        }
-
-        private void OnDisable()
-        {
-            if (transform.name == "LittleSlime(Clone)") return;
-            
-            EntitySaveTracker.RegisterDeath(uniqueId.Id);
-            Stats.Health.Initialize();
         }
 
         private GameObject FindGameObjectWithUniqueId(UniqueId uniqueId)
