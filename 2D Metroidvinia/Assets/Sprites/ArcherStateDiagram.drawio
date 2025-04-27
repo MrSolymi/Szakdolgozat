@@ -1,0 +1,319 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/26.0.16 Chrome/132.0.6834.196 Electron/34.2.0 Safari/537.36" version="26.0.16">
+  <diagram name="1 oldal" id="bUTYR1wcvV6RImQaOCjx">
+    <mxGraphModel dx="2440" dy="1407" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-11" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-2" target="eoa_Ym9eETC-IgBcSSgt-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-16" value="isPlayerInMaxAgroRange &amp;amp;&amp;amp;&lt;div&gt;doCloseRangeAction&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-11">
+          <mxGeometry x="0.8739" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-12" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-2" target="eoa_Ym9eETC-IgBcSSgt-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580" y="360" />
+              <mxPoint x="900" y="360" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-17" value="isPlayerInMaxAgroRange &amp;amp;&amp;amp;&lt;div&gt;!doCloseRangeAction&lt;/div&gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-12">
+          <mxGeometry x="0.9256" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-13" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-2" target="eoa_Ym9eETC-IgBcSSgt-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="580" y="490" />
+              <mxPoint x="380" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-15" value="isDodgeOver" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-13">
+          <mxGeometry x="0.7319" relative="1" as="geometry">
+            <mxPoint x="193" y="220" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-18" value="!isPlayerInMaxAgroRange" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-13">
+          <mxGeometry x="0.7702" y="5" relative="1" as="geometry">
+            <mxPoint x="5" y="-27" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-2" value="DodgeState" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;pointerEvents=0;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="520" y="730" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-19" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-3" target="eoa_Ym9eETC-IgBcSSgt-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-21" value="isPlayerInMinAgroRange" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-19">
+          <mxGeometry x="-0.5143" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-20" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-3" target="eoa_Ym9eETC-IgBcSSgt-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-22" value="isIdleTimeOver" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-20">
+          <mxGeometry x="-0.78" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-3" value="IdleState" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;pointerEvents=0;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-25" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-4" target="eoa_Ym9eETC-IgBcSSgt-7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-27" value="isPlayerInMinAgroRange" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-25">
+          <mxGeometry x="-0.7833" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-28" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-4" target="eoa_Ym9eETC-IgBcSSgt-6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="300" y="400" />
+              <mxPoint x="300" y="600" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-29" value="isTurningTimesOver" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-28">
+          <mxGeometry x="0.3167" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-4" value="LookForPlayerState" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;pointerEvents=0;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="320" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-30" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.25;entryDx=0;entryDy=0;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;jumpStyle=line;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-5" target="eoa_Ym9eETC-IgBcSSgt-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="740" y="240" />
+              <mxPoint x="740" y="385" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-33" value="isPlayerInMinAgroRange" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-30">
+          <mxGeometry x="0.5083" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-31" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-5" target="eoa_Ym9eETC-IgBcSSgt-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="740" y="240" />
+              <mxPoint x="740" y="415" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-32" value="isAnimationFinished" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-31">
+          <mxGeometry x="0.2209" y="-4" relative="1" as="geometry">
+            <mxPoint x="76" y="-151" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-34" value="!isPlayerInMinAgroRange" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-31">
+          <mxGeometry x="0.2383" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-5" value="MeleeAttackState" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;pointerEvents=0;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="520" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-35" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-6" target="eoa_Ym9eETC-IgBcSSgt-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="840" y="590" />
+              <mxPoint x="840" y="415" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-37" value="isPlayerInMinAgroRange" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-35">
+          <mxGeometry x="-0.4039" relative="1" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-38" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.75;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-6" target="eoa_Ym9eETC-IgBcSSgt-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="590" y="615" />
+              <mxPoint x="590" y="615" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-39" value="isDetectingWall || !isDetectingLedge" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-38">
+          <mxGeometry x="-0.0133" y="-3" relative="1" as="geometry">
+            <mxPoint y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-6" value="MoveState" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;pointerEvents=0;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="320" y="570" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-40" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-7" target="eoa_Ym9eETC-IgBcSSgt-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="620" y="730" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1070" y="450" />
+              <mxPoint x="880" y="450" />
+              <mxPoint x="880" y="670" />
+              <mxPoint x="700" y="670" />
+              <mxPoint x="700" y="830" />
+              <mxPoint x="580" y="830" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-43" value="Time.time &amp;gt;= _archer.DodgeState.StartTime + EntityData.dodgeCoolDown" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-40">
+          <mxGeometry x="0.5388" y="-1" relative="1" as="geometry">
+            <mxPoint x="-119" y="54" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-41" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-7">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="210" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1070" y="450" />
+              <mxPoint x="800" y="450" />
+              <mxPoint x="800" y="160" />
+              <mxPoint x="580" y="160" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-42" value="doCloseRangeAction" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-41">
+          <mxGeometry x="-0.0547" relative="1" as="geometry">
+            <mxPoint x="180" y="112" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-44" value="!(Time.time &amp;gt;= _archer.DodgeState.StartTime + EntityData.dodgeCoolDown)" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-41">
+          <mxGeometry x="0.6071" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-45" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-7" target="eoa_Ym9eETC-IgBcSSgt-8">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1100" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-46" value="doLongRangeAction" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-45">
+          <mxGeometry x="-0.5556" y="-2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-47" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-7" target="eoa_Ym9eETC-IgBcSSgt-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1120" y="490" />
+              <mxPoint x="740" y="490" />
+              <mxPoint x="740" y="450" />
+              <mxPoint x="410" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-48" value="!isPlayerInMaxAgroRange" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-47">
+          <mxGeometry x="-0.4916" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-7" value="PlayerDetectedState" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;pointerEvents=0;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-49" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;jumpStyle=line;strokeWidth=2;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-8" target="eoa_Ym9eETC-IgBcSSgt-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="100" />
+              <mxPoint x="380" y="100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-53" value="!isPlayerInMinAgroRange" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-49">
+          <mxGeometry x="-0.0467" y="1" relative="1" as="geometry">
+            <mxPoint y="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-50" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.25;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-8" target="eoa_Ym9eETC-IgBcSSgt-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="100" />
+              <mxPoint x="1180" y="100" />
+              <mxPoint x="1180" y="385" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-51" value="isAnimationFinished" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-50">
+          <mxGeometry x="-0.4705" y="-1" relative="1" as="geometry">
+            <mxPoint x="-74" y="29" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-52" value="isPlayerInMinAgroRange" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-50">
+          <mxGeometry x="-0.2662" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-8" value="RangedAttackState" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;pointerEvents=0;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="840" y="210" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-54" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-9" target="eoa_Ym9eETC-IgBcSSgt-5">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="860" y="690" />
+              <mxPoint x="240" y="690" />
+              <mxPoint x="240" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-55" value="DoCloseRangeAction" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-54">
+          <mxGeometry x="-0.2072" y="2" relative="1" as="geometry">
+            <mxPoint y="-2" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-56" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.75;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-9" target="eoa_Ym9eETC-IgBcSSgt-7">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="940" y="690" />
+              <mxPoint x="1180" y="690" />
+              <mxPoint x="1180" y="415" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-57" value="IsPlayerInMinAgroRange" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-56">
+          <mxGeometry x="-0.5374" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-58" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.75;entryY=0;entryDx=0;entryDy=0;jumpStyle=line;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-9" target="eoa_Ym9eETC-IgBcSSgt-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="900" y="550" />
+              <mxPoint x="770" y="550" />
+              <mxPoint x="770" y="330" />
+              <mxPoint x="410" y="330" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-9" value="StunState" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;pointerEvents=0;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;fontColor=default;gradientColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="840" y="730" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-60" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=default;strokeWidth=2;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;jumpStyle=line;endArrow=classic;curved=0;" edge="1" parent="1" source="eoa_Ym9eETC-IgBcSSgt-10" target="eoa_Ym9eETC-IgBcSSgt-9">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1100" y="820" />
+              <mxPoint x="900" y="820" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-61" value="Stats.Poise.OnCurrentValueZero" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];rounded=1;strokeColor=default;strokeWidth=2;fontFamily=Helvetica;fontSize=11;fontColor=default;labelBackgroundColor=default;labelBorderColor=default;" vertex="1" connectable="0" parent="eoa_Ym9eETC-IgBcSSgt-60">
+          <mxGeometry x="-0.0292" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="eoa_Ym9eETC-IgBcSSgt-10" value="AnyState" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;pointerEvents=0;align=center;verticalAlign=middle;fontFamily=Helvetica;fontSize=12;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="730" width="120" height="60" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
